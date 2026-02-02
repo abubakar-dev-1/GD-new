@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/button";
+import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Testimonials from "@/components/sections/Testimonials";
 
 export default function Home() {
@@ -44,6 +45,9 @@ export default function Home() {
           </div>
         </main>
       </div>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
 
       {/* Testimonials Section */}
       <Testimonials />
