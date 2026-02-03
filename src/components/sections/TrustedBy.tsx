@@ -54,7 +54,7 @@ const LogoItem = ({ company }: { company: typeof companies[0] }) => (
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-8">
+    <section className="w-full py-8 bg-[#000]">
       {/* Heading */}
       <h2
         className="text-center text-white text-[14px] font-semibold tracking-wider mb-6 uppercase"
