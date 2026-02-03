@@ -1,7 +1,9 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/link-button";
+import TrustedBy from "@/components/sections/TrustedBy";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import TeamSection from "@/components/sections/TeamSection";
 import Testimonials from "@/components/sections/Testimonials";
 
 export default function Home() {
@@ -46,8 +48,14 @@ export default function Home() {
         </main>
       </div>
 
+      {/* Trusted By Section */}
+      <TrustedBy />
+
       {/* Why Choose Us Section */}
       <WhyChooseUs />
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Testimonials Section */}
       <Testimonials />
