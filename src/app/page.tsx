@@ -8,6 +8,7 @@ import OurProjects from "@/components/sections/OurProjects";
 import TeamSection from "@/components/sections/TeamSection";
 import HiringBanner from "@/components/sections/HiringBanner";
 import Testimonials from "@/components/sections/Testimonials";
+import PopularArticles from "@/components/sections/PopularArticles";
 
 export default function Home() {
   return (
@@ -57,17 +58,20 @@ export default function Home() {
       {/* Why Choose Us Section */}
       <WhyChooseUs />
 
-      {/* Featured Products Section */}
-      <FeaturedProducts />
-
       {/* Our Projects Section */}
       <OurProjects />
+
+      {/* Featured Products Section */}
+      <FeaturedProducts />
 
       {/* Team Section */}
       <TeamSection />
 
       {/* Hiring Banner */}
       <HiringBanner />
+
+      {/* Popular Articles Section */}
+      <PopularArticles />
 
       {/* Testimonials Section */}
       <Testimonials />
