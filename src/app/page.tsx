@@ -4,6 +4,7 @@ import Button from "@/components/ui/link-button";
 import TrustedBy from "@/components/sections/TrustedBy";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import FeaturedProducts from "@/components/sections/FeaturedProducts";
+import OurProjects from "@/components/sections/OurProjects";
 import TeamSection from "@/components/sections/TeamSection";
 import HiringBanner from "@/components/sections/HiringBanner";
 import Testimonials from "@/components/sections/Testimonials";
@@ -58,6 +59,9 @@ export default function Home() {
 
       {/* Featured Products Section */}
       <FeaturedProducts />
+
+      {/* Our Projects Section */}
+      <OurProjects />
 
       {/* Team Section */}
       <TeamSection />

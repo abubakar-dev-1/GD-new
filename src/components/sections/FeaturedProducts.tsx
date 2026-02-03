@@ -125,7 +125,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function FeaturedProducts() {
   return (
-    <section className="w-full flex justify-center py-[80px] px-[10px]">
+    <section className="w-full flex justify-center py-[80px] px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div
         className="flex flex-col items-center justify-center w-full max-w-[1420px] gap-[10px]"
         style={{ fontFamily: "Inter" }}

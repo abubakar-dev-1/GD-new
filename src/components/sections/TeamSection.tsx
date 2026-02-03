@@ -80,7 +80,7 @@ export default function TeamSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="w-full bg-black py-16 px-4 md:px-8">
+    <section className="w-full py-16 px-4 md:px-8" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12 text-center md:text-left">

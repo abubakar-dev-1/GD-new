@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HiringBanner() {
   return (
-    <section className="w-full flex justify-center py-[80px] px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[80px] px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div
         className="relative flex items-center justify-between w-full max-w-[1280px] p-[32px] rounded-[20px] overflow-hidden"
         style={{

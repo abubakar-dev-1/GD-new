@@ -74,7 +74,7 @@ export default function Testimonials() {
   const totalSlides = Math.ceil(testimonials.length / 3);
 
   return (
-    <section className="w-full flex justify-center bg-[#000] py-[80px]">
+    <section className="w-full flex justify-center py-[80px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="flex flex-col items-center justify-center w-full max-w-[1440px] px-[48px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-4 mb-12">

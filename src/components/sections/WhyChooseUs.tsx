@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="w-full flex justify-center bg-[#000] py-[80px]">
+    <section className="w-full flex justify-center py-[80px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="flex flex-col items-start justify-start w-full max-w-[1440px] px-[48px] gap-[32px]">
         {/* Header */}
         <div className="flex flex-col items-start justify-start gap-4 w-full">
