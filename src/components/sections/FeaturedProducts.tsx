@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import ImageCard from "@/components/ui/ImageCard";
 
 interface Project {
   id: string;
@@ -37,38 +38,16 @@ const projects: Project[] = [
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div
-      className="relative w-full max-w-[1280px] h-auto lg:h-[465px] rounded-[16px] border border-[#333] overflow-hidden"
-      style={{ fontFamily: "Inter" }}
+    <ImageCard
+      image={project.image}
+      alt={project.title}
+      gradientDirection="horizontal"
+      showBorder
+      className="w-full max-w-[1280px] h-auto lg:h-[465px]"
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover object-center"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a]" />
-        )}
-      </div>
-
-      {/* Gradient Overlay for readability */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(25, 25, 25, 0.95) 0%, rgba(25, 25, 25, 0.7) 50%, rgba(25, 25, 25, 0.3) 100%)",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 flex items-start justify-between h-full p-[24px] md:p-[48px]">
+      <div className="flex items-start justify-between h-full p-[24px] md:p-[48px]">
         {/* Left Side - Text Content */}
         <div className="flex flex-col items-start justify-between h-full gap-[24px]">
-          {/* Title */}
           <h3 className="text-white text-[32px] md:text-[40px] font-semibold leading-tight">
             {project.title}
           </h3>
@@ -85,7 +64,6 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          {/* Description */}
           <p
             className="text-[#FFFFFF] text-[18px] font-normal leading-[150%] max-w-[525px]"
             style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
@@ -97,7 +75,6 @@ function ProjectCard({ project }: { project: Project }) {
           <Link
             href={project.link}
             className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
-            style={{ fontFamily: "Inter, sans-serif" }}
           >
             <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
             <span className="text-[#000000] text-[14px] font-medium leading-[16px] text-center">
@@ -106,7 +83,7 @@ function ProjectCard({ project }: { project: Project }) {
           </Link>
         </div>
 
-        {/* Right Side - Logo (if provided) */}
+        {/* Right Side - Logo */}
         {project.logo && (
           <div className="hidden lg:flex items-center justify-center">
             <Image
@@ -119,17 +96,17 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
       </div>
-    </div>
+    </ImageCard>
   );
 }
 
 export default function FeaturedProducts() {
   return (
-    <section className="w-full flex justify-center py-[80px] px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
-      <div
-        className="flex flex-col items-center justify-center w-full max-w-[1420px] gap-[10px]"
-        style={{ fontFamily: "Inter" }}
-      >
+    <section
+      className="w-full flex justify-center py-[80px] px-[10px]"
+      style={{ backgroundColor: "var(--global-bg)" }}
+    >
+      <div className="flex flex-col items-center justify-center w-full max-w-[1420px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-start w-full max-w-[1280px] gap-[16px] mb-[40px]">
           <h2

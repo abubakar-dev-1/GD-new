@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/link-button";
 import TrustedBy from "@/components/sections/TrustedBy";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import OurServices from "@/components/sections/OurServices";
 import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import OurProjects from "@/components/sections/OurProjects";
 import TeamSection from "@/components/sections/TeamSection";
@@ -57,6 +58,9 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <WhyChooseUs />
+      
+      {/* Our Services Section */}
+      <OurServices />
 
       {/* Our Projects Section */}
       <OurProjects />
