@@ -1,23 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import ImageCard from "@/components/ui/ImageCard";
-import {
-  CodeIcon,
-  ChatIcon,
-  AIIcon,
-  MobileIcon,
-  WebIcon,
-  DesignIcon,
-  DevOpsIcon,
-} from "@/components/ui/ServiceIcons";
+
+// Only keeping CodeIcon as inline SVG since there's no file for it
+const CodeIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 18L22 12L16 6" stroke="#D0FF71" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8 6L2 12L8 18" stroke="#D0FF71" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 interface Service {
   id: string;
   title: string;
   description: string;
   image: string;
-  icon: React.ReactNode;
+  icon: React.ReactNode | string;
   gridArea: string;
   contentPosition: "top" | "bottom";
 }
@@ -39,7 +39,7 @@ const services: Service[] = [
     description:
       "Creating intelligent, conversational AI chatbots that enhance customer engagement, automate support, and drive sales 24/7.",
     image: "/services/image 51(5).png",
-    icon: <ChatIcon />,
+    icon: "/services/Frame.svg",
     gridArea: "chatbot",
     contentPosition: "top",
   },
@@ -49,7 +49,7 @@ const services: Service[] = [
     description:
       "Leveraging the power of Artificial Intelligence and Machine Learning to unlock predictive insights, automate complex processes.",
     image: "/services/image 51(4).png",
-    icon: <AIIcon />,
+    icon: "/services/Frame(1).svg",
     gridArea: "ai",
     contentPosition: "bottom",
   },
@@ -59,7 +59,7 @@ const services: Service[] = [
     description:
       "Building beautiful, high-performance native and cross-platform mobile applications for iOS and Android.",
     image: "/services/image 51(2).png",
-    icon: <MobileIcon />,
+    icon: "/services/Frame(2).svg",
     gridArea: "mobile",
     contentPosition: "bottom",
   },
@@ -69,7 +69,7 @@ const services: Service[] = [
     description:
       "Developing responsive, fast, and feature-rich web applications and websites that serve as the digital cornerstone of your brand.",
     image: "/services/image 51(1).png",
-    icon: <WebIcon />,
+    icon: "/services/Frame(3).svg",
     gridArea: "web",
     contentPosition: "bottom",
   },
@@ -79,7 +79,7 @@ const services: Service[] = [
     description:
       "Crafting intuitive and visually stunning user interfaces and experiences that prioritize usability and drive engagement.",
     image: "/services/image 51(3).png",
-    icon: <DesignIcon />,
+    icon: "/services/iconoir_design-nib-solid.svg",
     gridArea: "uiux",
     contentPosition: "bottom",
   },
@@ -89,7 +89,7 @@ const services: Service[] = [
     description:
       "Streamlining your development lifecycle with our DevOps expertise, ensuring rapid, reliable, and continuous delivery of your software.",
     image: "/services/image 51.png",
-    icon: <DevOpsIcon />,
+    icon: "/services/Frame(4).svg",
     gridArea: "devops",
     contentPosition: "bottom",
   },
@@ -114,7 +114,11 @@ function ServiceCard({ service }: { service: Service }) {
       >
         {/* Icon */}
         <div className="w-[40px] h-[40px] rounded-[8px] bg-[#191919]/60 backdrop-blur-sm flex items-center justify-center">
-          {service.icon}
+          {typeof service.icon === "string" ? (
+            <Image src={service.icon} alt="" width={24} height={24} />
+          ) : (
+            service.icon
+          )}
         </div>
 
         {/* Title and Description */}
