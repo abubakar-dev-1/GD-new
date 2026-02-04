@@ -25,28 +25,27 @@ export default function Home() {
       >
         <Navbar />
         <main className="flex min-h-[calc(100vh-60px)] items-center justify-center">
-          <div className="flex flex-col items-center text-center max-w-[932px] mx-auto px-4">
+          <div className="flex flex-col items-center text-center max-w-[400px] lg:max-w-[932px] mx-auto px-[20px] lg:px-4">
+            {/* Heading - Mobile: 40px/700, Desktop: 72px/500 */}
             <h1
-              className="text-[72px] font-[500] leading-normal text-[#FFF] mb-6"
+              className="text-[40px] font-[700] lg:text-[72px] lg:font-[500] leading-normal text-[#FFF] mb-6"
               style={{ fontFamily: "Inter" }}
             >
               Building the Future of Digital Experiences
             </h1>
+            {/* Description - Mobile: 16px/400/24px, Desktop: same */}
             <p
-              className="text-[16px] font-[400] leading-[24px] text-[#FFF] mb-8 max-w-[540px]"
+              className="text-[16px] font-[400] leading-[24px] text-[#FFF] mb-8 max-w-[400px] lg:max-w-[540px]"
               style={{ fontFamily: "Inter" }}
             >
-              We partner with visionary brands to architect, build, and scale
-              world-class software solutions. From complex enterprise platforms
-              to captivating mobile apps, we turn ambitious ideas into
-              market-leading realities.
+              we transform ideas into powerful apps, sleek designs, and intelligent software solutions. Whether it&apos;s mobile apps, AI-driven platforms, or enterprise-scale systems, we bring innovation to life with precision and creativity.
             </p>
             <div className="flex gap-4">
-              <Button href="/start-project" variant="primary">
-                Start a Project
+              <Button href="/contact" variant="primary">
+                Get in touch
               </Button>
               <Button href="/services" variant="secondary">
-                Explore Our Services
+                View More
               </Button>
             </div>
           </div>
@@ -59,11 +58,11 @@ export default function Home() {
       {/* Why Choose Us Section */}
       <WhyChooseUs />
       
-      {/* Our Services Section */}
-      <OurServices />
-
       {/* Our Projects Section */}
       <OurProjects />
+
+      {/* Our Services Section */}
+      <OurServices />
 
       {/* Featured Products Section */}
       <FeaturedProducts />

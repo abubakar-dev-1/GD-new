@@ -119,13 +119,14 @@ function ArticleCard({ article }: { article: Article }) {
 export default function PopularArticles() {
   return (
     <section
-      className="w-full flex justify-center py-[80px] px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
-      <div
-        className="flex flex-col items-center w-full max-w-[1280px] gap-12"
-        style={{ fontFamily: "Inter, sans-serif" }}
-      >
+      <div className="w-full max-w-[1440px] flex flex-col items-start">
+        <div
+          className="flex flex-col items-start w-full gap-12"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-6">
           {/* Left: Title and Description */}
@@ -156,6 +157,7 @@ export default function PopularArticles() {
           {articles.map((article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
+        </div>
         </div>
       </div>
     </section>

@@ -59,13 +59,13 @@ const projects: Project[] = [
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div
-      className="flex flex-col p-[24px] gap-[24px] rounded-[28px] bg-[#2D2D2D] flex-1"
+      className="flex flex-col p-[16px] lg:p-[24px] gap-[16px] lg:gap-[24px] rounded-[20px] lg:rounded-[28px] bg-[#2D2D2D] flex-1"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
-      {/* Project Image - height: 327px, border-radius: 20px, aspect-ratio: 146/83 */}
+      {/* Project Image */}
       <div
-        className="relative w-full rounded-[20px] overflow-hidden bg-[#2a2a2a]"
-        style={{ height: "327px", aspectRatio: "146/83" }}
+        className="relative w-full rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#2a2a2a]"
+        style={{ aspectRatio: "146/83" }}
       >
         {project.image ? (
           <Image
@@ -81,25 +81,24 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      {/* Project Title - Inter, 32px, weight 500, line-height 38px */}
-      <h3 className="text-[#FFFFFF] text-[32px] font-medium leading-[38px]">
+      {/* Project Title - Mobile: 24px, Desktop: 32px */}
+      <h3 className="text-[#FFFFFF] text-[24px] lg:text-[32px] font-medium leading-[28px] lg:leading-[38px]">
         {project.title}
       </h3>
 
-      {/* Project Description - Inter, 16px, weight 400, line-height 24px */}
-      <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px]">
+      {/* Project Description */}
+      <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-normal leading-[20px] lg:leading-[24px] line-clamp-3">
         {project.description}
       </p>
 
       {/* Bottom Row: Tags + Flag + Button */}
-      <div className="flex items-center justify-between mt-auto">
+      <div className="flex flex-wrap items-center justify-between gap-[12px] mt-auto">
         {/* Tags and Flag */}
-        <div className="flex items-center gap-[8px]">
-          {/* Tags - padding: 4px 12px, border-radius: 16px, background: #444444 */}
+        <div className="flex flex-wrap items-center gap-[8px]">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-[12px] py-[4px] rounded-[16px] bg-[#444444] text-[#FFFFFF] text-[13px] font-normal leading-[20px]"
+              className="px-[12px] py-[4px] rounded-[16px] bg-[#444444] text-[#FFFFFF] text-[12px] lg:text-[13px] font-normal leading-[18px] lg:leading-[20px]"
               style={{
                 boxShadow: "0 8px 8px -4px rgba(0, 0, 0, 0.02)",
               }}
@@ -114,13 +113,13 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* View Case Study Button - height: 44px, padding: 8px 32px 8px 24px, border-radius: 40px, background: #FFF */}
+        {/* View Case Study Button */}
         <Link
           href={project.link}
-          className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
+          className="flex items-center h-[40px] lg:h-[44px] gap-[12px] pl-[16px] lg:pl-[24px] pr-[16px] lg:pr-[32px] py-[8px] rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
-          <span className="text-[#000000] text-[14px] font-medium leading-[16px]">
+          <span className="text-[#000000] text-[12px] lg:text-[14px] font-medium leading-[16px]">
             View Case Study
           </span>
         </Link>
@@ -131,40 +130,43 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function OurProjects() {
   return (
-    <section className="w-full flex justify-center py-[80px] px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
+    <section
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      style={{ backgroundColor: "var(--global-bg)" }}
+    >
       <div
-        className="flex flex-col items-center w-full max-w-[1440px] gap-[21px]"
+        className="flex flex-col items-start w-full max-w-[1440px] gap-[21px]"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
-        {/* Header Row */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full max-w-[1280px] gap-[24px]">
-          {/* Left: Title and Description */}
-          <div className="flex flex-col gap-[16px]">
-            <h2 className="text-[#FFFFFF] text-[48px] md:text-[64px] font-semibold leading-[58px]">
-              Our Projects
-            </h2>
-            <p
-              className="text-[#D2D2D2] text-[16px] font-normal leading-[24px] max-w-[400px]"
-              style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
-            >
-              Discover the stories behind some of our most successful and
-              innovative digital experiences.
-            </p>
-          </div>
+        {/* Header - Mobile: stacked, Desktop: row */}
+        <div className="flex flex-col items-start gap-[16px] w-full">
+          {/* Title - Mobile: 40px/700, Desktop: 64px/600 */}
+          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px]">
+            Our Projects
+          </h2>
 
-          {/* Right: View All Projects Button */}
+          {/* Description - Mobile: 16px/400/24px, width 388px */}
+          <p
+            className="text-[#D2D2D2] text-[16px] font-[400] leading-[24px] max-w-[388px] lg:max-w-[400px]"
+            style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
+          >
+            Discover the stories behind some of our most successful and
+            innovative digital experiences.
+          </p>
+
+          {/* View Projects Button - Mobile: smaller padding */}
           <Link
             href="/projects"
-            className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] border border-[#444] bg-transparent hover:bg-[#222] transition-colors"
+            className="flex items-center h-[40px] lg:h-[44px] gap-[12px] px-[16px] lg:pl-[24px] lg:pr-[32px] py-[8px] rounded-[40px] border border-[#444] bg-transparent hover:bg-[#222] transition-colors"
           >
             <span className="text-white text-[14px] font-medium leading-[16px]">
-              View All Projects
+              View Projects
             </span>
           </Link>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] w-full max-w-[1280px]">
+        {/* Projects Grid - Mobile: 1 col, Desktop: 2 cols */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px] w-full">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

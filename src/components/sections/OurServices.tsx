@@ -138,14 +138,14 @@ function ServiceCard({ service }: { service: Service }) {
 export default function OurServices() {
   return (
     <section
-      className="w-full flex justify-center py-[80px] px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
       style={{
         background:
           "linear-gradient(0deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.58) 100%)",
         backgroundColor: "var(--global-bg)",
       }}
     >
-      <div className="flex flex-col items-center w-full max-w-[1440px] px-[80px] gap-[21px]">
+      <div className="flex flex-col items-start w-full max-w-[1440px] gap-[21px]">
         {/* Header */}
         <div className="flex items-start justify-between w-full">
           <div className="flex flex-col gap-[8px]">

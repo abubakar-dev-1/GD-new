@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
       alt={project.title}
       gradientDirection="horizontal"
       showBorder
-      className="w-full max-w-[1280px] h-auto lg:h-[465px]"
+      className="w-full h-auto lg:h-[465px]"
     >
       <div className="flex items-start justify-between h-full p-[24px] md:p-[48px]">
         {/* Left Side - Text Content */}
@@ -103,12 +103,12 @@ function ProjectCard({ project }: { project: Project }) {
 export default function FeaturedProducts() {
   return (
     <section
-      className="w-full flex justify-center py-[80px] px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
-      <div className="flex flex-col items-center justify-center w-full max-w-[1420px] gap-[10px]">
+      <div className="flex flex-col items-start w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
-        <div className="flex flex-col items-start w-full max-w-[1280px] gap-[16px] mb-[40px]">
+        <div className="flex flex-col items-start w-full gap-[16px] mb-[40px]">
           <h2
             className="text-[#FFFFFF] text-[48px] md:text-[64px] font-normal leading-[58px]"
             style={{ fontFamily: "Microsoft Sans Serif, Inter, sans-serif" }}
@@ -125,7 +125,7 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Project Cards */}
-        <div className="flex flex-col items-center gap-[32px] w-full">
+        <div className="flex flex-col items-start gap-[32px] w-full">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

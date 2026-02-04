@@ -74,8 +74,8 @@ export default function Testimonials() {
   const totalSlides = Math.ceil(testimonials.length / 3);
 
   return (
-    <section className="w-full flex justify-center py-[80px]" style={{ backgroundColor: "var(--global-bg)" }}>
-      <div className="flex flex-col items-center justify-center w-full max-w-[1440px] px-[48px] gap-[10px]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
+      <div className="flex flex-col items-center justify-center w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-4 mb-12">
           <h2
@@ -177,7 +177,7 @@ export default function Testimonials() {
         </div>
 
         {/* Navigation Controls */}
-        <div className="flex items-center justify-between w-full max-w-[1440px] px-[48px]">
+        <div className="flex items-center justify-between w-full max-w-[1280px]">
           {/* Dot Indicators */}
           <div className="flex gap-2">
             {[...Array(totalSlides)].map((_, index) => (

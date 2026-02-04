@@ -54,19 +54,19 @@ const LogoItem = ({ company }: { company: typeof companies[0] }) => (
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-8" style={{ backgroundColor: "var(--global-bg)" }}>
-      {/* Heading */}
+    <section className="w-full py-4 lg:py-8" style={{ backgroundColor: "var(--global-bg)" }}>
+      {/* Heading - Mobile: 16px/600/24px, Desktop: 14px/600 */}
       <h2
-        className="text-center text-white text-[14px] font-semibold tracking-wider mb-6 uppercase"
+        className="text-center text-white text-[16px] lg:text-[14px] font-[600] leading-[24px] tracking-wider mb-4 lg:mb-6 uppercase"
         style={{ fontFamily: "Inter" }}
       >
         TRUSTED BY
       </h2>
 
-      {/* Logo Container with Marquee */}
-      <div className="relative w-full overflow-hidden">
+      {/* Logo Container with Marquee - Mobile: h-80px, Desktop: h-100px */}
+      <div className="relative w-full overflow-hidden h-[80px] lg:h-auto flex items-center justify-end lg:justify-center">
         {/* Left fade image */}
-        <div className="absolute left-0 top-0 bottom-0 w-[100px] md:w-[150px] z-10 pointer-events-none">
+        <div className="absolute left-0 top-0 bottom-0 w-[60px] lg:w-[150px] z-10 pointer-events-none">
           <Image
             src="/trusted_by/Container.svg"
             alt=""
@@ -76,7 +76,7 @@ export default function TrustedBy() {
         </div>
 
         {/* Right fade image */}
-        <div className="absolute right-0 top-0 bottom-0 w-[100px] md:w-[150px] z-10 pointer-events-none">
+        <div className="absolute right-0 top-0 bottom-0 w-[60px] lg:w-[150px] z-10 pointer-events-none">
           <Image
             src="/trusted_by/Container(1).svg"
             alt=""
@@ -88,7 +88,7 @@ export default function TrustedBy() {
         {/* Marquee */}
         <Marquee
           pauseOnHover
-          className="[--duration:30s] [--gap:0px] h-[100px] items-center"
+          className="[--duration:30s] [--gap:0px] h-[80px] lg:h-[100px] items-center"
         >
           {companies.map((company) => (
             <LogoItem key={company.name} company={company} />

@@ -80,8 +80,8 @@ export default function TeamSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <section className="w-full py-16 px-4 md:px-8" style={{ backgroundColor: "var(--global-bg)" }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
+      <div className="w-full max-w-[1440px]">
         {/* Header */}
         <div className="mb-12 text-center md:text-left">
           <h2
