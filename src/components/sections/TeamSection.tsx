@@ -17,6 +17,7 @@ interface TeamMember {
   title: string;
   quote: string;
   image: string;
+  mobileImage: string;
   badge?: string;
   socials: {
     linkedin?: string;
@@ -32,6 +33,7 @@ const teamMembers: TeamMember[] = [
     title: "Chief Executive Officer",
     quote: "A firm believer that great design is not just seen, but felt.",
     image: "/images/image 76.png",
+    mobileImage: "/images/mobile_image 76.png",
     socials: {
       linkedin: "#",
       upwork: "#",
@@ -44,6 +46,7 @@ const teamMembers: TeamMember[] = [
     title: "Chief Executive Officer",
     quote: "A firm believer that great design is not just seen, but felt.",
     image: "/images/image 76.png",
+    mobileImage: "/images/mobile_image 76.png",
     socials: {
       linkedin: "#",
       upwork: "#",
@@ -56,6 +59,7 @@ const teamMembers: TeamMember[] = [
     title: "Chief Executive Officer",
     quote: "A firm believer that great design is not just seen, but felt.",
     image: "/images/image 76.png",
+    mobileImage: "/images/mobile_image 76.png",
     socials: {
       linkedin: "#",
       upwork: "#",
@@ -68,6 +72,7 @@ const teamMembers: TeamMember[] = [
     title: "Chief Executive Officer",
     quote: "A firm believer that great design is not just seen, but felt.",
     image: "/images/image 76.png",
+    mobileImage: "/images/mobile_image 76.png",
     socials: {
       linkedin: "#",
       upwork: "#",
@@ -113,64 +118,81 @@ export default function TeamSection() {
             {teamMembers.map((member) => (
               <CarouselItem
                 key={member.id}
-                className="pl-4 md:basis-1/2 lg:basis-1/3"
+                className="pl-4 basis-1/2 lg:basis-1/3"
               >
                 <div className="relative group">
-                  {/* Card with gradient background */}
-                  <div className="bg-gradient-to-b from-[#c4d82e] via-[#a8c920] to-transparent rounded-3xl overflow-hidden h-[500px] flex flex-col">
-                    {/* Image */}
-                    <div className="relative w-full h-[320px] overflow-hidden">
+                  {/* Card - flex column with gap: 32px */}
+                  <div
+                    className="flex flex-col items-start gap-[32px]"
+                    style={{ backgroundColor: "transparent" }}
+                  >
+                    {/* Image with gradient background */}
+                    <div
+                      className="relative w-full aspect-square rounded-[20px] overflow-hidden"
+                      style={{
+                        background: "linear-gradient(180deg, #D0FF71 0%, var(--global-bg) 100%)",
+                      }}
+                    >
+                      {/* Mobile Image */}
+                      <Image
+                        src={member.mobileImage}
+                        alt={member.name}
+                        fill
+                        className="object-cover lg:hidden"
+                      />
+                      {/* Desktop Image */}
                       <Image
                         src={member.image}
                         alt={member.name}
                         fill
-                        className="object-cover"
+                        className="object-cover hidden lg:block"
                       />
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6 flex-1 flex flex-col justify-between bg-black/10 backdrop-blur-sm">
-                      <div>
+                    {/* Content - flex column with gap: 32px between text and icons */}
+                    <div className="flex flex-col items-start gap-[32px]" style={{ backgroundColor: "transparent" }}>
+                      {/* Text content */}
+                      <div className="flex flex-col gap-[8px]">
                         <h3
-                          className="text-[24px] font-medium leading-[28px] text-white mb-1"
+                          className="text-[24px] font-medium leading-[28px] text-white"
                           style={{ fontFamily: "Inter" }}
                         >
                           {member.name}
                         </h3>
                         <p
-                          className="text-[16px] font-normal leading-[24px] text-[#D2D2D2] mb-3"
+                          className="text-[16px] font-normal leading-[24px] text-[#D2D2D2]"
                           style={{ fontFamily: "Inter" }}
                         >
                           {member.title}
                         </p>
                         <p
-                          className="text-[16px] font-normal leading-[24px] text-[#D2D2D2]"
+                          className="text-[16px] font-normal leading-[24px] text-[#D2D2D2] mt-2"
                           style={{ fontFamily: "Inter" }}
                         >
                           ~{member.quote}
                         </p>
                       </div>
 
-                      {/* Social Icons */}
-                      <div className="flex gap-3 mt-4">
+                      {/* Social Icons - #D0FF71 green */}
+                      <div className="flex gap-3">
                         {member.socials.linkedin && (
                           <a
                             href={member.socials.linkedin}
-                            className="text-[#c4d82e] hover:text-[#a8c920] transition-colors"
+                            className="text-[#D0FF71] hover:text-[#c5f55e] transition-colors"
                             aria-label="LinkedIn"
                           >
-                            <Linkedin size={20} fill="currentColor" />
+                            <Linkedin size={24} fill="currentColor" />
                           </a>
                         )}
                         {member.socials.upwork && (
                           <a
                             href={member.socials.upwork}
-                            className="text-[#c4d82e] hover:text-[#a8c920] transition-colors"
+                            className="text-[#D0FF71] hover:text-[#c5f55e] transition-colors"
                             aria-label="Upwork"
                           >
                             <svg
-                              width="20"
-                              height="20"
+                              width="24"
+                              height="24"
                               viewBox="0 0 24 24"
                               fill="currentColor"
                               xmlns="http://www.w3.org/2000/svg"
@@ -182,10 +204,10 @@ export default function TeamSection() {
                         {member.socials.twitter && (
                           <a
                             href={member.socials.twitter}
-                            className="text-[#c4d82e] hover:text-[#a8c920] transition-colors"
+                            className="text-[#D0FF71] hover:text-[#c5f55e] transition-colors"
                             aria-label="Twitter"
                           >
-                            <Twitter size={20} fill="currentColor" />
+                            <Twitter size={24} fill="currentColor" />
                           </a>
                         )}
                       </div>
@@ -204,7 +226,7 @@ export default function TeamSection() {
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentSlide ? "bg-[#c4d82e]" : "bg-gray-600"
+                    index === currentSlide ? "bg-[#D0FF71]" : "bg-gray-600"
                   }`}
                   onClick={() => setCurrentSlide(index)}
                   aria-label={`Go to slide ${index + 1}`}

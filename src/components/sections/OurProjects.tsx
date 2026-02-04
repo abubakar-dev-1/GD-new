@@ -59,12 +59,12 @@ const projects: Project[] = [
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div
-      className="flex flex-col p-[16px] lg:p-[24px] gap-[16px] lg:gap-[24px] rounded-[20px] lg:rounded-[28px] bg-[#2D2D2D] flex-1"
+      className="flex flex-col justify-center lg:justify-start px-[16px] py-[20px] lg:p-[24px] gap-[16px] lg:gap-[24px] rounded-[28px] bg-[#191919] overflow-hidden self-stretch"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* Project Image */}
       <div
-        className="relative w-full rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#2a2a2a]"
+        className="relative w-full rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#2a2a2a] flex-shrink-0"
         style={{ aspectRatio: "146/83" }}
       >
         {project.image ? (
@@ -81,26 +81,26 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      {/* Project Title - Mobile: 24px, Desktop: 32px */}
+      {/* Project Title - Mobile: 24px/500/28px, Desktop: 32px/500/38px */}
       <h3 className="text-[#FFFFFF] text-[24px] lg:text-[32px] font-medium leading-[28px] lg:leading-[38px]">
         {project.title}
       </h3>
 
-      {/* Project Description */}
-      <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-normal leading-[20px] lg:leading-[24px] line-clamp-3">
+      {/* Project Description - Mobile: line-clamp-2, Desktop: line-clamp-3 */}
+      <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px] line-clamp-2 lg:line-clamp-3">
         {project.description}
       </p>
 
       {/* Bottom Row: Tags + Flag + Button */}
-      <div className="flex flex-wrap items-center justify-between gap-[12px] mt-auto">
-        {/* Tags and Flag */}
-        <div className="flex flex-wrap items-center gap-[8px]">
+      <div className="flex flex-wrap items-center justify-between gap-[16px]">
+        {/* Tags and Flag - Mobile: gap-6px */}
+        <div className="flex flex-wrap items-center gap-[6px] lg:gap-[8px]">
           {project.tags.map((tag) => (
             <span
               key={tag}
               className="px-[12px] py-[4px] rounded-[16px] bg-[#444444] text-[#FFFFFF] text-[12px] lg:text-[13px] font-normal leading-[18px] lg:leading-[20px]"
               style={{
-                boxShadow: "0 8px 8px -4px rgba(0, 0, 0, 0.02)",
+                boxShadow: "0 8px 8px -4px rgba(0, 0, 0, 0.02), 0 4px 4px -2px rgba(0, 0, 0, 0.03)",
               }}
             >
               {tag}
@@ -113,10 +113,10 @@ function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* View Case Study Button */}
+        {/* Button - Mobile: h-40px, px-16px, py-6px */}
         <Link
           href={project.link}
-          className="flex items-center h-[40px] lg:h-[44px] gap-[12px] pl-[16px] lg:pl-[24px] pr-[16px] lg:pr-[32px] py-[8px] rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
+          className="flex items-center h-[40px] lg:h-[44px] gap-[12px] px-[16px] lg:pl-[24px] lg:pr-[32px] py-[6px] lg:py-[8px] rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
           <span className="text-[#000000] text-[12px] lg:text-[14px] font-medium leading-[16px]">

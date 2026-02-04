@@ -57,7 +57,7 @@ export default function WhyChooseUs() {
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="flex flex-col items-center lg:items-start justify-center lg:justify-start p-[24px] lg:p-[32px] gap-[32px] lg:gap-[16px] self-stretch backdrop-blur-[10px]"
+              className="flex flex-col items-center lg:items-start justify-center lg:justify-start p-[24px] lg:p-[32px] gap-[12px] lg:gap-[16px] self-stretch backdrop-blur-[10px]"
               style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
             >
               {/* Icon */}

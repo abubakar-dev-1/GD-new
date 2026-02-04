@@ -17,6 +17,7 @@ interface Service {
   title: string;
   description: string;
   image: string;
+  mobileImage: string;
   icon: React.ReactNode | string;
   gridArea: string;
   contentPosition: "top" | "bottom";
@@ -29,6 +30,7 @@ const services: Service[] = [
     description:
       "Architecting robust, scalable, and secure software solutions tailored to your unique business challenges.",
     image: "/services/image 52.png",
+    mobileImage: "/services/mobile_image 52.png",
     icon: <CodeIcon />,
     gridArea: "software",
     contentPosition: "bottom",
@@ -39,6 +41,7 @@ const services: Service[] = [
     description:
       "Creating intelligent, conversational AI chatbots that enhance customer engagement, automate support, and drive sales 24/7.",
     image: "/services/image 51(5).png",
+    mobileImage: "/services/mobile_image 51(3).png",
     icon: "/services/Frame.svg",
     gridArea: "chatbot",
     contentPosition: "top",
@@ -49,6 +52,7 @@ const services: Service[] = [
     description:
       "Leveraging the power of Artificial Intelligence and Machine Learning to unlock predictive insights, automate complex processes.",
     image: "/services/image 51(4).png",
+    mobileImage: "/services/mobile_image 51(4).png",
     icon: "/services/Frame(1).svg",
     gridArea: "ai",
     contentPosition: "bottom",
@@ -59,6 +63,7 @@ const services: Service[] = [
     description:
       "Building beautiful, high-performance native and cross-platform mobile applications for iOS and Android.",
     image: "/services/image 51(2).png",
+    mobileImage: "/services/mobile_image 51(2).png",
     icon: "/services/Frame(2).svg",
     gridArea: "mobile",
     contentPosition: "bottom",
@@ -69,6 +74,7 @@ const services: Service[] = [
     description:
       "Developing responsive, fast, and feature-rich web applications and websites that serve as the digital cornerstone of your brand.",
     image: "/services/image 51(1).png",
+    mobileImage: "/services/mobile_image 51(1).png",
     icon: "/services/Frame(3).svg",
     gridArea: "web",
     contentPosition: "bottom",
@@ -79,6 +85,7 @@ const services: Service[] = [
     description:
       "Crafting intuitive and visually stunning user interfaces and experiences that prioritize usability and drive engagement.",
     image: "/services/image 51(3).png",
+    mobileImage: "/services/mobile_image 51.png",
     icon: "/services/iconoir_design-nib-solid.svg",
     gridArea: "uiux",
     contentPosition: "bottom",
@@ -89,6 +96,7 @@ const services: Service[] = [
     description:
       "Streamlining your development lifecycle with our DevOps expertise, ensuring rapid, reliable, and continuous delivery of your software.",
     image: "/services/image 51.png",
+    mobileImage: "/services/mobile_image 51.png",
     icon: "/services/Frame(4).svg",
     gridArea: "devops",
     contentPosition: "bottom",
@@ -106,9 +114,10 @@ function ServiceCard({ service }: { service: Service }) {
       className="h-full"
       style={{ gridArea: service.gridArea }}
     >
+      {/* Mobile: p-20px gap-16px justify-end always, Desktop: p-32px gap-16px conditional */}
       <div
-        className={`flex flex-col items-start p-[32px] gap-[16px] h-full self-stretch ${
-          isContentAtBottom ? "justify-end" : ""
+        className={`flex flex-col items-start p-[20px] lg:p-[32px] gap-[16px] h-full self-stretch justify-end ${
+          isContentAtBottom ? "" : "lg:justify-start"
         }`}
         style={{ flex: "1 0 0" }}
       >
@@ -122,12 +131,15 @@ function ServiceCard({ service }: { service: Service }) {
         </div>
 
         {/* Title and Description */}
-        <div className="flex flex-col items-start gap-[16px] self-stretch">
-          <h3 className="text-[#FFF] text-[20px] font-semibold leading-[24px]">
+        <div className="flex flex-col items-start gap-[8px] lg:gap-[16px] self-stretch">
+          {/* Mobile: 24px/500/28px, Desktop: 20px/600/24px */}
+          <h3 className="text-[#FFF] text-[24px] lg:text-[20px] font-medium lg:font-semibold leading-[28px] lg:leading-[24px]">
             {service.title}
           </h3>
-          <p className="text-[#ADADAD] text-[14px] font-normal leading-[20px]">
-            {service.description}
+          {/* Mobile: short subtitle, Desktop: full description */}
+          <p className="text-[#ADADAD] text-[16px] lg:text-[14px] font-normal leading-[24px] lg:leading-[20px]">
+            <span className="lg:hidden">Performance & Personalisation</span>
+            <span className="hidden lg:inline">{service.description}</span>
           </p>
         </div>
       </div>
@@ -146,25 +158,27 @@ export default function OurServices() {
       }}
     >
       <div className="flex flex-col items-start w-full max-w-[1440px] gap-[21px]">
-        {/* Header */}
-        <div className="flex items-start justify-between w-full">
+        {/* Header - Mobile: stacked, Desktop: row */}
+        <div className="flex flex-col lg:flex-row items-start lg:justify-between gap-[16px] w-full">
           <div className="flex flex-col gap-[8px]">
+            {/* Title - Mobile: 40px/700/normal, Desktop: 48px/400/58px */}
             <h2
-              className="text-[#FFFFFF] text-[48px] font-normal leading-[58px]"
+              className="text-[#FFFFFF] text-[40px] lg:text-[48px] font-[700] lg:font-normal leading-normal lg:leading-[58px]"
               style={{ fontFamily: "Microsoft Sans Serif, Inter, sans-serif" }}
             >
               Our Services
             </h2>
-            <p className="text-[#ADADAD] text-[16px] font-normal leading-[24px] max-w-[500px]">
+            {/* Description - Mobile: 16px/400/24px #FFF, Desktop: #ADADAD */}
+            <p className="text-[#FFF] lg:text-[#ADADAD] text-[16px] font-normal leading-[24px] max-w-[500px]">
               From foundational strategy to flawless execution, this is how we
               engineer excellence.
             </p>
           </div>
 
-          {/* View Services Button */}
+          {/* View Services Button - Mobile: h-40px py-8px px-16px border-#F3F4F6, Desktop: h-44px px-24px border-#333 */}
           <Link
             href="/services"
-            className="flex items-center h-[44px] gap-[12px] px-[24px] py-[8px] rounded-[40px] border border-[#333] hover:border-[#D0FF71] transition-colors"
+            className="flex items-center h-[40px] lg:h-[44px] gap-[12px] px-[16px] lg:px-[24px] py-[8px] rounded-[40px] border border-[#F3F4F6] lg:border-[#333] hover:border-[#D0FF71] transition-colors"
           >
             <span className="text-[#FFF] text-[14px] font-medium">
               View Services
@@ -172,11 +186,48 @@ export default function OurServices() {
           </Link>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Mobile: single column, Desktop: complex grid */}
+        <div className="grid grid-cols-1 gap-[16px] w-full lg:hidden">
+          {services.map((service) => (
+            <div key={service.id} className="h-[280px]">
+              <ImageCard
+                image={service.mobileImage}
+                alt={service.title}
+                gradientDirection="vertical"
+                className="h-full"
+              >
+                <div
+                  className="flex flex-col items-start p-[20px] gap-[16px] h-full self-stretch justify-end"
+                  style={{ flex: "1 0 0" }}
+                >
+                  {/* Icon - Mobile: 48x48 with #65783F background */}
+                  <div className="w-[48px] h-[48px] rounded-[8px] bg-[#65783F] flex items-center justify-center">
+                    {typeof service.icon === "string" ? (
+                      <Image src={service.icon} alt="" width={24} height={24} />
+                    ) : (
+                      service.icon
+                    )}
+                  </div>
+
+                  {/* Title and Description */}
+                  <div className="flex flex-col items-start gap-[8px] self-stretch">
+                    <h3 className="text-[#FFF] text-[24px] font-medium leading-[28px]">
+                      {service.title}
+                    </h3>
+                    <p className="text-[#ADADAD] text-[16px] font-normal leading-[24px]">
+                      Performance & Personalisation
+                    </p>
+                  </div>
+                </div>
+              </ImageCard>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Grid */}
         <div
-          className="w-full gap-[16px]"
+          className="hidden lg:grid w-full gap-[16px]"
           style={{
-            display: "grid",
             gridTemplateColumns: "repeat(6, 1fr)",
             gridTemplateRows: "302px 302px 302px",
             gridTemplateAreas: `

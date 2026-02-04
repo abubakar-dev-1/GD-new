@@ -77,15 +77,15 @@ export default function Testimonials() {
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="flex flex-col items-center justify-center w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
-        <div className="flex flex-col items-center gap-4 mb-12">
+        <div className="flex flex-col items-center gap-4 mb-8 lg:mb-12">
           <h2
-            className="text-[#FFF] text-[64px] font-[600] leading-[58px] text-center w-[648px]"
+            className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px] text-center w-full lg:w-[648px]"
             style={{ fontFamily: "Inter" }}
           >
             Testimonials
           </h2>
           <p
-            className="text-[#FFF] text-[16px] font-[400] leading-[24px] text-center w-[592px]"
+            className="text-[#FFF] text-[16px] font-[400] leading-[24px] text-center w-full lg:w-[592px]"
             style={{ fontFamily: "Inter" }}
           >
             We are a collective of strategists, creatives, and engineers united
@@ -93,15 +93,47 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Testimonial Cards */}
-        <div className="flex gap-[32px] w-full justify-center mb-12">
+        {/* Testimonial Cards - Mobile: stacked, Desktop: row */}
+        <div className="flex flex-col lg:flex-row gap-[32px] lg:gap-[32px] w-full justify-center mb-8 lg:mb-12">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="flex flex-col items-start w-[450px] p-[32px] gap-[32px] rounded-[28px] bg-[#191919]"
+              className="flex flex-col items-start w-full lg:w-[450px] p-[32px] gap-[32px] rounded-[28px] bg-[#191919] border border-[#777] lg:border-0"
             >
-              {/* Company Logo */}
-              <div className="h-[40px] flex items-center">
+              {/* Mobile: Logo + Stars in same row, Desktop: separate */}
+              <div className="flex items-center justify-between w-full lg:hidden">
+                {/* Company Logo */}
+                <div className="h-[40px] flex items-center">
+                  <Image
+                    src={testimonial.companyLogo}
+                    alt={testimonial.company}
+                    width={80}
+                    height={40}
+                    className="object-contain"
+                  />
+                </div>
+                {/* Star Rating */}
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, index) => (
+                    <svg
+                      key={index}
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10 0L12.2451 7.40983H20L13.8779 11.9803L16.1229 19.3902L10 14.8197L3.87705 19.3902L6.12205 11.9803L0 7.40983H7.75486L10 0Z"
+                        fill={index < testimonial.rating ? "#D0FF71" : "#333"}
+                      />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop: Company Logo separate */}
+              <div className="hidden lg:flex h-[40px] items-center">
                 <Image
                   src={testimonial.companyLogo}
                   alt={testimonial.company}
@@ -111,8 +143,8 @@ export default function Testimonials() {
                 />
               </div>
 
-              {/* Star Rating */}
-              <div className="flex gap-1">
+              {/* Desktop: Star Rating separate */}
+              <div className="hidden lg:flex gap-1">
                 {[...Array(5)].map((_, index) => (
                   <svg
                     key={index}
@@ -167,7 +199,7 @@ export default function Testimonials() {
 
               {/* Read More Button */}
               <button
-                className="h-[44px] px-[24px] py-[8px] rounded-[40px] border border-[#FFF] text-[#FFF] text-[14px] font-[500] leading-[16px] hover:bg-[#FFF] hover:text-[#000] transition-colors"
+                className="h-[40px] lg:h-[44px] px-[16px] lg:px-[24px] py-[8px] rounded-[40px] border border-[#FFF] text-[#FFF] text-[14px] font-[500] leading-[16px] hover:bg-[#FFF] hover:text-[#000] transition-colors"
                 style={{ fontFamily: "Inter" }}
               >
                 Read More
@@ -176,8 +208,8 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-between w-full max-w-[1280px]">
+        {/* Navigation Controls - Hidden on mobile */}
+        <div className="hidden lg:flex items-center justify-between w-full max-w-[1280px]">
           {/* Dot Indicators */}
           <div className="flex gap-2">
             {[...Array(totalSlides)].map((_, index) => (
