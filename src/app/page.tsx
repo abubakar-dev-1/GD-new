@@ -10,6 +10,7 @@ import TeamSection from "@/components/sections/TeamSection";
 import HiringBanner from "@/components/sections/HiringBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import PopularArticles from "@/components/sections/PopularArticles";
+import BookingSection from "@/components/home/BookingSection";
 
 export default function Home() {
   return (
@@ -78,6 +79,9 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <Testimonials />
+
+      {/* Booking Section */}
+      <BookingSection />
 
       {/* Footer */}
       <Footer />
