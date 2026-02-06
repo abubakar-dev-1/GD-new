@@ -127,14 +127,14 @@ export default function Footer() {
           {/* Right Column - Newsletter Subscription */}
           <div className="flex flex-col items-start gap-[16px] w-full lg:w-auto">
             <h3
-              className="text-[#FFF] text-[40px] font-[700] leading-normal w-full lg:w-[361px]"
+              className="text-[#FFF] text-[40px] font-[700] leading-normal w-full lg:w-[480px]"
               style={{ fontFamily: "Inter" }}
             >
               Subscribe to our newsletter
             </h3>
             <form className="flex flex-col gap-[16px] lg:flex-row lg:gap-[12px] w-full lg:w-auto">
-              {/* Email Input */}
-              <div className="flex items-center justify-between w-full lg:w-auto h-[48px] pl-[24px] pr-[16px] py-[16px] rounded-[999px] bg-[#333] lg:bg-[#191919]">
+              {/* Email Input - wider width */}
+              <div className="flex items-center justify-between w-full lg:w-[280px] h-[48px] pl-[24px] pr-[16px] py-[16px] rounded-[999px] bg-[#333] lg:bg-[#191919]">
                 <input
                   type="email"
                   placeholder="Your Email"
