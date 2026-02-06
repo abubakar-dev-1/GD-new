@@ -23,46 +23,121 @@ export default function ContactSection() {
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]">
       <div className="w-full max-w-[1440px] flex flex-col lg:flex-row lg:items-stretch gap-[24px]">
         {/* Left Side - Map & Contact Info */}
-        <div className="flex flex-col gap-[32px] flex-1">
-          {/* Map Card - grows to fill remaining space */}
+        <div className="flex flex-col gap-[24px] lg:gap-[32px] flex-1 order-2 lg:order-1">
+          {/* Mobile: Single container with map + cards inside */}
+          {/* Desktop: Separate map card */}
           <div
-            className="relative w-full flex-1 min-h-[300px] rounded-[20px] overflow-hidden"
+            className="flex flex-col p-[20px] lg:p-0 gap-[24px] lg:gap-0 rounded-[28px] lg:rounded-[20px] overflow-hidden"
             style={{
               border: "1px solid #618C6D",
               background: "rgba(0, 0, 0, 0.20)",
-              backdropFilter: "blur(100px)",
+              backdropFilter: "blur(25px)",
             }}
           >
-            {/* Map Image */}
-            <Image
-              src="/image 97.png"
-              alt="Location Map"
-              fill
-              className="object-cover"
-            />
+            {/* Map Card */}
+            <div className="relative w-full min-h-[300px] lg:flex-1 rounded-[20px] overflow-hidden" style={{ isolation: "isolate" }}>
+              {/* Map Image */}
+              <Image
+                src="/image 97.png"
+                alt="Location Map"
+                fill
+                className="object-cover rounded-[20px]"
+              />
 
-            {/* Map Overlay Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-[24px] flex flex-col gap-[12px] bg-gradient-to-t from-black/80 to-transparent">
-              <h3
-                className="text-[#FFF] text-[20px] font-[600] leading-normal"
-                style={{ fontFamily: "Inter" }}
+              {/* Map Overlay Content */}
+              <div className="absolute bottom-0 left-0 right-0 p-[24px] flex flex-col gap-[12px] bg-gradient-to-t from-black/80 to-transparent">
+                <h3
+                  className="text-[#FFF] text-[20px] font-[600] leading-normal"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  Find Us Here
+                </h3>
+                <a
+                  href="https://maps.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-fit px-[16px] py-[10px] rounded-[999px] bg-[#FFF] text-[#000] text-[14px] font-[500] leading-normal hover:bg-[#D0FF71] transition-colors"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  View On Google Maps
+                </a>
+              </div>
+            </div>
+
+            {/* Mobile Contact Cards - inside container, stacked vertically */}
+            <div className="flex flex-col gap-[32px] lg:hidden">
+              {/* Phone Card - height: 120px, flex-direction: column */}
+              <div
+                className="flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px]"
+                style={{
+                  border: "1px solid #FFF",
+                  background: "rgba(255, 255, 255, 0.10)",
+                  backdropFilter: "blur(12.5px)",
+                }}
               >
-                Find Us Here
-              </h3>
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-fit px-[16px] py-[10px] rounded-[999px] bg-[#FFF] text-[#000] text-[14px] font-[500] leading-normal hover:bg-[#D0FF71] transition-colors"
-                style={{ fontFamily: "Inter" }}
+                <div className="w-[24px] h-[24px] flex items-center justify-center text-[#D0FF71]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <span
+                  className="text-[#FFF] text-[14px] font-[400] leading-normal"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  +92 307 4593601
+                </span>
+              </div>
+
+              {/* Email Card - height: 120px, flex-direction: column */}
+              <div
+                className="flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px]"
+                style={{
+                  border: "1px solid #FFF",
+                  background: "rgba(255, 255, 255, 0.10)",
+                  backdropFilter: "blur(12.5px)",
+                }}
               >
-                View On Google Maps
-              </a>
+                <div className="w-[24px] h-[24px] flex items-center justify-center text-[#D0FF71]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 6l-10 7L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <span
+                  className="text-[#FFF] text-[14px] font-[400] leading-normal"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  @gammadevelopers.com
+                </span>
+              </div>
+
+              {/* Address Card - height: 120px, flex-direction: column */}
+              <div
+                className="flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px]"
+                style={{
+                  border: "1px solid #FFF",
+                  background: "rgba(255, 255, 255, 0.10)",
+                  backdropFilter: "blur(12.5px)",
+                }}
+              >
+                <div className="w-[24px] h-[24px] flex items-center justify-center text-[#D0FF71]">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <span
+                  className="text-[#FFF] text-[14px] font-[400] leading-normal"
+                  style={{ fontFamily: "Inter" }}
+                >
+                  152 Thatcher Road St, Mahattan, NY 10463, US
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Contact Info Cards Row - gap 32px between rows */}
-          <div className="flex flex-col lg:flex-row gap-[32px]">
+          {/* Desktop Contact Info Cards - outside container */}
+          <div className="hidden lg:flex flex-col lg:flex-row gap-[32px]">
             {/* Email Card - height: 120px, flex-direction: column */}
             <div
               className="flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px] flex-1"
@@ -109,9 +184,9 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Address Card - height: 120px, flex-direction: column */}
+          {/* Desktop Address Card - height: 120px, flex-direction: column */}
           <div
-            className="flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px] w-full"
+            className="hidden lg:flex flex-col justify-between items-start h-[120px] p-[16px_16px_16px_24px] rounded-[20px] w-full"
             style={{
               border: "1px solid #FFF",
               background: "rgba(255, 255, 255, 0.10)",
@@ -135,7 +210,7 @@ export default function ContactSection() {
 
         {/* Right Side - Contact Form */}
         <div
-          className="flex flex-col p-[24px] gap-[32px] flex-1 rounded-[28px]"
+          className="flex flex-col p-[24px] gap-[32px] flex-1 rounded-[28px] order-1 lg:order-2"
           style={{
             border: "1px solid #618C6D",
             background: "rgba(0, 0, 0, 0.20)",
@@ -164,7 +239,7 @@ export default function ContactSection() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full h-[56px] px-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
+                className="w-full h-[56px] py-[16px] pr-[16px] pl-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
                 style={{
                   fontFamily: "Inter",
                   border: "1px solid #FFF",
@@ -186,7 +261,7 @@ export default function ContactSection() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full h-[56px] px-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
+                className="w-full h-[56px] py-[16px] pr-[16px] pl-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
                 style={{
                   fontFamily: "Inter",
                   border: "1px solid #FFF",
@@ -208,7 +283,7 @@ export default function ContactSection() {
                 type="text"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="w-full h-[56px] px-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
+                className="w-full h-[56px] py-[16px] pr-[16px] pl-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors"
                 style={{
                   fontFamily: "Inter",
                   border: "1px solid #FFF",
@@ -230,7 +305,7 @@ export default function ContactSection() {
                 <select
                   value={formData.services}
                   onChange={(e) => setFormData({ ...formData, services: e.target.value })}
-                  className="w-full h-[56px] px-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors appearance-none cursor-pointer"
+                  className="w-full h-[56px] py-[16px] pr-[16px] pl-[24px] rounded-[999px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors appearance-none cursor-pointer"
                   style={{
                     fontFamily: "Inter",
                     border: "1px solid #FFF",
@@ -245,7 +320,7 @@ export default function ContactSection() {
                   <option value="ai-solutions" className="bg-[#1A1A1A]">AI Solutions</option>
                   <option value="consulting" className="bg-[#1A1A1A]">Consulting</option>
                 </select>
-                <div className="absolute right-[24px] top-1/2 -translate-y-1/2 pointer-events-none text-[#FFF]">
+                <div className="absolute right-[16px] top-1/2 -translate-y-1/2 pointer-events-none text-[#FFF]">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -269,7 +344,7 @@ export default function ContactSection() {
                       setFormData({ ...formData, project: e.target.value });
                     }
                   }}
-                  className="w-full h-[188px] px-[24px] py-[16px] rounded-[20px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors resize-none"
+                  className="w-full h-[188px] py-[16px] pr-[16px] pl-[24px] rounded-[20px] text-[#FFF] text-[14px] focus:outline-none focus:border-[#D0FF71] transition-colors resize-none"
                   style={{
                     fontFamily: "Inter",
                     border: "1px solid #FFF",
@@ -278,7 +353,7 @@ export default function ContactSection() {
                   }}
                 />
                 <span
-                  className="absolute bottom-[16px] right-[24px] text-[#999] text-[12px]"
+                  className="absolute bottom-[16px] right-[16px] text-[#999] text-[12px]"
                   style={{ fontFamily: "Inter" }}
                 >
                   {formData.project.length}/300
@@ -287,7 +362,7 @@ export default function ContactSection() {
             </div>
 
             {/* Privacy Policy & Submit - height: 48px, padding: 8px 32px, border-radius: 40px */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-[16px]">
+            <div className="flex flex-row items-center justify-between gap-[16px]">
               <label className="flex items-center gap-[12px] cursor-pointer">
                 <input
                   type="checkbox"
