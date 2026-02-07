@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto } from "next/font/google";
+import { Inter, Roboto, Oswald } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,6 +12,12 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["600"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${roboto.variable} antialiased`}
+        className={`${inter.variable} ${roboto.variable} ${oswald.variable} antialiased`}
       >
         {children}
       </body>
