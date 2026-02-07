@@ -2,6 +2,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CareerHeroSection from "@/components/career/CareerHeroSection";
 import OurProcess from "@/components/about/OurProcess";
+import OurValues from "@/components/about/OurValues";
+import OpenPositions from "@/components/career/OpenPositions";
+import CareerFAQ from "@/components/career/CareerFAQ";
 
 const careerSteps = [
   {
@@ -41,6 +44,9 @@ export default function CareerPage() {
 
       <CareerHeroSection />
       <OurProcess steps={careerSteps} />
+      <OurValues />
+      <OpenPositions />
+      <CareerFAQ />
 
       <Footer />
     </div>
