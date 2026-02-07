@@ -29,7 +29,7 @@ export default function PhilosophyBanner() {
           {/* Content */}
           <div className="relative z-10 w-full p-[24px] lg:p-[48px]">
             <p
-              className="text-[32px] lg:text-[56px] font-[700] leading-[40px] lg:leading-[64px]"
+              className="text-[24px] lg:text-[56px] font-[500] lg:font-[700] leading-[28px] lg:leading-[64px]"
               style={{
                 fontFamily: "Inter",
                 color: "rgba(255, 255, 255, 0.60)",

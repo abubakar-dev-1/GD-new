@@ -88,9 +88,9 @@ export default function TeamSection() {
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="w-full max-w-[1440px]">
         {/* Header */}
-        <div className="mb-12 text-center md:text-left">
+        <div className="mb-12 text-left">
           <h2
-            className="text-[64px] font-semibold leading-[58px] text-white mb-3"
+            className="text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px] text-white mb-3"
             style={{ fontFamily: "Inter", maxWidth: "572px" }}
           >
             The Minds Behind
@@ -98,7 +98,7 @@ export default function TeamSection() {
             the Mission
           </h2>
           <p
-            className="text-[#D2D2D2] text-[16px] font-normal leading-[24px]"
+            className="text-[#FFF] lg:text-[#D2D2D2] text-[16px] font-normal leading-[24px]"
             style={{ fontFamily: "Inter", maxWidth: "768px" }}
           >
             We are a collective of strategists, creatives, and engineers united

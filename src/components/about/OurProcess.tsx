@@ -142,65 +142,50 @@ export default function OurProcess() {
           })}
         </div>
 
-        {/* Timeline - Mobile */}
-        <div className="flex lg:hidden flex-col w-full pl-[24px]">
-          {steps.map((step, index) => {
-            const isLast = index === steps.length - 1;
-
-            return (
-              <div key={step.number} className="flex w-full">
-                {/* Icon column */}
-                <div className="relative flex flex-col items-center flex-shrink-0 self-stretch">
-                  {/* Icon */}
-                  <StepIcon src={step.icon} alt={step.title} />
-                  {/* Single smooth line from this icon center to next icon center */}
-                  {!isLast && (
-                    <div
-                      className="absolute left-1/2 -translate-x-1/2 w-[8px] rounded-full"
-                      style={{
-                        top: "40px",
-                        bottom: "-40px",
-                        backgroundImage: LINE_GRADIENT,
-                      }}
-                    />
-                  )}
+        {/* Cards - Mobile */}
+        <div className="flex lg:hidden flex-col w-full gap-[20px]">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className="flex flex-col items-start gap-[32px] p-[24px] rounded-[16px] w-full"
+              style={{ background: "#191919" }}
+            >
+              {/* Top row - Icon + Number */}
+              <div className="flex items-center justify-between w-full">
+                <div className="w-[80px] h-[80px] rounded-full bg-[#293D00] flex items-center justify-center flex-shrink-0">
+                  <Image src={step.icon} alt={step.title} width={36} height={36} />
                 </div>
-
-                {/* Content */}
-                <div
-                  className={`flex flex-col gap-[16px] pl-[20px] flex-1 ${!isLast ? "pb-[60px]" : ""}`}
+                <span
+                  className="text-[60px] font-[600] leading-normal select-none"
+                  style={{
+                    fontFamily: "var(--font-oswald), Oswald, sans-serif",
+                    color: "#191919",
+                    textAlign: "center",
+                    WebkitTextStrokeWidth: "1px",
+                    WebkitTextStrokeColor: "#444",
+                  }}
                 >
-                  <span
-                    className="text-[64px] font-[600] leading-normal text-[#191919] select-none"
-                    style={{
-                      fontFamily: "var(--font-oswald), Oswald, sans-serif",
-                      WebkitTextStrokeWidth: "1px",
-                      WebkitTextStrokeColor: "#444",
-                    }}
-                  >
-                    {step.number}
-                  </span>
-                  <div
-                    className="flex flex-col items-start gap-[24px] p-[20px] rounded-[16px] w-full"
-                    style={{ background: "#191919" }}
-                  >
-                    <h3
-                      className="text-[#FFF] text-[24px] font-[500] leading-[30px]"
-                      style={{ fontFamily: "Inter" }}
-                    >
-                      {step.title}
-                    </h3>
-                    <p
-                      className="text-[#FFF] text-[16px] font-[400] leading-normal"
-                      style={{ fontFamily: "Inter" }}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
+                  {step.number}
+                </span>
               </div>
-            );
-          })}
+
+              {/* Title */}
+              <h3
+                className="text-[#FFF] text-[28px] font-[500] leading-[34px]"
+                style={{ fontFamily: "Inter" }}
+              >
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                className="text-[#FFF] text-[16px] font-[400] leading-normal"
+                style={{ fontFamily: "Inter" }}
+              >
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
