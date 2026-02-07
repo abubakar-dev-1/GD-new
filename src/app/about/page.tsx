@@ -6,6 +6,7 @@ import OurValues from "@/components/about/OurValues";
 import OurProcess from "@/components/about/OurProcess";
 import TeamSection from "@/components/sections/TeamSection";
 import HiringBanner from "@/components/sections/HiringBanner";
+import PhilosophyBanner from "@/components/about/PhilosophyBanner";
 import BookingSection from "@/components/home/BookingSection";
 
 export default function AboutPage() {
@@ -19,6 +20,7 @@ export default function AboutPage() {
       <OurProcess />
       <TeamSection />
       <HiringBanner />
+      <PhilosophyBanner />
       <BookingSection />
 
       <Footer />

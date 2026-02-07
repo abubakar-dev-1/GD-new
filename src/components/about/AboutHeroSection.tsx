@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AboutHeroSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "#000" }}>
       <div className="w-full max-w-[1440px]">
         {/* Hero Card */}
         <div
