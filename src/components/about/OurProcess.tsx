@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 
-const steps = [
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const defaultSteps: Step[] = [
   {
     number: "01",
     title: "Design & Discovery",
@@ -44,7 +51,7 @@ function StepIcon({ src, alt }: { src: string; alt: string }) {
 const LINE_GRADIENT =
   "linear-gradient(180deg, #191919 43.23%, #D0FF71 100%)";
 
-export default function OurProcess() {
+export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] }) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
