@@ -68,9 +68,33 @@ export const postBySlugQuery = groq`
       slug,
       description
     },
+    "categoryRefs": categories[]._ref,
     publishedAt,
     readTime,
     body
+  }
+`;
+
+// Get related posts by shared categories (excludes current post, max 3)
+export const relatedPostsQuery = groq`
+  *[_type == "post" && defined(slug.current) && _id != $postId && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...3] {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    author->{
+      name,
+      slug,
+      image
+    },
+    coverImage,
+    excerpt,
+    categories[]->{
+      title,
+      slug
+    },
+    publishedAt,
+    readTime
   }
 `;
 

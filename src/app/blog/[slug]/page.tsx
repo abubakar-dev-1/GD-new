@@ -8,6 +8,7 @@ import { client } from "../../../../sanity/lib/client";
 import {
   postBySlugQuery,
   postSlugsQuery,
+  relatedPostsQuery,
   featuredPostsQuery,
 } from "../../../../sanity/lib/queries";
 import { Post } from "@/types/blog";
@@ -31,13 +32,30 @@ interface BlogPostPageProps {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
-  const [post, relatedPosts]: [Post | null, Post[]] = await Promise.all([
-    client.fetch(postBySlugQuery, { slug }),
-    client.fetch(featuredPostsQuery),
-  ]);
+  // First fetch the current post
+  const post: Post | null = await client.fetch(postBySlugQuery, { slug });
 
   if (!post) {
     notFound();
+  }
+
+  // Get raw category reference IDs for the related posts query
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const categoryIds: string[] = (post as any).categoryRefs || [];
+
+  // Fetch related posts by shared categories, fallback to featured if none found
+  let relatedPosts: Post[] = [];
+  if (categoryIds.length > 0) {
+    relatedPosts = await client.fetch(relatedPostsQuery, {
+      postId: post._id,
+      categoryIds,
+    });
+  }
+
+  // Fallback to featured posts if no category-based related posts found
+  if (relatedPosts.length === 0) {
+    const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
+    relatedPosts = featuredPosts.filter((p) => p._id !== post._id);
   }
 
   const headerProps = {
@@ -48,9 +66,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     date: formatDate(post.publishedAt),
   };
 
-  const relatedArticles = relatedPosts
-    .filter((p) => p._id !== post._id)
-    .map(transformPostToArticle);
+  const relatedArticles = relatedPosts.map(transformPostToArticle);
 
   return (
     <div className="min-h-screen bg-[#090C08]">
