@@ -13,39 +13,6 @@ interface Article {
   link: string;
 }
 
-const articles: Article[] = [
-  {
-    id: "1",
-    title: "The React Framework for the Web",
-    description:
-      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
-    coverImage: "/image 54.png",
-    tags: ["Design", "Website", "UI/UX"],
-    readTime: "5 Min Read",
-    link: "/blog/react-framework",
-  },
-  {
-    id: "2",
-    title: "The React Framework for the Web",
-    description:
-      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
-    coverImage: "/image 54.png",
-    tags: ["Design", "Website", "UI/UX"],
-    readTime: "5 Min Read",
-    link: "/blog/react-framework-2",
-  },
-  {
-    id: "3",
-    title: "The React Framework for the Web",
-    description:
-      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
-    coverImage: "/image 54.png",
-    tags: ["Design", "Website", "UI/UX"],
-    readTime: "5 Min Read",
-    link: "/blog/react-framework-3",
-  },
-];
-
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
@@ -116,7 +83,7 @@ function ArticleCard({ article }: { article: Article }) {
   );
 }
 
-export default function PopularArticles({ title = "Popular Articles" }: { title?: string }) {
+export default function PopularArticles({ title = "Popular Articles", articles = [] }: { title?: string; articles?: Article[] }) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -153,11 +120,20 @@ export default function PopularArticles({ title = "Popular Articles" }: { title?
         </div>
 
         {/* Articles List */}
-        <div className="flex flex-col gap-6 w-full">
-          {articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </div>
+        {articles.length === 0 ? (
+          <p
+            className="text-[#D2D2D2] text-base font-normal"
+            style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
+          >
+            No articles available yet. Check back soon!
+          </p>
+        ) : (
+          <div className="flex flex-col gap-6 w-full">
+            {articles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </div>
+        )}
         </div>
       </div>
     </section>

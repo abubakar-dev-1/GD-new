@@ -75,7 +75,8 @@ export default function OurValues() {
               </h3>
               <p
                 className="relative text-[#FFF] text-[14px] lg:text-[16px] font-[400] leading-[22px] lg:leading-[24px]"
-                style={{ fontFamily: "Inter" }}
+                style={{ fontFamily: "Inter" }
+              }
               >
                 {value.description}
               </p>

@@ -42,3 +42,19 @@ export function transformPostToArticle(post: Post) {
     link: `/blog/${post.slug.current}`,
   };
 }
+
+/**
+ * Transform Sanity Post to the shape needed by DiscoverBlogs cards
+ */
+export function transformPostToBlogCard(post: Post) {
+  return {
+    id: post._id,
+    title: post.title,
+    description: post.excerpt,
+    coverImage: post.coverImage
+      ? urlFor(post.coverImage).width(800).height(500).url()
+      : "/image 54.png",
+    date: formatDate(post.publishedAt),
+    link: `/blog/${post.slug.current}`,
+  };
+}

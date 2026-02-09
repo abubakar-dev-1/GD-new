@@ -11,8 +11,17 @@ import HiringBanner from "@/components/sections/HiringBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import PopularArticles from "@/components/sections/PopularArticles";
 import BookingSection from "@/components/home/BookingSection";
+import { client } from "../../sanity/lib/client";
+import { featuredPostsQuery } from "../../sanity/lib/queries";
+import { Post } from "@/types/blog";
+import { transformPostToArticle } from "@/lib/sanity-helpers";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
+  const featuredArticles = featuredPosts.map(transformPostToArticle);
+
   return (
     <div className="min-h-screen bg-[#090C08]">
       {/* Hero Section with Background */}
@@ -58,7 +67,7 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <WhyChooseUs />
-      
+
       {/* Our Projects Section */}
       <OurProjects />
 
@@ -75,7 +84,7 @@ export default function Home() {
       <HiringBanner />
 
       {/* Popular Articles Section */}
-      <PopularArticles />
+      <PopularArticles articles={featuredArticles} />
 
       {/* Testimonials Section */}
       <Testimonials />

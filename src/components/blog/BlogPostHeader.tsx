@@ -40,12 +40,21 @@ const ChevronLeftIcon = () => (
   </svg>
 );
 
-export default function BlogPostHeader() {
-  const tags = ["Design", "Design", "Website", "UI/UX"];
-  const readTime = "5 Min Read";
-  const title = "The Next.JS Framework for the Web";
-  const coverImage = "/images/image 54.png";
-  const date = "Tuesday 24th , Aug 2025";
+interface BlogPostHeaderProps {
+  tags: string[];
+  readTime: string;
+  title: string;
+  coverImage: string;
+  date: string;
+}
+
+export default function BlogPostHeader({
+  tags,
+  readTime,
+  title,
+  coverImage,
+  date,
+}: BlogPostHeaderProps) {
 
   return (
     <section
