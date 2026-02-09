@@ -116,7 +116,7 @@ function ArticleCard({ article }: { article: Article }) {
   );
 }
 
-export default function PopularArticles() {
+export default function PopularArticles({ title = "Popular Articles" }: { title?: string }) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -132,7 +132,7 @@ export default function PopularArticles() {
           {/* Left: Title and Description */}
           <div className="flex flex-col gap-4">
             <h2 className="text-white text-5xl md:text-[64px] font-semibold leading-[58px]">
-              Popular Articles
+              {title}
             </h2>
             <p
               className="text-[#D2D2D2] text-base font-normal leading-relaxed max-w-[500px]"
