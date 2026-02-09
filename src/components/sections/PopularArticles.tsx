@@ -49,7 +49,7 @@ const articles: Article[] = [
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <div className="flex flex-col md:flex-row items-start bg-[#191919] p-[16px] md:p-[24px] gap-[20px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
+    <div className="flex flex-col md:flex-row items-start bg-[#191919] p-[24px] gap-[16px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
       {/* Image Section - Left Side: width 370.7px, aspect-ratio 133/94, border-radius 20px */}
       <div
         className="relative w-full md:w-[370px] flex-shrink-0 rounded-[20px] overflow-hidden"
@@ -94,7 +94,7 @@ function ArticleCard({ article }: { article: Article }) {
 
         {/* Description */}
         <p
-          className="text-[14px] md:text-[16px] font-normal text-white hidden md:block"
+          className="text-[16px] font-[400] text-[#FFF]"
           style={{ fontFamily: "Inter, sans-serif", lineHeight: "24px" }}
         >
           {article.description}

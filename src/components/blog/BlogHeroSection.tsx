@@ -21,7 +21,7 @@ export default function BlogHeroSection() {
           {/* Background Image - Mobile */}
           <div className="absolute inset-0 lg:hidden">
             <Image
-              src="/images/damu un gur.png"
+              src="/images/mobile_Frame 1420.png"
               alt="Blog Background"
               fill
               className="object-cover"
