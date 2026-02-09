@@ -49,7 +49,7 @@ const articles: Article[] = [
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <div className="flex flex-col md:flex-row items-start bg-[#191919] p-[24px] gap-[48px] rounded-[28px]">
+    <div className="flex flex-col md:flex-row items-start bg-[#191919] p-[16px] md:p-[24px] gap-[20px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
       {/* Image Section - Left Side: width 370.7px, aspect-ratio 133/94, border-radius 20px */}
       <div
         className="relative w-full md:w-[370px] flex-shrink-0 rounded-[20px] overflow-hidden"
@@ -64,7 +64,7 @@ function ArticleCard({ article }: { article: Article }) {
       </div>
 
       {/* Content Section - Right Side */}
-      <div className="flex flex-col gap-[24px] leading-normal justify-center flex-1">
+      <div className="flex flex-col gap-[16px] md:gap-[24px] leading-normal justify-center flex-1">
         {/* Tags Row */}
         <div className="flex flex-wrap items-center gap-2">
           {article.tags.map((tag) => (
@@ -86,15 +86,15 @@ function ArticleCard({ article }: { article: Article }) {
 
         {/* Title */}
         <h3
-          className="text-[32px] font-medium text-white"
-          style={{ fontFamily: "Inter, sans-serif", lineHeight: "38px" }}
+          className="text-[20px] md:text-[32px] font-medium text-white"
+          style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.2" }}
         >
           {article.title}
         </h3>
 
         {/* Description */}
         <p
-          className="text-[16px] font-normal text-white"
+          className="text-[14px] md:text-[16px] font-normal text-white hidden md:block"
           style={{ fontFamily: "Inter, sans-serif", lineHeight: "24px" }}
         >
           {article.description}
@@ -131,7 +131,7 @@ export default function PopularArticles({ title = "Popular Articles" }: { title?
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-6">
           {/* Left: Title and Description */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-white text-5xl md:text-[64px] font-semibold leading-[58px]">
+            <h2 className="text-white text-[32px] md:text-[64px] font-[700] md:font-semibold leading-[40px] md:leading-[58px]">
               {title}
             </h2>
             <p

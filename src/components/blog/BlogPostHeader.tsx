@@ -66,7 +66,7 @@ export default function BlogPostHeader() {
         </Link>
 
         {/* Tags + Read Time Row */}
-        <div className="flex items-center justify-between w-full">
+        <div className="flex flex-col items-start gap-[16px] sm:flex-row sm:items-center sm:justify-between w-full">
           <div className="flex flex-wrap items-center gap-[8px]">
             {tags.map((tag, index) => (
               <span
@@ -83,13 +83,13 @@ export default function BlogPostHeader() {
         </div>
 
         {/* Title */}
-        <h1 className="text-[#FFF] text-[32px] lg:text-[48px] font-[700] leading-[38px] lg:leading-[56px]">
+        <h1 className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-normal">
           {title}
         </h1>
 
         {/* Cover Image */}
         <div
-          className="relative w-full rounded-[20px] overflow-hidden"
+          className="relative w-full rounded-[12px] lg:rounded-[20px] overflow-hidden"
           style={{ aspectRatio: "16/9" }}
         >
           <Image
@@ -102,7 +102,7 @@ export default function BlogPostHeader() {
         </div>
 
         {/* Date + Social + Copy Link Row */}
-        <div className="flex items-center justify-between w-full">
+        <div className="flex flex-col gap-[16px] lg:flex-row lg:items-center lg:justify-between w-full">
           <span className="text-[#D2D2D2] text-[14px] font-[400] leading-[20px]">
             {date}
           </span>

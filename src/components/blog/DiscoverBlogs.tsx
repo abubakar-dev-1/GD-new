@@ -118,11 +118,11 @@ export default function DiscoverBlogs() {
                 className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
               >
                 <div
-                  className="flex flex-col items-start gap-[24px] p-[16px] rounded-[20px] bg-[#191919] h-full"
+                  className="flex flex-col items-start gap-[16px] lg:gap-[24px] p-[12px] lg:p-[16px] rounded-[16px] lg:rounded-[20px] bg-[#191919] h-full"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {/* Cover Image */}
-                  <div className="relative w-full rounded-[16px] overflow-hidden" style={{ aspectRatio: "16/10" }}>
+                  <div className="relative w-full rounded-[12px] lg:rounded-[16px] overflow-hidden" style={{ aspectRatio: "16/10" }}>
                     <Image
                       src={post.coverImage}
                       alt={post.title}
@@ -132,12 +132,12 @@ export default function DiscoverBlogs() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[#FFF] text-[20px] lg:text-[24px] font-[600] leading-[28px]">
+                  <h3 className="text-[#FFF] text-[16px] sm:text-[20px] lg:text-[24px] font-[600] leading-[22px] sm:leading-[28px]">
                     {post.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[#D2D2D2] text-[14px] font-[400] leading-[20px] line-clamp-3">
+                  <p className="text-[#D2D2D2] text-[13px] sm:text-[14px] font-[400] leading-[18px] sm:leading-[20px] line-clamp-2 sm:line-clamp-3">
                     {post.description}
                   </p>
 

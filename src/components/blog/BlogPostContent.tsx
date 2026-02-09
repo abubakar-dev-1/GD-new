@@ -14,12 +14,12 @@ export default function BlogPostContent() {
       >
         {/* Left Column - Article Content */}
         <article
-          className="flex flex-col items-start gap-[32px] flex-1 min-w-0 lg:max-w-[776px]"
+          className="flex flex-col items-start gap-[24px] lg:gap-[32px] flex-1 min-w-0 lg:max-w-[776px]"
           style={{ fontFamily: "Roboto, sans-serif" }}
         >
           {/* Introduction Heading */}
           <h2
-            className="text-[#FFF] text-[32px] font-[500] leading-[38px]"
+            className="text-[#FFF] text-[24px] lg:text-[32px] font-[500] leading-[32px] lg:leading-[38px]"
             style={{ fontFamily: "Inter" }}
           >
             Introduction
@@ -42,7 +42,7 @@ export default function BlogPostContent() {
           {/* Inline Image with Caption */}
           <figure className="w-full flex flex-col gap-[12px]">
             <div
-              className="relative w-full h-[414px] rounded-[28px] overflow-hidden border border-[#555]"
+              className="relative w-full h-[220px] sm:h-[300px] lg:h-[414px] rounded-[16px] lg:rounded-[28px] overflow-hidden border border-[#555]"
             >
               <Image
                 src="/images/image 54.png"
@@ -75,7 +75,8 @@ export default function BlogPostContent() {
           </p>
 
           {/* Blockquote */}
-          <blockquote className="w-full pl-[24px] py-[20px] pr-[24px] rounded-[8px] border-l-[4px] border-l-[#D0FF71] bg-[#191919]">
+          <blockquote className="w-full flex items-stretch gap-[20px] p-[20px] rounded-[8px] bg-[#191919]">
+            <div className="w-[2px] flex-shrink-0 self-stretch bg-[#D0FF71]" />
             <p className="text-[#F3F4F6] text-[16px] font-[400] leading-[24px] italic">
               &ldquo;Next.js gives you the best developer experience with all
               the features you need for production: hybrid static & server
@@ -98,7 +99,7 @@ export default function BlogPostContent() {
           {/* Second Image */}
           <figure className="w-full flex flex-col gap-[12px]">
             <div
-              className="relative w-full h-[414px] rounded-[28px] overflow-hidden border border-[#555]"
+              className="relative w-full h-[220px] sm:h-[300px] lg:h-[414px] rounded-[16px] lg:rounded-[28px] overflow-hidden border border-[#555]"
             >
               <Image
                 src="/images/image 54.png"
@@ -124,7 +125,7 @@ export default function BlogPostContent() {
 
           {/* Conclusion Heading */}
           <h2
-            className="text-[#FFF] text-[32px] font-[500] leading-[38px]"
+            className="text-[#FFF] text-[24px] lg:text-[32px] font-[500] leading-[32px] lg:leading-[38px]"
             style={{ fontFamily: "Inter" }}
           >
             Conclusion
@@ -140,6 +141,43 @@ export default function BlogPostContent() {
             support make it an ideal choice for building modern web
             applications.
           </p>
+
+          {/* Share This Post */}
+          <div
+            className="flex flex-col justify-center items-center gap-[24px] w-full pt-[24px] pb-[40px]"
+            style={{ borderBottom: "1px solid #333" }}
+          >
+            <span
+              className="text-[#FFF] text-[16px] font-[500] leading-[24px]"
+              style={{ fontFamily: "Inter" }}
+            >
+              Share this post
+            </span>
+            <div className="flex items-center gap-[24px]">
+              {/* Copy Link */}
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                }}
+                className="hover:opacity-80 transition-opacity"
+                aria-label="Copy link"
+              >
+                <Image src="/blog/Frame.svg" alt="Copy link" width={24} height={24} />
+              </button>
+              {/* LinkedIn */}
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="LinkedIn">
+                <Image src="/blog/Frame(1).svg" alt="LinkedIn" width={24} height={24} />
+              </a>
+              {/* X / Twitter */}
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="X">
+                <Image src="/blog/ri_twitter-x-line.svg" alt="X" width={24} height={24} />
+              </a>
+              {/* Dribbble */}
+              <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Dribbble">
+                <Image src="/blog/Frame(2).svg" alt="Dribbble" width={24} height={24} />
+              </a>
+            </div>
+          </div>
         </article>
 
         {/* Right Column - Booking Widget */}
