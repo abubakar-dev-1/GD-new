@@ -75,7 +75,7 @@ export default function Navbar() {
 
             <MenuItem setActive={setActive} active={active} item="Resources">
               <div className="flex flex-col space-y-4 text-sm p-4">
-                <HoveredLink href="/resources/blogs">Blogs</HoveredLink>
+                <HoveredLink href="/blog">Blogs</HoveredLink>
                 <HoveredLink href="/career">Careers</HoveredLink>
               </div>
             </MenuItem>
@@ -140,7 +140,7 @@ export default function Navbar() {
               Contact
             </Link>
             <Link
-              href="/resources/blogs"
+              href="/blog"
               className="text-[#FFF] text-[24px] font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
