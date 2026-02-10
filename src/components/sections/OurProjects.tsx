@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,49 +10,6 @@ interface Project {
   countryFlag?: string;
   link: string;
 }
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "Luxyury Watch Boutiques",
-    description:
-      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
-    image: "/portfolio/image 36.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/luxury-watch",
-  },
-  {
-    id: "2",
-    title: "Nova",
-    description:
-      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
-    image: "/portfolio/image 31.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/nova",
-  },
-  {
-    id: "3",
-    title: "Nova",
-    description:
-      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
-    image: "/portfolio/image 31.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/nova",
-  },
-  {
-    id: "4",
-    title: "Luxyury Watch Boutiques",
-    description:
-      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
-    image: "/portfolio/image 36.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/luxury-watch",
-  },
-];
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -108,7 +63,7 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
           {project.countryFlag && (
             <div className="w-[24px] h-[24px] rounded-full overflow-hidden bg-[#333] flex items-center justify-center">
-              <span className="text-[14px]">🇨🇦</span>
+              <span className="text-[14px]">{project.countryFlag}</span>
             </div>
           )}
         </div>
@@ -128,7 +83,7 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export default function OurProjects() {
+export default function OurProjects({ projects = [] }: { projects?: Project[] }) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"

@@ -6,6 +6,12 @@ import OurProcess from "@/components/about/OurProcess";
 import TrustedBy from "@/components/sections/TrustedBy";
 import Testimonials from "@/components/sections/Testimonials";
 import BookingSection from "@/components/home/BookingSection";
+import { client } from "../../../sanity/lib/client";
+import { projectsQuery } from "../../../sanity/lib/queries";
+import { Project } from "@/types/project";
+import { transformProjectToCard } from "@/lib/sanity-helpers";
+
+export const revalidate = 60;
 
 const processSteps = [
   {
@@ -31,12 +37,15 @@ const processSteps = [
   },
 ];
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects: Project[] = await client.fetch(projectsQuery);
+  const projectCards = projects.map(transformProjectToCard);
+
   return (
     <div className="min-h-screen bg-[#090C08]">
       <Navbar />
       <ProjectsHeroSection />
-      <ProjectsListing />
+      <ProjectsListing projects={projectCards} />
       <TrustedBy />
       <Testimonials />
       <OurProcess steps={processSteps} />

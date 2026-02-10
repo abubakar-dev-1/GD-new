@@ -11,6 +11,7 @@ interface Project {
   image: string;
   tags: string[];
   countryFlag?: string;
+  category: string;
   link: string;
 }
 
@@ -21,49 +22,6 @@ const categories = [
   "Chat Bot",
   "AI Dev",
   "DevOps",
-];
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "Luxyury Watch Boutiques",
-    description:
-      "we transform ideas into powerful apps, sleek designs, and intelligent software solutions. Whether it's mobile apps, AI-driven platforms, or enterprise-scale systems, we bring innovation to life with precision and creativity.",
-    image: "/portfolio/image 36.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/luxury-watch",
-  },
-  {
-    id: "2",
-    title: "Nova",
-    description:
-      "we transform ideas into powerful apps, sleek designs, and intelligent software solutions. Whether it's mobile apps, AI-driven platforms, or enterprise-scale systems, we bring innovation to life with precision and creativity.",
-    image: "/portfolio/image 31.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/nova",
-  },
-  {
-    id: "3",
-    title: "Nova",
-    description:
-      "we transform ideas into powerful apps, sleek designs, and intelligent software solutions. Whether it's mobile apps, AI-driven platforms, or enterprise-scale systems, we bring innovation to life with precision and creativity.",
-    image: "/portfolio/image 31.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/nova",
-  },
-  {
-    id: "4",
-    title: "Luxyury Watch Boutiques",
-    description:
-      "we transform ideas into powerful apps, sleek designs, and intelligent software solutions. Whether it's mobile apps, AI-driven platforms, or enterprise-scale systems, we bring innovation to life with precision and creativity.",
-    image: "/portfolio/image 36.png",
-    tags: ["Design", "Website", "UI/UX"],
-    countryFlag: "/flags/canada.svg",
-    link: "/projects/luxury-watch",
-  },
 ];
 
 function ProjectCard({ project }: { project: Project }) {
@@ -119,7 +77,7 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
           {project.countryFlag && (
             <div className="w-[24px] h-[24px] rounded-full overflow-hidden bg-[#333] flex items-center justify-center">
-              <span className="text-[14px]">🇨🇦</span>
+              <span className="text-[14px]">{project.countryFlag}</span>
             </div>
           )}
         </div>
@@ -139,8 +97,16 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export default function ProjectsListing() {
-  const [activeCategory, setActiveCategory] = useState("App dev");
+export default function ProjectsListing({
+  projects = [],
+}: {
+  projects?: Project[];
+}) {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const filtered = activeCategory
+    ? projects.filter((p) => p.category === activeCategory)
+    : projects;
 
   return (
     <section
@@ -172,7 +138,11 @@ export default function ProjectsListing() {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() =>
+                  setActiveCategory(
+                    activeCategory === category ? null : category
+                  )
+                }
                 className={`flex items-center gap-[8px] px-[16px] py-[8px] rounded-[40px] text-[14px] font-[500] leading-[16px] transition-colors ${
                   activeCategory === category
                     ? "bg-[#D0FF71] text-[#000]"
@@ -214,9 +184,15 @@ export default function ProjectsListing() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px] w-full">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {filtered.length > 0 ? (
+            filtered.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : (
+            <p className="text-[#D2D2D2] text-[16px] col-span-2">
+              No projects found. Check back soon!
+            </p>
+          )}
         </div>
       </div>
     </section>
