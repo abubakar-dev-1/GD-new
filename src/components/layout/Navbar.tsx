@@ -74,7 +74,7 @@ export default function Navbar() {
             </Link>
 
             <MenuItem setActive={setActive} active={active} item="Resources">
-              <div className="flex flex-col space-y-4 text-sm p-4">
+              <div className="flex flex-col space-y-3 text-sm">
                 <HoveredLink href="/blog">Blogs</HoveredLink>
                 <HoveredLink href="/career">Careers</HoveredLink>
               </div>

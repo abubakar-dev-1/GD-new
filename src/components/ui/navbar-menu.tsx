@@ -39,15 +39,15 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute top-[100%] left-1/2 transform -translate-x-1/2 pt-2 z-50">
               <motion.div
                 transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
-                className="bg-[#1a1d1a] backdrop-blur-sm rounded-2xl overflow-hidden border border-[#2a2d2a] shadow-xl"
+                layoutId="active"
+                className="bg-[#1a1d1a] backdrop-blur-sm rounded-xl overflow-hidden border border-[#2a2d2a] shadow-xl"
               >
                 <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full p-4"
+                  layout
+                  className="w-max h-full p-3"
                 >
                   {children}
                 </motion.div>
