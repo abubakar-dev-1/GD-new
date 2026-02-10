@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function Footer() {
   return (
@@ -132,47 +133,7 @@ export default function Footer() {
             >
               Subscribe to our newsletter
             </h3>
-            <form className="flex flex-col gap-[16px] lg:flex-row lg:gap-[12px] w-full lg:w-auto">
-              {/* Email Input - wider width */}
-              <div className="flex items-center justify-between w-full lg:w-[280px] h-[48px] pl-[24px] pr-[16px] py-[16px] rounded-[999px] bg-[#333] lg:bg-[#191919]">
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="flex-1 bg-transparent text-[#FFF] placeholder:text-[#999] focus:outline-none text-[14px] leading-[20px]"
-                  style={{ fontFamily: "Inter" }}
-                />
-                <svg
-                  className="ml-[16px]"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                    stroke="#999"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M22 6l-10 7L2 6"
-                    stroke="#999"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <button
-                type="submit"
-                className="w-fit h-[48px] px-[24px] py-[8px] rounded-[40px] bg-[#FFF] border border-[#191919] text-[#191919] text-[14px] font-[500] leading-[16px] text-center hover:bg-[#D0FF71] transition-colors"
-                style={{ fontFamily: "Inter" }}
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 
