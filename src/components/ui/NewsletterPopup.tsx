@@ -51,7 +51,7 @@ export default function NewsletterPopup() {
       setIsSubmitting(false);
     }
   };
-
+  
   if (!isOpen) return null;
 
   return (
