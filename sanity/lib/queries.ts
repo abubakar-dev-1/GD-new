@@ -176,3 +176,45 @@ export const relatedProjectsQuery = groq`
 export const projectSlugsQuery = groq`
   *[_type == "project" && defined(slug.current)][].slug.current
 `;
+
+// ── Service Queries ──
+
+// Get all services ordered by display order (for OurServices grid)
+export const servicesQuery = groq`
+  *[_type == "service" && defined(slug.current)] | order(order asc) {
+    _id,
+    title,
+    slug,
+    description,
+    coverImage,
+    mobileCoverImage,
+    icon,
+    order
+  }
+`;
+
+// Get single service by slug (full detail)
+export const serviceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    coverImage,
+    mobileCoverImage,
+    icon,
+    order,
+    heroTitle,
+    heroDescription,
+    heroImage,
+    mobileHeroImage,
+    processHeading,
+    processDescription,
+    processSteps
+  }
+`;
+
+// Get all service slugs for static generation
+export const serviceSlugsQuery = groq`
+  *[_type == "service" && defined(slug.current)][].slug.current
+`;

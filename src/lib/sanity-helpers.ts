@@ -1,5 +1,6 @@
 import { Post } from "@/types/blog";
 import { Project } from "@/types/project";
+import { Service } from "@/types/service";
 import { urlFor } from "../../sanity/lib/image";
 
 /**
@@ -134,5 +135,55 @@ export function transformProjectToRelated(project: Project) {
       ? urlFor(project.coverImage).width(775).height(484).url()
       : "/portfolio/image 36.png",
     link: `/projects/${project.slug.current}`,
+  };
+}
+
+// ── Service Helpers ──
+
+/**
+ * Transform Sanity Service to the shape needed by OurServices grid cards
+ */
+export function transformServiceToCard(service: Service) {
+  return {
+    id: service._id,
+    slug: service.slug.current,
+    title: service.title,
+    description: service.description,
+    image: service.coverImage
+      ? urlFor(service.coverImage).width(800).height(600).url()
+      : "/services/image 52.png",
+    mobileImage: service.mobileCoverImage
+      ? urlFor(service.mobileCoverImage).width(400).height(280).url()
+      : "/services/mobile_image 52.png",
+    icon: service.icon
+      ? urlFor(service.icon).width(48).height(48).url()
+      : null,
+  };
+}
+
+/**
+ * Transform Sanity Service to full detail page data
+ */
+export function transformServiceToDetail(service: Service) {
+  const fallbackDesktop = "/services/image 52.png";
+  const fallbackMobile = "/services/mobile_image 52.png";
+
+  return {
+    // Hero
+    heroTitle: service.heroTitle || service.title,
+    heroDescription: service.heroDescription || service.description,
+    heroImage: service.heroImage
+      ? urlFor(service.heroImage).width(1440).height(600).url()
+      : fallbackDesktop,
+    mobileHeroImage: service.mobileHeroImage
+      ? urlFor(service.mobileHeroImage).width(400).height(500).url()
+      : fallbackMobile,
+
+    // Process
+    processHeading: service.processHeading || `Process for ${service.title}`,
+    processDescription:
+      service.processDescription ||
+      "We are a collective of strategists, creatives, and engineers united by a passion for building brands that matter.",
+    processSteps: service.processSteps || [],
   };
 }
