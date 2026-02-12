@@ -1,7 +1,8 @@
 import author from "./author";
 import category from "./category";
 import post from "./post";
+import product from "./product";
 import project from "./project";
 import service from "./service";
 
-export const schemaTypes = [post, author, category, project, service];
+export const schemaTypes = [post, author, category, project, product, service];

@@ -71,7 +71,7 @@ export default function ServiceProcess({
           {steps.map((step, index) => (
             <div
               key={index}
-              className="flex flex-col justify-between bg-[#191919] rounded-[20px] p-[24px] h-[280px] lg:h-[366px]"
+              className="flex flex-col bg-[#191919] rounded-[20px] p-[24px] lg:h-[366px] lg:justify-between"
             >
               {/* Number circle */}
               <div className="w-[48px] h-[48px] rounded-full bg-[#D0FF71] flex items-center justify-center">
@@ -80,9 +80,12 @@ export default function ServiceProcess({
                 </span>
               </div>
 
+              {/* Spacer: 128px on mobile, auto on desktop (justify-between) */}
+              <div className="h-[128px] lg:hidden" />
+
               {/* Text content */}
               <div className="flex flex-col gap-[8px]">
-                <h3 className="text-[#FFFFFF] text-[24px] lg:text-[28px] font-medium leading-[28px] lg:leading-[34px]">
+                <h3 className="text-[#FFFFFF] text-[28px] font-medium leading-[34px]">
                   {step.title}
                 </h3>
                 <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px]">

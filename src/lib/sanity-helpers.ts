@@ -1,4 +1,5 @@
 import { Post } from "@/types/blog";
+import { Product } from "@/types/product";
 import { Project } from "@/types/project";
 import { Service } from "@/types/service";
 import { urlFor } from "../../sanity/lib/image";
@@ -135,6 +136,90 @@ export function transformProjectToRelated(project: Project) {
       ? urlFor(project.coverImage).width(775).height(484).url()
       : "/portfolio/image 36.png",
     link: `/projects/${project.slug.current}`,
+  };
+}
+
+// ── Product Helpers ──
+
+/**
+ * Transform Sanity Product to the shape needed by FeaturedProducts cards
+ */
+export function transformProductToCard(product: Product) {
+  return {
+    id: product._id,
+    title: product.title,
+    tags: product.tags || [],
+    description: product.description,
+    image: product.coverImage
+      ? urlFor(product.coverImage).width(1440).height(465).url()
+      : "/hiretics landing page 1.png",
+    mobileImage: product.mobileCoverImage
+      ? urlFor(product.mobileCoverImage).width(400).height(500).url()
+      : "/mobile_hiretics landing page 1.png",
+    logo: product.logo
+      ? urlFor(product.logo).width(200).height(150).url()
+      : undefined,
+    link: product.link,
+  };
+}
+
+/**
+ * Transform Sanity Product to full detail page data
+ */
+export function transformProductToDetail(product: Product) {
+  const fallbackImage = "/image 54.png";
+
+  return {
+    // Hero
+    title: product.title,
+    description: product.description,
+    image: product.coverImage
+      ? urlFor(product.coverImage).width(1440).height(465).url()
+      : fallbackImage,
+    mobileImage: product.mobileCoverImage
+      ? urlFor(product.mobileCoverImage).width(400).height(500).url()
+      : fallbackImage,
+    logo: product.logo
+      ? urlFor(product.logo).width(200).height(150).url()
+      : undefined,
+    tags: product.tags || [],
+
+    // Features
+    featuresHeading: product.featuresHeading,
+    featuresDescription: product.featuresDescription,
+    features: product.features?.map((f) => ({
+      icon: f.icon ? urlFor(f.icon).width(64).height(64).url() : undefined,
+      title: f.title,
+      description: f.description,
+    })),
+
+    // Showcase
+    showcaseHeading: product.showcaseHeading,
+    showcaseDescription: product.showcaseDescription,
+    showcaseImages: product.showcaseImages?.map((img) =>
+      urlFor(img).width(1440).height(744).url()
+    ),
+    showcaseVideoUrl: product.showcaseVideoUrl,
+
+    // Highlights
+    highlightsHeading: product.highlightsHeading,
+    highlightsDescription: product.highlightsDescription,
+    highlights: product.highlights?.map((h) => ({
+      image: h.image ? urlFor(h.image).width(800).height(500).url() : fallbackImage,
+      title: h.title,
+      description: h.description,
+    })),
+
+    // Overview
+    overviewHeading: product.overviewHeading,
+    overviewDescription: product.overviewDescription,
+    overviewImages: product.overviewImages?.map((img) =>
+      urlFor(img).width(492).height(287).url()
+    ),
+    overviewCards: product.overviewCards?.map((c) => ({
+      icon: c.icon ? urlFor(c.icon).width(64).height(64).url() : "/image 54.png",
+      text: c.text,
+    })),
   };
 }
 

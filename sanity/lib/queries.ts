@@ -172,9 +172,87 @@ export const relatedProjectsQuery = groq`
   }
 `;
 
+// Get latest projects (for service pages, limit 3)
+export const latestProjectsQuery = groq`
+  *[_type == "project" && defined(slug.current)] | order(publishedAt desc) [0...3] {
+    _id,
+    title,
+    slug,
+    description,
+    coverImage
+  }
+`;
+
 // Get all project slugs for static generation
 export const projectSlugsQuery = groq`
   *[_type == "project" && defined(slug.current)][].slug.current
+`;
+
+// ── Product Queries ──
+
+// Get all products ordered by display order (for Featured Products)
+export const productsQuery = groq`
+  *[_type == "product" && defined(slug.current)] | order(order asc) {
+    _id,
+    title,
+    slug,
+    description,
+    coverImage,
+    mobileCoverImage,
+    logo,
+    tags,
+    link,
+    order
+  }
+`;
+
+// Get single product by slug (full detail)
+export const productBySlugQuery = groq`
+  *[_type == "product" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    coverImage,
+    mobileCoverImage,
+    logo,
+    tags,
+    link,
+    order,
+    featuresHeading,
+    featuresDescription,
+    features[] {
+      _key,
+      icon,
+      title,
+      description
+    },
+    showcaseHeading,
+    showcaseDescription,
+    showcaseImages,
+    showcaseVideoUrl,
+    highlightsHeading,
+    highlightsDescription,
+    highlights[] {
+      _key,
+      image,
+      title,
+      description
+    },
+    overviewHeading,
+    overviewDescription,
+    overviewImages,
+    overviewCards[] {
+      _key,
+      icon,
+      text
+    }
+  }
+`;
+
+// Get all product slugs for static generation
+export const productSlugsQuery = groq`
+  *[_type == "product" && defined(slug.current)][].slug.current
 `;
 
 // ── Service Queries ──

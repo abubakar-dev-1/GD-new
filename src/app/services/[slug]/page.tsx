@@ -11,9 +11,11 @@ import { client } from "../../../../sanity/lib/client";
 import {
   serviceBySlugQuery,
   serviceSlugsQuery,
+  latestProjectsQuery,
 } from "../../../../sanity/lib/queries";
 import { Service } from "@/types/service";
-import { transformServiceToDetail } from "@/lib/sanity-helpers";
+import { Project } from "@/types/project";
+import { transformServiceToDetail, transformProjectToRelated } from "@/lib/sanity-helpers";
 
 export const revalidate = 60;
 
@@ -174,8 +176,12 @@ export default async function ServiceDetailPage({
 }) {
   const { slug } = await params;
 
-  // Try fetching from Sanity first
-  const service: Service | null = await client.fetch(serviceBySlugQuery, { slug });
+  // Fetch service and latest projects in parallel
+  const [service, sanityProjects]: [Service | null, Project[]] = await Promise.all([
+    client.fetch(serviceBySlugQuery, { slug }),
+    client.fetch(latestProjectsQuery),
+  ]);
+  const relatedProjects = sanityProjects.map(transformProjectToRelated);
 
   if (service) {
     // Use Sanity data
@@ -199,7 +205,7 @@ export default async function ServiceDetailPage({
         )}
         <TrustedBy />
         <ServiceTechStack />
-        <RelatedProjects />
+        <RelatedProjects projects={relatedProjects} />
         <ServiceCTABanner />
         <Footer />
       </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ImageCard from "@/components/ui/ImageCard";
 
-interface Project {
+interface ProductItem {
   id: string;
   title: string;
   tags: string[];
@@ -15,7 +15,7 @@ interface Project {
   link: string;
 }
 
-const projects: Project[] = [
+const defaultProducts: ProductItem[] = [
   {
     id: "1",
     title: "Hiretics",
@@ -24,7 +24,7 @@ const projects: Project[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
     image: "/hiretics landing page 1.png",
     mobileImage: "/mobile_hiretics landing page 1.png",
-    link: "/projects/hiretics",
+    link: "/products/hiretics",
   },
   {
     id: "2",
@@ -35,11 +35,11 @@ const projects: Project[] = [
     image: "/image.png",
     mobileImage: "/mobile_image.png",
     logo: "/image 99.png",
-    link: "/projects/taash-royale",
+    link: "/products/taash-royale",
   },
 ];
 
-function MobileProjectCard({ project }: { project: Project }) {
+function MobileProductCard({ product }: { product: ProductItem }) {
   return (
     <div
       className="relative w-full rounded-[16px] overflow-hidden border border-[#333]"
@@ -48,8 +48,8 @@ function MobileProjectCard({ project }: { project: Project }) {
       {/* Background Image - using mobile-specific image */}
       <div className="absolute inset-0">
         <Image
-          src={project.mobileImage}
-          alt={project.title}
+          src={product.mobileImage}
+          alt={product.title}
           fill
           className="object-cover object-top"
         />
@@ -70,12 +70,12 @@ function MobileProjectCard({ project }: { project: Project }) {
         <div className="h-[180px]" />
 
         <h3 className="text-white text-[32px] font-semibold leading-tight">
-          {project.title}
+          {product.title}
         </h3>
 
         {/* Tags - filled background style */}
         <div className="flex flex-wrap gap-[8px]">
-          {project.tags.map((tag) => (
+          {product.tags.map((tag) => (
             <span
               key={tag}
               className="px-[12px] py-[6px] rounded-full bg-[#333333] text-[#FFFFFF] text-[14px] font-normal"
@@ -89,12 +89,12 @@ function MobileProjectCard({ project }: { project: Project }) {
           className="text-[#FFFFFF] text-[14px] font-normal leading-[150%]"
           style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
         >
-          {project.description}
+          {product.description}
         </p>
 
         {/* Learn More Button */}
         <Link
-          href={project.link}
+          href={product.link}
           className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors mt-[8px]"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
@@ -107,11 +107,11 @@ function MobileProjectCard({ project }: { project: Project }) {
   );
 }
 
-function DesktopProjectCard({ project }: { project: Project }) {
+function DesktopProductCard({ product }: { product: ProductItem }) {
   return (
     <ImageCard
-      image={project.image}
-      alt={project.title}
+      image={product.image}
+      alt={product.title}
       gradientDirection="horizontal"
       showBorder
       className="w-full h-[465px]"
@@ -120,12 +120,12 @@ function DesktopProjectCard({ project }: { project: Project }) {
         {/* Left Side - Text Content */}
         <div className="flex flex-col items-start justify-between h-full gap-[24px]">
           <h3 className="text-white text-[40px] font-semibold leading-tight">
-            {project.title}
+            {product.title}
           </h3>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-[8px]">
-            {project.tags.map((tag) => (
+            {product.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-[12px] py-[6px] rounded-full border border-[#444] text-[#D2D2D2] text-[12px] font-medium bg-[#191919]/50 backdrop-blur-sm"
@@ -139,12 +139,12 @@ function DesktopProjectCard({ project }: { project: Project }) {
             className="text-[#FFFFFF] text-[18px] font-normal leading-[150%] max-w-[525px]"
             style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
           >
-            {project.description}
+            {product.description}
           </p>
 
           {/* Learn More Button */}
           <Link
-            href={project.link}
+            href={product.link}
             className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
           >
             <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
@@ -155,11 +155,11 @@ function DesktopProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Right Side - Logo */}
-        {project.logo && (
+        {product.logo && (
           <div className="flex items-center justify-center">
             <Image
-              src={project.logo}
-              alt={`${project.title} logo`}
+              src={product.logo}
+              alt={`${product.title} logo`}
               width={200}
               height={150}
               className="object-contain"
@@ -171,7 +171,9 @@ function DesktopProjectCard({ project }: { project: Project }) {
   );
 }
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ products }: { products?: ProductItem[] }) {
+  const items = products && products.length > 0 ? products : defaultProducts;
+
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -180,14 +182,12 @@ export default function FeaturedProducts() {
       <div className="flex flex-col items-start w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-start w-full gap-[16px] mb-[40px]">
-          {/* Title - Mobile: 40px/700/normal Inter, Desktop: 64px/400/58px */}
           <h2
             className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-normal leading-normal lg:leading-[58px]"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             Featured Products
           </h2>
-          {/* Description - 18px/400/150% Roboto */}
           <p
             className="text-[#FFFFFF] text-[18px] font-normal leading-[150%] max-w-[620px]"
             style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
@@ -197,17 +197,17 @@ export default function FeaturedProducts() {
           </p>
         </div>
 
-        {/* Mobile Project Cards */}
+        {/* Mobile Product Cards */}
         <div className="flex flex-col items-start gap-[24px] w-full lg:hidden">
-          {projects.map((project) => (
-            <MobileProjectCard key={project.id} project={project} />
+          {items.map((product) => (
+            <MobileProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* Desktop Project Cards */}
+        {/* Desktop Product Cards */}
         <div className="hidden lg:flex flex-col items-start gap-[32px] w-full">
-          {projects.map((project) => (
-            <DesktopProjectCard key={project.id} project={project} />
+          {items.map((product) => (
+            <DesktopProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

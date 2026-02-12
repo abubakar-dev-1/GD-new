@@ -12,24 +12,27 @@ import Testimonials from "@/components/sections/Testimonials";
 import PopularArticles from "@/components/sections/PopularArticles";
 import BookingSection from "@/components/home/BookingSection";
 import { client } from "../../sanity/lib/client";
-import { featuredPostsQuery, featuredProjectsQuery, servicesQuery } from "../../sanity/lib/queries";
+import { featuredPostsQuery, featuredProjectsQuery, productsQuery, servicesQuery } from "../../sanity/lib/queries";
 import { Post } from "@/types/blog";
+import { Product } from "@/types/product";
 import { Project } from "@/types/project";
 import { Service } from "@/types/service";
-import { transformPostToArticle, transformProjectToCard, transformServiceToCard } from "@/lib/sanity-helpers";
+import { transformPostToArticle, transformProductToCard, transformProjectToCard, transformServiceToCard } from "@/lib/sanity-helpers";
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const [featuredPosts, featuredProjects, sanityServices]: [Post[], Project[], Service[]] =
+  const [featuredPosts, featuredProjects, sanityServices, sanityProducts]: [Post[], Project[], Service[], Product[]] =
     await Promise.all([
       client.fetch(featuredPostsQuery),
       client.fetch(featuredProjectsQuery),
       client.fetch(servicesQuery),
+      client.fetch(productsQuery),
     ]);
   const featuredArticles = featuredPosts.map(transformPostToArticle);
   const projectCards = featuredProjects.map(transformProjectToCard);
   const serviceCards = sanityServices.map(transformServiceToCard);
+  const productCards = sanityProducts.map(transformProductToCard);
 
   return (
     <div className="min-h-screen bg-[#090C08]">
@@ -84,7 +87,7 @@ export default async function Home() {
       <OurServices services={serviceCards} />
 
       {/* Featured Products Section */}
-      <FeaturedProducts />
+      <FeaturedProducts products={productCards} />
 
       {/* Team Section */}
       <TeamSection />
