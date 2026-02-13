@@ -29,7 +29,7 @@ export interface Product {
   mobileCoverImage?: SanityImageRef;
   logo?: SanityImageRef;
   tags?: string[];
-  link: string;
+  link?: string;
   order: number;
 
   // Detail page fields

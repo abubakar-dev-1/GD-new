@@ -167,7 +167,6 @@ export default function NewsletterPopup() {
                   disabled={isSubmitting}
                   className="flex items-center justify-center gap-[12px] h-[48px] rounded-[40px] bg-[#D0FF71] text-[#090C08] text-[14px] font-[600] leading-[16px] self-stretch hover:opacity-90 transition-opacity disabled:opacity-50"
                   style={{
-                    border: "1px solid #090C08",
                     padding: "8px 24px",
                     fontFamily: "Inter",
                   }}

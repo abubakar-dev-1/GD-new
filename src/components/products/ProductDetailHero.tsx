@@ -25,7 +25,7 @@ export default function ProductDetailHero({
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px]">
-        <div className="relative w-full flex rounded-[28px] overflow-hidden bg-[#191919] border border-[#333]">
+        <div className="relative w-full flex h-[500px] lg:h-auto rounded-[28px] overflow-hidden bg-[#191919] border border-[#333]">
           {/* Background Image - Desktop */}
           <div className="absolute inset-0 hidden lg:block">
             <Image
@@ -55,12 +55,12 @@ export default function ProductDetailHero({
             }}
           />
 
-          {/* Gradient Overlay - Mobile (bottom to top) */}
+          {/* Gradient Overlay - Mobile (left to right, matching desktop) */}
           <div
             className="absolute inset-0 lg:hidden"
             style={{
               background:
-                "linear-gradient(180deg, rgba(25, 25, 25, 0.00) 30%, #191919 100%)",
+                "linear-gradient(90deg, #191919 0%, rgba(25, 25, 25, 0) 100%)",
             }}
           />
 
@@ -79,14 +79,11 @@ export default function ProductDetailHero({
 
           {/* Content - Mobile */}
           <div
-            className="relative z-10 flex lg:hidden flex-col items-start px-[20px] pt-[24px] pb-[24px] w-full"
+            className="relative z-10 flex lg:hidden flex-col items-start justify-center gap-[24px] p-[48px] h-[500px] w-full"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
-            {/* Spacer for image */}
-            <div className="h-[180px] w-full" />
-
-            <div className="flex flex-col items-start gap-[12px]">
-              <h1 className="text-[#FFF] text-[32px] font-semibold leading-tight">
+            <div className="flex flex-col gap-[16px] items-start w-full">
+              <h1 className="text-[#FFF] text-[40px] font-bold leading-[48px]">
                 {title}
               </h1>
 
@@ -96,7 +93,7 @@ export default function ProductDetailHero({
                   {tags.map((tag) => (
                     <span
                       key={tag}
-                      className="flex items-center gap-[6px] px-[12px] py-[6px] rounded-full bg-[#333333] text-[#FFFFFF] text-[14px] font-normal"
+                      className="flex items-center gap-[8px] px-[12px] py-[4px] rounded-[16px] text-[#FFFFFF] text-[13px] font-normal bg-[#191919] shadow-[0px_8px_8px_-4px_rgba(0,0,0,0.02),0px_4px_4px_-2px_rgba(0,0,0,0.03)]"
                     >
                       <PlatformIcon name={tag} />
                       {tag}
@@ -104,14 +101,14 @@ export default function ProductDetailHero({
                   ))}
                 </div>
               )}
-
-              <p
-                className="text-[#FFFFFF] text-[14px] font-normal leading-[150%]"
-                style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
-              >
-                {description}
-              </p>
             </div>
+
+            <p
+              className="text-[#FFFFFF] text-[18px] font-normal leading-[1.5]"
+              style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
+            >
+              {description}
+            </p>
           </div>
 
           {/* Content - Desktop */}

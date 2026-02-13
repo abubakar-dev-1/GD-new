@@ -57,32 +57,32 @@ const fallbackData: Record<string, ProductFallback> = {
     description:
       "Our AI-powered platform automates resume screening with 99.7% accuracy, empowering your team to focus on what truly matters: interviewing the best talent.",
     image: "/products/hiretics-hero.png",
-    mobileImage: "/products/hiretics-hero.png",
+    mobileImage: "/products/hiretics-hero-mobile.png",
     tags: ["Windows"],
     featuresHeading: "Platform Features",
     featuresDescription:
       "Hiretics is packed with features designed for both recruiters and job seekers. Here's what makes the platform stand out.",
     features: [
       {
-        icon: "/products/hiretics-feature-1.png",
+        icon: "/products/hiretics-feature-1.svg",
         title: "AI-Powered Screening",
         description:
           "Used by some of the world's largest companies, enables you to create.",
       },
       {
-        icon: "/products/hiretics-feature-2.png",
+        icon: "/products/hiretics-feature-2.svg",
         title: "Intelligent Candidate Ranking",
         description:
           "Used by some of the world's largest companies, enables you to create.",
       },
       {
-        icon: "/products/hiretics-feature-3.png",
+        icon: "/products/hiretics-feature-3.svg",
         title: "Customizable Skill Matching",
         description:
           "Used by some of the world's largest companies, enables you to create.",
       },
       {
-        icon: "/products/hiretics-feature-4.png",
+        icon: "/products/hiretics-feature-4.svg",
         title: "Actionable Analytics",
         description:
           "Used by some of the world's largest companies, enables you to create.",
@@ -97,37 +97,37 @@ const fallbackData: Record<string, ProductFallback> = {
       "We are a collective of strategists, creatives, and engineers united by a passion for building brands that matter.",
     overviewCards: [
       {
-        icon: "/products/hiretics-overview-icon-1.png",
+        icon: "/products/hiretics-overview-icon-1.svg",
         text: "Build the ideal candidate profile. Set custom weights for specific skills, education, and years of experience to ensure the AI ranks candidates based on what matters most for any given role.",
       },
       {
-        icon: "/products/hiretics-overview-icon-2.png",
+        icon: "/products/hiretics-overview-icon-2.svg",
         text: "Build the ideal candidate profile. Set custom weights for specific skills, education, and years of experience to ensure the AI ranks candidates based on what matters most for any given role.",
       },
       {
-        icon: "/products/hiretics-overview-icon-3.png",
+        icon: "/products/hiretics-overview-icon-3.svg",
         text: "Build the ideal candidate profile. Set custom weights for specific skills, education, and years of experience to ensure the AI ranks candidates based on what matters most for any given role.",
       },
       {
-        icon: "/products/hiretics-overview-icon-4.png",
+        icon: "/products/hiretics-overview-icon-4.svg",
         text: "Build the ideal candidate profile. Set custom weights for specific skills, education, and years of experience to ensure the AI ranks candidates based on what matters most for any given role.",
       },
     ],
-    highlightsHeading: "A Smarter Hiring Experience",
+    highlightsHeading: "An Intelligence-Driven Workflow",
     highlightsDescription:
-      "Hiretics was built from the ground up with a focus on creating an intuitive, efficient, and enjoyable hiring experience for both recruiters and candidates.",
+      "Experience the classic card game, reimagined for the digital age. Taash Royale blends timeless strategy with a sleek, modern interface, competitive online multiplayer, and a rewarding progression system. Challenge players worldwide, climb the leaderboards, and become a card master.",
     highlights: [
       {
-        image: "/products/highlight-1.png",
-        title: "AI-Powered Candidate Matching",
+        image: "/products/hiretics-highlight-1.png",
+        title: "Daily Bonuses & Progressive Rewards",
         description:
-          "We developed Hiretics with a focus on intelligent automation. Our AI matching engine analyzes skills, experience, and cultural fit to surface the best candidates, saving recruiters hours of manual screening.",
+          "We developed Taash Royale from the ground up, focusing on three pillars: an intuitive user interface, a rock-solid technical architecture, and a compelling player progression system. We designed a clean, user-friendly UI that was easy for new players to learn, yet provided all the information and strategic depth that veteran players demand.",
       },
       {
-        image: "/products/highlight-2.png",
-        title: "Streamlined Workflow Management",
+        image: "/products/hiretics-highlight-2.png",
+        title: "Daily Bonuses & Progressive Rewards",
         description:
-          "The platform features an intuitive pipeline system that allows hiring teams to collaborate seamlessly, track candidate progress in real-time, and make data-driven hiring decisions.",
+          "We developed Taash Royale from the ground up, focusing on three pillars: an intuitive user interface, a rock-solid technical architecture, and a compelling player progression system. We designed a clean, user-friendly UI that was easy for new players to learn, yet provided all the information and strategic depth that veteran players demand.",
       },
     ],
   },
@@ -240,9 +240,9 @@ export default async function ProductDetailPage({
           images={d.overviewImages}
           cards={d.overviewCards}
         />
+        <BookingSection />
         <Testimonials />
         <PopularArticles articles={featuredArticles} />
-        <BookingSection />
         <Footer />
       </div>
     );
@@ -285,9 +285,9 @@ export default async function ProductDetailPage({
         images={fb.overviewImages}
         cards={fb.overviewCards}
       />
+      <BookingSection />
       <Testimonials />
       <PopularArticles articles={featuredArticles} />
-      <BookingSection />
       <Footer />
     </div>
   );

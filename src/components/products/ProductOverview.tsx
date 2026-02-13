@@ -47,10 +47,10 @@ export default function ProductOverview({
       <div className="flex flex-col gap-[32px] items-center w-full max-w-[1280px] overflow-hidden">
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center">
-          <h2 className="text-[#FFFFFF] text-[32px] lg:text-[64px] font-semibold leading-[38px] lg:leading-[58px] max-w-[648px]">
+          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px] max-w-[648px]">
             {heading}
           </h2>
-          <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-normal leading-[20px] lg:leading-[24px] max-w-[592px]">
+          <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px] max-w-[592px]">
             {description}
           </p>
         </div>
@@ -58,36 +58,56 @@ export default function ProductOverview({
         {/* Text Cards Mode */}
         {cards.length > 0 && (
           <div className="flex flex-col gap-[48px] w-full">
-            {/* Scrollable text cards */}
-            <div
-              ref={scrollRef}
-              className="w-full overflow-x-auto scrollbar-hide"
-            >
-              <div className="flex gap-[16px] items-stretch">
-                {cards.map((card, index) => (
-                  <div
-                    key={index}
-                    className="shrink-0 w-[280px] lg:w-[360px] bg-[#191919] rounded-[28px] p-[24px] lg:p-[32px] flex flex-col gap-[32px]"
-                  >
-                    <div className="pb-[16px]">
-                      <Image
-                        src={card.icon}
-                        alt=""
-                        width={32}
-                        height={32}
-                        className="object-contain"
-                      />
+            {/* Scrollable text cards with edge gradients on mobile */}
+            <div className="relative w-full">
+              {/* Left gradient - mobile only */}
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[146px] z-10 pointer-events-none lg:hidden"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #000000 0%, rgba(0,0,0,0) 86.667%)",
+                }}
+              />
+
+              {/* Right gradient - mobile only */}
+              <div
+                className="absolute right-0 top-0 bottom-0 w-[146px] z-10 pointer-events-none lg:hidden"
+                style={{
+                  background:
+                    "linear-gradient(270deg, #000000 0%, rgba(0,0,0,0) 86.667%)",
+                }}
+              />
+
+              <div
+                ref={scrollRef}
+                className="w-full overflow-x-auto scrollbar-hide"
+              >
+                <div className="flex gap-[16px] items-stretch">
+                  {cards.map((card, index) => (
+                    <div
+                      key={index}
+                      className="shrink-0 w-[360px] bg-[#191919] rounded-[28px] p-[32px] flex flex-col gap-[32px]"
+                    >
+                      <div className="pb-[16px]">
+                        <Image
+                          src={card.icon}
+                          alt=""
+                          width={32}
+                          height={32}
+                          className="object-contain"
+                        />
+                      </div>
+                      <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px]">
+                        {card.text}
+                      </p>
                     </div>
-                    <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-normal leading-[22px] lg:leading-[24px]">
-                      {card.text}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Pagination */}
-            <div className="flex items-center justify-between w-full">
+            {/* Pagination - desktop only */}
+            <div className="hidden lg:flex items-center justify-between w-full">
               {/* Dots */}
               <div className="flex gap-[8px]">
                 {cards.map((_, index) => (

@@ -159,7 +159,7 @@ export function transformProductToCard(product: Product) {
     logo: product.logo
       ? urlFor(product.logo).width(200).height(150).url()
       : undefined,
-    link: product.link,
+    link: product.link || `/products/${product.slug.current}`,
   };
 }
 

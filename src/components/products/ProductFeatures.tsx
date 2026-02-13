@@ -48,7 +48,7 @@ export default function ProductFeatures({
       <div className="flex flex-col gap-[32px] items-start w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col gap-[16px]">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-semibold leading-[48px] lg:leading-[58px]">
+          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px]">
             {heading}
           </h2>
           <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px] max-w-[500px]">
@@ -57,11 +57,11 @@ export default function ProductFeatures({
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[32px] w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[32px] w-full">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex items-center gap-[24px] lg:gap-[38px] bg-[#191919] rounded-[20px] lg:rounded-[28px] p-[20px] lg:p-[24px]"
+              className="flex flex-col justify-center gap-[64px] lg:flex-row lg:items-center lg:gap-[38px] bg-[#191919] rounded-[28px] p-[24px] h-[272px] lg:h-auto overflow-hidden"
             >
               {/* Icon */}
               <div className="shrink-0 w-[48px] h-[48px] flex items-center justify-center">
@@ -80,10 +80,10 @@ export default function ProductFeatures({
 
               {/* Text */}
               <div className="flex flex-col gap-[8px]">
-                <h3 className="text-[#FFFFFF] text-[20px] lg:text-[24px] font-medium leading-[24px] lg:leading-[28px]">
+                <h3 className="text-[#FFFFFF] text-[24px] font-medium leading-[28px]">
                   {feature.title}
                 </h3>
-                <p className="text-[#FFFFFF] text-[14px] lg:text-[16px] font-normal leading-[20px] lg:leading-[24px]">
+                <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px]">
                   {feature.description}
                 </p>
               </div>
