@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto, Oswald } from "next/font/google";
 import "./globals.css";
-import NewsletterPopup from "@/components/ui/NewsletterPopup";
+import NewsletterPopupWrapper from "@/components/ui/NewsletterPopupWrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -37,7 +37,7 @@ export default function RootLayout({
         className={`${inter.variable} ${roboto.variable} ${oswald.variable} antialiased`}
       >
         {children}
-        <NewsletterPopup />
+        <NewsletterPopupWrapper />
       </body>
     </html>
   );

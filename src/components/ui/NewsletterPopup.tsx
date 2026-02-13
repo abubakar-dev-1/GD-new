@@ -4,7 +4,27 @@ import { useState, useEffect, useCallback } from "react";
 
 const SHEETDB_API_URL = "https://sheetdb.io/api/v1/e2ormwywhf12h";
 
-export default function NewsletterPopup() {
+export interface NewsletterPopupProps {
+  enabled?: boolean;
+  title?: string;
+  description?: string;
+  successTitle?: string;
+  successMessage?: string;
+  desktopImage?: string;
+  mobileImage?: string;
+  delayMs?: number;
+}
+
+export default function NewsletterPopup({
+  enabled = true,
+  title = "Subscribe to our newsletter",
+  description = "Join our weekly newsletter for exclusive insights on design, development, and the tech that's shaping tomorrow. Be the first to know.",
+  successTitle = "Thank you!",
+  successMessage = "You\u2019ve been subscribed to our newsletter.",
+  desktopImage = "/image 106.png",
+  mobileImage = "/mobile_image_106.png",
+  delayMs = 1500,
+}: NewsletterPopupProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
@@ -20,16 +40,17 @@ export default function NewsletterPopup() {
   }, []);
 
   useEffect(() => {
+    if (!enabled) return;
     const dismissed = localStorage.getItem("newsletter_dismissed");
     if (!dismissed) {
       const timer = setTimeout(() => {
         setIsOpen(true);
         // Trigger animation after mount
         requestAnimationFrame(() => setIsVisible(true));
-      }, 1500);
+      }, delayMs);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [enabled, delayMs]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,8 +72,8 @@ export default function NewsletterPopup() {
       setIsSubmitting(false);
     }
   };
-  
-  if (!isOpen) return null;
+
+  if (!enabled || !isOpen) return null;
 
   return (
     <div
@@ -90,12 +111,12 @@ export default function NewsletterPopup() {
         {/* Illustration - mobile and desktop use different images */}
         <div className="flex items-center justify-center flex-shrink-0">
           <img
-            src="/mobile_image_106.png"
+            src={mobileImage}
             alt="Newsletter illustration"
             className="lg:hidden w-[200px] h-auto object-contain"
           />
           <img
-            src="/image 106.png"
+            src={desktopImage}
             alt="Newsletter illustration"
             className="hidden lg:block w-[200px] h-auto object-contain"
           />
@@ -115,22 +136,22 @@ export default function NewsletterPopup() {
           {isSuccess ? (
             <div className="flex flex-col gap-[16px] self-stretch">
               <h2 className="text-[#D0FF71] text-[40px] font-[700] leading-[48px]">
-                Thank you!
+                {successTitle}
               </h2>
               <p className="text-[#FFF] text-[16px] font-[400] leading-[24px]">
-                You&apos;ve been subscribed to our newsletter.
+                {successMessage}
               </p>
             </div>
           ) : (
             <>
               {/* Title */}
               <h2 className="text-[#FFF] text-[40px] font-[700] leading-[48px] self-stretch">
-                Subscribe to our newsletter
+                {title}
               </h2>
 
               {/* Description */}
               <p className="text-[#FFF] text-[16px] font-[400] leading-[24px] self-stretch">
-                Join our weekly newsletter for exclusive insights on design, development, and the tech that&apos;s shaping tomorrow. Be the first to know.
+                {description}
               </p>
 
               {/* Form */}

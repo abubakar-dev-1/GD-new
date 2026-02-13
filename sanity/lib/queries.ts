@@ -296,3 +296,59 @@ export const serviceBySlugQuery = groq`
 export const serviceSlugsQuery = groq`
   *[_type == "service" && defined(slug.current)][].slug.current
 `;
+
+// ── Privacy Policy Query ──
+
+// Get the privacy policy document (singleton)
+export const privacyPolicyQuery = groq`
+  *[_type == "privacyPolicy"][0] {
+    title,
+    lastUpdated,
+    intro,
+    sections[] {
+      _key,
+      title,
+      paragraphs,
+      bulletPoints,
+      afterListText,
+      contactEmail,
+      contactAddress
+    }
+  }
+`;
+
+// ── Terms and Conditions Query ──
+
+// Get the terms and conditions document (singleton)
+export const termsAndConditionsQuery = groq`
+  *[_type == "termsAndConditions"][0] {
+    title,
+    lastUpdated,
+    intro,
+    sections[] {
+      _key,
+      title,
+      paragraphs,
+      bulletPoints,
+      afterListText,
+      contactEmail,
+      contactAddress
+    }
+  }
+`;
+
+// ── Newsletter Popup Query ──
+
+// Get the newsletter popup settings (singleton)
+export const newsletterPopupQuery = groq`
+  *[_type == "newsletterPopup"][0] {
+    enabled,
+    title,
+    description,
+    successTitle,
+    successMessage,
+    desktopImage,
+    mobileImage,
+    delaySeconds
+  }
+`;
