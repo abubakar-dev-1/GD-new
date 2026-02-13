@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -16,6 +17,10 @@ import {
 import { Service } from "@/types/service";
 import { Project } from "@/types/project";
 import { transformServiceToDetail, transformProjectToRelated } from "@/lib/sanity-helpers";
+import {
+  SkeletonServiceDetailBody,
+  SkeletonRelatedProjectsSection,
+} from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
@@ -169,27 +174,13 @@ export async function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }));
 }
 
-export default async function ServiceDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  // Fetch service and latest projects in parallel
-  const [service, sanityProjects]: [Service | null, Project[]] = await Promise.all([
-    client.fetch(serviceBySlugQuery, { slug }),
-    client.fetch(latestProjectsQuery),
-  ]);
-  const relatedProjects = sanityProjects.map(transformProjectToRelated);
+async function ServiceContent({ slug }: { slug: string }) {
+  const service: Service | null = await client.fetch(serviceBySlugQuery, { slug });
 
   if (service) {
-    // Use Sanity data
     const detail = transformServiceToDetail(service);
-
     return (
-      <div className="min-h-screen bg-[#090C08]">
-        <Navbar />
+      <>
         <ServiceDetailHero
           title={detail.heroTitle}
           description={detail.heroDescription}
@@ -203,22 +194,15 @@ export default async function ServiceDetailPage({
             steps={detail.processSteps}
           />
         )}
-        <TrustedBy />
-        <ServiceTechStack />
-        <RelatedProjects projects={relatedProjects} />
-        <ServiceCTABanner />
-        <Footer />
-      </div>
+      </>
     );
   }
 
-  // Fallback to hardcoded data
   const fb = fallbackData[slug];
   if (!fb) notFound();
 
   return (
-    <div className="min-h-screen bg-[#090C08]">
-      <Navbar />
+    <>
       <ServiceDetailHero
         title={fb.heroTitle}
         description={fb.heroDescription}
@@ -230,9 +214,34 @@ export default async function ServiceDetailPage({
         description={fb.processDescription}
         steps={fb.processSteps}
       />
+    </>
+  );
+}
+
+async function RelatedProjectsSection() {
+  const sanityProjects: Project[] = await client.fetch(latestProjectsQuery);
+  const relatedProjects = sanityProjects.map(transformProjectToRelated);
+  return <RelatedProjects projects={relatedProjects} />;
+}
+
+export default async function ServiceDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  return (
+    <div className="min-h-screen bg-[#090C08]">
+      <Navbar />
+      <Suspense fallback={<SkeletonServiceDetailBody />}>
+        <ServiceContent slug={slug} />
+      </Suspense>
       <TrustedBy />
       <ServiceTechStack />
-      <RelatedProjects />
+      <Suspense fallback={<SkeletonRelatedProjectsSection />}>
+        <RelatedProjectsSection />
+      </Suspense>
       <ServiceCTABanner />
       <Footer />
     </div>

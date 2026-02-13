@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -24,6 +25,10 @@ import {
 import type { Feature } from "@/components/products/ProductFeatures";
 import type { Highlight } from "@/components/products/ProductHighlights";
 import type { OverviewCard } from "@/components/products/ProductOverview";
+import {
+  SkeletonProductDetailBody,
+  SkeletonArticlesSection,
+} from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
@@ -187,29 +192,13 @@ export async function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }));
 }
 
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  // Fetch product, and featured posts in parallel
-  const [sanityProduct, featuredPosts]: [Product | null, Post[]] =
-    await Promise.all([
-      client.fetch(productBySlugQuery, { slug }),
-      client.fetch(featuredPostsQuery),
-    ]);
-
-  const featuredArticles = featuredPosts.map(transformPostToArticle);
+async function ProductContent({ slug }: { slug: string }) {
+  const sanityProduct: Product | null = await client.fetch(productBySlugQuery, { slug });
 
   if (sanityProduct) {
-    // Use Sanity data
     const d = transformProductToDetail(sanityProduct);
-
     return (
-      <div className="min-h-screen bg-[#090C08]">
-        <Navbar />
+      <>
         <ProductDetailHero
           title={d.title}
           description={d.description}
@@ -240,21 +229,15 @@ export default async function ProductDetailPage({
           images={d.overviewImages}
           cards={d.overviewCards}
         />
-        <BookingSection />
-        <Testimonials />
-        <PopularArticles articles={featuredArticles} />
-        <Footer />
-      </div>
+      </>
     );
   }
 
-  // Fallback to hardcoded data
   const fb = fallbackData[slug];
   if (!fb) notFound();
 
   return (
-    <div className="min-h-screen bg-[#090C08]">
-      <Navbar />
+    <>
       <ProductDetailHero
         title={fb.title}
         description={fb.description}
@@ -285,9 +268,34 @@ export default async function ProductDetailPage({
         images={fb.overviewImages}
         cards={fb.overviewCards}
       />
+    </>
+  );
+}
+
+async function ArticlesSection() {
+  const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
+  const featuredArticles = featuredPosts.map(transformPostToArticle);
+  return <PopularArticles articles={featuredArticles} />;
+}
+
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  return (
+    <div className="min-h-screen bg-[#090C08]">
+      <Navbar />
+      <Suspense fallback={<SkeletonProductDetailBody />}>
+        <ProductContent slug={slug} />
+      </Suspense>
       <BookingSection />
       <Testimonials />
-      <PopularArticles articles={featuredArticles} />
+      <Suspense fallback={<SkeletonArticlesSection />}>
+        <ArticlesSection />
+      </Suspense>
       <Footer />
     </div>
   );

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProjectsHeroSection from "@/components/projects/ProjectsHeroSection";
@@ -10,6 +11,7 @@ import { client } from "../../../sanity/lib/client";
 import { projectsQuery } from "../../../sanity/lib/queries";
 import { Project } from "@/types/project";
 import { transformProjectToCard } from "@/lib/sanity-helpers";
+import { SkeletonProjectsListingSection } from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
@@ -37,15 +39,20 @@ const processSteps = [
   },
 ];
 
-export default async function ProjectsPage() {
+async function ProjectsListingSection() {
   const projects: Project[] = await client.fetch(projectsQuery);
   const projectCards = projects.map(transformProjectToCard);
+  return <ProjectsListing projects={projectCards} />;
+}
 
+export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-[#090C08]">
       <Navbar />
       <ProjectsHeroSection />
-      <ProjectsListing projects={projectCards} />
+      <Suspense fallback={<SkeletonProjectsListingSection />}>
+        <ProjectsListingSection />
+      </Suspense>
       <TrustedBy />
       <Testimonials />
       <OurProcess steps={processSteps} />

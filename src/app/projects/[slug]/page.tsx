@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -22,6 +23,11 @@ import {
   transformProjectToDetail,
   transformProjectToRelated,
 } from "@/lib/sanity-helpers";
+import {
+  SkeletonProjectDetailBody,
+  SkeletonRelatedProjectsSection,
+  SkeletonArticlesSection,
+} from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
@@ -30,24 +36,14 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  const [project, featuredPosts]: [Project | null, Post[]] = await Promise.all([
-    client.fetch(projectBySlugQuery, { slug }),
-    client.fetch(featuredPostsQuery),
-  ]);
+async function ProjectContent({ slug }: { slug: string }) {
+  const project: Project | null = await client.fetch(projectBySlugQuery, { slug });
 
   if (!project) {
     notFound();
   }
 
   const detail = transformProjectToDetail(project);
-  const featuredArticles = featuredPosts.map(transformPostToArticle);
 
   // Fetch related projects by same category
   const relatedRaw: Project[] = await client.fetch(relatedProjectsQuery, {
@@ -57,8 +53,7 @@ export default async function ProjectDetailPage({
   const relatedProjects = relatedRaw.map(transformProjectToRelated);
 
   return (
-    <div className="min-h-screen bg-[#090C08]">
-      <Navbar />
+    <>
       <ProjectDetailHero
         title={detail.title}
         description={detail.description}
@@ -89,7 +84,32 @@ export default async function ProjectDetailPage({
       {relatedProjects.length > 0 && (
         <RelatedProjects projects={relatedProjects} />
       )}
-      <PopularArticles articles={featuredArticles} />
+    </>
+  );
+}
+
+async function ArticlesSection() {
+  const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
+  const featuredArticles = featuredPosts.map(transformPostToArticle);
+  return <PopularArticles articles={featuredArticles} />;
+}
+
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  return (
+    <div className="min-h-screen bg-[#090C08]">
+      <Navbar />
+      <Suspense fallback={<SkeletonProjectDetailBody />}>
+        <ProjectContent slug={slug} />
+      </Suspense>
+      <Suspense fallback={<SkeletonArticlesSection />}>
+        <ArticlesSection />
+      </Suspense>
       <BookingSection />
       <Footer />
     </div>

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/link-button";
@@ -18,22 +19,40 @@ import { Product } from "@/types/product";
 import { Project } from "@/types/project";
 import { Service } from "@/types/service";
 import { transformPostToArticle, transformProductToCard, transformProjectToCard, transformServiceToCard } from "@/lib/sanity-helpers";
+import {
+  SkeletonProjectsSection,
+  SkeletonServicesSection,
+  SkeletonProductsSection,
+  SkeletonArticlesSection,
+} from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
-export default async function Home() {
-  const [featuredPosts, featuredProjects, sanityServices, sanityProducts]: [Post[], Project[], Service[], Product[]] =
-    await Promise.all([
-      client.fetch(featuredPostsQuery),
-      client.fetch(featuredProjectsQuery),
-      client.fetch(servicesQuery),
-      client.fetch(productsQuery),
-    ]);
-  const featuredArticles = featuredPosts.map(transformPostToArticle);
-  const projectCards = featuredProjects.map(transformProjectToCard);
-  const serviceCards = sanityServices.map(transformServiceToCard);
-  const productCards = sanityProducts.map(transformProductToCard);
+async function ProjectsSection() {
+  const projects: Project[] = await client.fetch(featuredProjectsQuery);
+  const projectCards = projects.map(transformProjectToCard);
+  return <OurProjects projects={projectCards} />;
+}
 
+async function ServicesSection() {
+  const services: Service[] = await client.fetch(servicesQuery);
+  const serviceCards = services.map(transformServiceToCard);
+  return <OurServices services={serviceCards} />;
+}
+
+async function ProductsSection() {
+  const products: Product[] = await client.fetch(productsQuery);
+  const productCards = products.map(transformProductToCard);
+  return <FeaturedProducts products={productCards} />;
+}
+
+async function ArticlesSection() {
+  const posts: Post[] = await client.fetch(featuredPostsQuery);
+  const articles = posts.map(transformPostToArticle);
+  return <PopularArticles articles={articles} />;
+}
+
+export default function Home() {
   return (
     <div className="min-h-screen bg-[#090C08]">
       {/* Hero Section with Background */}
@@ -81,13 +100,19 @@ export default async function Home() {
       <WhyChooseUs />
 
       {/* Our Projects Section */}
-      <OurProjects projects={projectCards} />
+      <Suspense fallback={<SkeletonProjectsSection />}>
+        <ProjectsSection />
+      </Suspense>
 
       {/* Our Services Section */}
-      <OurServices services={serviceCards} />
+      <Suspense fallback={<SkeletonServicesSection />}>
+        <ServicesSection />
+      </Suspense>
 
       {/* Featured Products Section */}
-      <FeaturedProducts products={productCards} />
+      <Suspense fallback={<SkeletonProductsSection />}>
+        <ProductsSection />
+      </Suspense>
 
       {/* Team Section */}
       <TeamSection />
@@ -96,7 +121,9 @@ export default async function Home() {
       <HiringBanner />
 
       {/* Popular Articles Section */}
-      <PopularArticles articles={featuredArticles} />
+      <Suspense fallback={<SkeletonArticlesSection />}>
+        <ArticlesSection />
+      </Suspense>
 
       {/* Testimonials Section */}
       <Testimonials />

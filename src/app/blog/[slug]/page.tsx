@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -17,6 +18,7 @@ import {
   formatDate,
   transformPostToArticle,
 } from "@/lib/sanity-helpers";
+import { SkeletonBlogPostBody, SkeletonArticlesSection } from "@/components/ui/Skeleton";
 
 export const revalidate = 60;
 
@@ -29,33 +31,11 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-
-  // First fetch the current post
+async function BlogPostBody({ slug }: { slug: string }) {
   const post: Post | null = await client.fetch(postBySlugQuery, { slug });
 
   if (!post) {
     notFound();
-  }
-
-  // Get raw category reference IDs for the related posts query
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const categoryIds: string[] = (post as any).categoryRefs || [];
-
-  // Fetch related posts by shared categories, fallback to featured if none found
-  let relatedPosts: Post[] = [];
-  if (categoryIds.length > 0) {
-    relatedPosts = await client.fetch(relatedPostsQuery, {
-      postId: post._id,
-      categoryIds,
-    });
-  }
-
-  // Fallback to featured posts if no category-based related posts found
-  if (relatedPosts.length === 0) {
-    const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
-    relatedPosts = featuredPosts.filter((p) => p._id !== post._id);
   }
 
   const headerProps = {
@@ -66,14 +46,53 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     date: formatDate(post.publishedAt),
   };
 
+  return (
+    <>
+      <BlogPostHeader {...headerProps} />
+      <BlogPostContent body={post.body} />
+    </>
+  );
+}
+
+async function RelatedArticlesSection({ slug }: { slug: string }) {
+  const post: Post | null = await client.fetch(postBySlugQuery, { slug });
+
+  if (!post) return null;
+
+  // Get raw category reference IDs for the related posts query
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const categoryIds: string[] = (post as any).categoryRefs || [];
+
+  let relatedPosts: Post[] = [];
+  if (categoryIds.length > 0) {
+    relatedPosts = await client.fetch(relatedPostsQuery, {
+      postId: post._id,
+      categoryIds,
+    });
+  }
+
+  if (relatedPosts.length === 0) {
+    const featuredPosts: Post[] = await client.fetch(featuredPostsQuery);
+    relatedPosts = featuredPosts.filter((p) => p._id !== post._id);
+  }
+
   const relatedArticles = relatedPosts.map(transformPostToArticle);
+
+  return <PopularArticles title="Related Articles" articles={relatedArticles} />;
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
 
   return (
     <div className="min-h-screen bg-[#090C08]">
       <Navbar />
-      <BlogPostHeader {...headerProps} />
-      <BlogPostContent body={post.body} />
-      <PopularArticles title="Related Articles" articles={relatedArticles} />
+      <Suspense fallback={<SkeletonBlogPostBody />}>
+        <BlogPostBody slug={slug} />
+      </Suspense>
+      <Suspense fallback={<SkeletonArticlesSection />}>
+        <RelatedArticlesSection slug={slug} />
+      </Suspense>
       <Footer />
     </div>
   );
