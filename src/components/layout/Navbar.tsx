@@ -102,7 +102,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[97px] bg-[#090C08] z-40">
+        <div className="lg:hidden fixed inset-0 top-[97px] bg-[#000000] z-40">
           <nav className="flex flex-col items-center py-[40px] gap-[24px]">
             <Link
               href="/"

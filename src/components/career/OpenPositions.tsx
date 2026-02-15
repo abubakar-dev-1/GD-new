@@ -99,7 +99,8 @@ const ClockIcon = () => (
 
 function JobCard({ position }: { position: JobPosition }) {
   return (
-    <div
+    <Link
+      href={position.applyLink}
       className="flex flex-col items-start gap-[24px] lg:gap-[32px] p-[24px] lg:p-[32px] rounded-[20px] bg-[#191919] border border-[#333] self-stretch"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
@@ -141,16 +142,15 @@ function JobCard({ position }: { position: JobPosition }) {
       </div>
 
       {/* Apply Now Button */}
-      <Link
-        href={position.applyLink}
+      <span
         className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
       >
         <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
         <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
           Apply Now
         </span>
-      </Link>
-    </div>
+      </span>
+    </Link>
   );
 }
 

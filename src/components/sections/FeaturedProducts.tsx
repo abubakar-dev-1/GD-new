@@ -41,8 +41,9 @@ const defaultProducts: ProductItem[] = [
 
 function MobileProductCard({ product }: { product: ProductItem }) {
   return (
-    <div
-      className="relative w-full rounded-[16px] overflow-hidden border border-[#333]"
+    <Link
+      href={product.link}
+      className="block relative w-full rounded-[16px] overflow-hidden border border-[#333]"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* Background Image - using mobile-specific image */}
@@ -93,22 +94,22 @@ function MobileProductCard({ product }: { product: ProductItem }) {
         </p>
 
         {/* Learn More Button */}
-        <Link
-          href={product.link}
+        <span
           className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors mt-[8px]"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
           <span className="text-[#000000] text-[14px] font-medium leading-[16px] text-center">
             Learn More
           </span>
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
 function DesktopProductCard({ product }: { product: ProductItem }) {
   return (
+    <Link href={product.link} className="block w-full">
     <ImageCard
       image={product.image}
       alt={product.title}
@@ -143,15 +144,14 @@ function DesktopProductCard({ product }: { product: ProductItem }) {
           </p>
 
           {/* Learn More Button */}
-          <Link
-            href={product.link}
+          <span
             className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
           >
             <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
             <span className="text-[#000000] text-[14px] font-medium leading-[16px] text-center">
               Learn More
             </span>
-          </Link>
+          </span>
         </div>
 
         {/* Right Side - Logo */}
@@ -168,6 +168,7 @@ function DesktopProductCard({ product }: { product: ProductItem }) {
         )}
       </div>
     </ImageCard>
+    </Link>
   );
 }
 

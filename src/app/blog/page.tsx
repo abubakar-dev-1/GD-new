@@ -26,7 +26,7 @@ async function DiscoverBlogsSection() {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       <Navbar />
       <BlogHeroSection />
       <Suspense fallback={<SkeletonArticlesSection />}>

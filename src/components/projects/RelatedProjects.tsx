@@ -48,7 +48,7 @@ const defaultProjects: RelatedProject[] = [
 
 function RelatedProjectCard({ project }: { project: RelatedProject }) {
   return (
-    <div className="bg-[#191919] border border-[#444] rounded-[20px] lg:rounded-[30px] p-[6px] lg:p-[8px] overflow-hidden h-[360px] lg:h-[484px]">
+    <Link href={project.link} className="block bg-[#191919] border border-[#444] rounded-[20px] lg:rounded-[30px] p-[6px] lg:p-[8px] overflow-hidden h-[360px] lg:h-[484px]">
       <div className="relative w-full h-full border border-[#444] rounded-[16px] lg:rounded-[28px] overflow-hidden">
         {/* Image */}
         <Image
@@ -79,19 +79,18 @@ function RelatedProjectCard({ project }: { project: RelatedProject }) {
             </div>
 
             {/* View button */}
-            <Link
-              href={project.link}
+            <span
               className="flex items-center shrink-0 h-[40px] lg:h-[44px] gap-[12px] pl-[20px] pr-[24px] lg:pl-[24px] lg:pr-[32px] py-[8px] rounded-[40px] bg-white hover:bg-gray-100 transition-colors"
             >
               <span className="w-[6px] h-[8px] border-l-[6px] border-y-[4px] border-y-transparent border-l-black" />
               <span className="text-black text-[13px] lg:text-[14px] font-medium leading-[16px]">
                 View
               </span>
-            </Link>
+            </span>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

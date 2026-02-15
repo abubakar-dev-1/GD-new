@@ -11,7 +11,7 @@ import BookingSection from "@/components/home/BookingSection";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       <Navbar />
 
       <AboutHeroSection />

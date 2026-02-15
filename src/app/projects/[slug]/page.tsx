@@ -102,7 +102,7 @@ export default async function ProjectDetailPage({
   const { slug } = await params;
 
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       <Navbar />
       <Suspense fallback={<SkeletonProjectDetailBody />}>
         <ProjectContent slug={slug} />

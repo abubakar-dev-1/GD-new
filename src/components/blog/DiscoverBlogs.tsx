@@ -67,7 +67,8 @@ export default function DiscoverBlogs({ posts = [] }: { posts?: BlogPost[] }) {
                   key={post.id}
                   className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
                 >
-                  <div
+                  <Link
+                    href={post.link}
                     className="flex flex-col items-start gap-[16px] lg:gap-[24px] p-[12px] lg:p-[16px] rounded-[16px] lg:rounded-[20px] bg-[#191919] h-full"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
@@ -93,20 +94,19 @@ export default function DiscoverBlogs({ posts = [] }: { posts?: BlogPost[] }) {
 
                     {/* Bottom: Button + Date */}
                     <div className="flex items-center justify-between w-full mt-auto">
-                      <Link
-                        href={post.link}
+                      <span
                         className="flex items-center h-[40px] gap-[12px] pl-[20px] pr-[24px] py-[8px] rounded-[40px] border border-[#444] hover:bg-[#222] transition-colors"
                       >
                         <span className="w-[6px] h-[6px] rounded-full bg-[#FFF]" />
                         <span className="text-[#FFF] text-[13px] font-[500] leading-[16px]">
                           View More
                         </span>
-                      </Link>
+                      </span>
                       <span className="text-[#D2D2D2] text-[13px] font-[400] leading-[20px]">
                         {post.date}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 </CarouselItem>
               ))}
             </CarouselContent>

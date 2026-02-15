@@ -13,7 +13,8 @@ interface Project {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div
+    <Link
+      href={project.link}
       className="flex flex-col justify-center lg:justify-start px-[16px] py-[20px] lg:p-[24px] gap-[16px] lg:gap-[24px] rounded-[28px] bg-[#191919] overflow-hidden self-stretch"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
@@ -69,17 +70,16 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Button - Mobile: h-40px, px-16px, py-6px */}
-        <Link
-          href={project.link}
+        <span
           className="flex items-center h-[40px] lg:h-[44px] gap-[12px] px-[16px] lg:pl-[24px] lg:pr-[32px] py-[6px] lg:py-[8px] rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
           <span className="text-[#000000] text-[12px] lg:text-[14px] font-medium leading-[16px]">
             View Case Study
           </span>
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 

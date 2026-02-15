@@ -12,7 +12,7 @@ import {
 
 export default function HomeLoading() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       {/* Navbar placeholder */}
       <div className="w-full h-[80px]" />
 

@@ -133,7 +133,7 @@ export default async function PrivacyPolicyPage() {
   const data = sanityData?.sections?.length ? sanityData : fallbackData;
 
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       <Navbar />
 
       {/* Hero */}

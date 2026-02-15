@@ -8,7 +8,7 @@ import {
 
 export default function ProjectDetailLoading() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       <div className="w-full h-[80px]" />
 
       {/* Hero */}

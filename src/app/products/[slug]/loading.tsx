@@ -11,7 +11,7 @@ import {
 
 export default function ProductDetailLoading() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       {/* Navbar */}
       <div className="w-full h-[80px]" />
 

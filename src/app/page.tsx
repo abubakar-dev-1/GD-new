@@ -54,7 +54,7 @@ async function ArticlesSection() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#090C08]">
+    <div className="min-h-screen bg-[#000000]">
       {/* Hero Section with Background */}
       <div
         className="bg-cover bg-center bg-no-repeat"
@@ -104,10 +104,8 @@ export default function Home() {
         <ProjectsSection />
       </Suspense>
 
-      {/* Our Services Section */}
-      <Suspense fallback={<SkeletonServicesSection />}>
-        <ServicesSection />
-      </Suspense>
+      {/* Our Services Section - using mock data for now */}
+      <OurServices />
 
       {/* Featured Products Section */}
       <Suspense fallback={<SkeletonProductsSection />}>

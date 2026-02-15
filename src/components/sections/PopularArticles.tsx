@@ -16,7 +16,7 @@ interface Article {
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <div className="flex flex-col md:flex-row items-start bg-[#191919] p-[24px] gap-[16px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
+    <Link href={article.link} className="flex flex-col md:flex-row items-start bg-[#191919] p-[24px] gap-[16px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
       {/* Image Section - Left Side: width 370.7px, aspect-ratio 133/94, border-radius 20px */}
       <div
         className="relative w-full md:w-[370px] flex-shrink-0 rounded-[20px] overflow-hidden"
@@ -68,8 +68,7 @@ function ArticleCard({ article }: { article: Article }) {
         </p>
 
         {/* Read More Button */}
-        <Link
-          href={article.link}
+        <span
           className="inline-flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] w-fit rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
@@ -77,9 +76,9 @@ function ArticleCard({ article }: { article: Article }) {
           <span className="text-[#000000] text-[14px] font-medium leading-[16px]">
             Read More
           </span>
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 

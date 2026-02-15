@@ -33,7 +33,7 @@ const companies = [
 // Separator component
 const Separator = () => (
   <div
-    className="w-[1px] h-[10px] bg-[#D2D2D2] flex-shrink-0 mx-6"
+    className="w-[1px] h-[10px] bg-[#D2D2D2] flex-shrink-0 mx-[50px]"
     aria-hidden="true"
   />
 );
