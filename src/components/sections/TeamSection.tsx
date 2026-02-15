@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
+  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -82,7 +83,38 @@ const teamMembers: TeamMember[] = [
 ];
 
 export default function TeamSection() {
+  const [api, setApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const onDotClick = useCallback(
+    (index: number) => {
+      if (!api) return;
+      api.scrollTo(index);
+    },
+    [api]
+  );
+
+  useEffect(() => {
+    if (!api) return;
+
+    setScrollSnaps(api.scrollSnapList());
+
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", () => {
+      setScrollSnaps(api.scrollSnapList());
+      onSelect();
+    });
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
@@ -112,6 +144,7 @@ export default function TeamSection() {
             align: "start",
             loop: true,
           }}
+          setApi={setApi}
           className="w-full"
         >
           <CarouselContent className="-ml-4">
@@ -218,26 +251,26 @@ export default function TeamSection() {
             ))}
           </CarouselContent>
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-center md:justify-end items-center gap-4 mt-8">
+          {/* Navigation - Dots left, Arrows right */}
+          <div className="flex justify-between items-center mt-8">
             {/* Dots */}
             <div className="flex gap-2">
-              {teamMembers.map((_, index) => (
+              {scrollSnaps.map((_, index) => (
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentSlide ? "bg-[#D0FF71]" : "bg-gray-600"
                   }`}
-                  onClick={() => setCurrentSlide(index)}
+                  onClick={() => onDotClick(index)}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
 
             {/* Arrow Buttons */}
-            <div className="flex gap-2">
-              <CarouselPrevious className="static translate-y-0 bg-gray-900 border-gray-700 text-white hover:bg-gray-800" />
-              <CarouselNext className="static translate-y-0 bg-gray-900 border-gray-700 text-white hover:bg-gray-800" />
+            <div className="flex gap-[24px]">
+              <CarouselPrevious className="static translate-y-0 h-[48px] w-[48px] rounded-[40px] bg-transparent border-white text-white hover:bg-white/10" />
+              <CarouselNext className="static translate-y-0 h-[48px] w-[48px] rounded-[40px] bg-transparent border-white text-white hover:bg-white/10" />
             </div>
           </div>
         </Carousel>

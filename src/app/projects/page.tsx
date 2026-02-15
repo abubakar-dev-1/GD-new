@@ -50,9 +50,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-[#000000]">
       <Navbar />
       <ProjectsHeroSection />
-      <Suspense fallback={<SkeletonProjectsListingSection />}>
-        <ProjectsListingSection />
-      </Suspense>
+      <ProjectsListing />
       <TrustedBy />
       <Testimonials />
       <OurProcess steps={processSteps} />

@@ -24,6 +24,53 @@ const categories = [
   "DevOps",
 ];
 
+const defaultProjects: Project[] = [
+  {
+    id: "1",
+    title: "Luxyury Watch Boutiques",
+    description:
+      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
+    image: "/images/projects/luxyury-watch.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    category: "Web Dev",
+    link: "/projects/luxyury-watch-boutiques",
+  },
+  {
+    id: "2",
+    title: "Nova",
+    description:
+      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
+    image: "/images/projects/nova.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    category: "UI/UX",
+    link: "/projects/nova",
+  },
+  {
+    id: "3",
+    title: "Nova",
+    description:
+      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
+    image: "/images/projects/nova.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    category: "UI/UX",
+    link: "/projects/nova",
+  },
+  {
+    id: "4",
+    title: "Luxyury Watch Boutiques",
+    description:
+      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
+    image: "/images/projects/luxyury-watch.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    category: "Web Dev",
+    link: "/projects/luxyury-watch-boutiques",
+  },
+];
+
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
@@ -104,9 +151,11 @@ export default function ProjectsListing({
 }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
+  const items = projects.length > 0 ? projects : defaultProjects;
+
   const filtered = activeCategory
-    ? projects.filter((p) => p.category === activeCategory)
-    : projects;
+    ? items.filter((p) => p.category === activeCategory)
+    : items;
 
   return (
     <section

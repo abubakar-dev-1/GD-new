@@ -3,8 +3,8 @@ import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function Footer() {
   return (
-    <footer className="w-full flex justify-center bg-[#000] py-[40px] lg:py-[48px] px-[20px] lg:px-0">
-      <div className="flex flex-col items-start lg:items-center w-full max-w-[1440px] lg:px-[48px] gap-[72px] lg:gap-[96px]">
+    <footer className="w-full flex justify-center bg-[#000] py-[40px] lg:py-[48px] px-[20px] lg:px-[10px]">
+      <div className="flex flex-col items-start lg:items-center w-full max-w-[1440px] gap-[72px] lg:gap-[96px]">
         {/* Top Section - Mobile: stacked, Desktop: 3 Columns */}
         <div className="flex flex-col lg:flex-row items-start lg:items-start justify-between w-full gap-[48px] lg:gap-8">
           {/* Left Column - Logo and Address */}

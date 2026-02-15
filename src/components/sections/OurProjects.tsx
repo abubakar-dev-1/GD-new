@@ -83,6 +83,49 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
+const defaultProjects: Project[] = [
+  {
+    id: "1",
+    title: "Luxyury Watch Boutiques",
+    description:
+      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
+    image: "/images/projects/luxyury-watch.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    link: "/projects/luxyury-watch-boutiques",
+  },
+  {
+    id: "2",
+    title: "Nova",
+    description:
+      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
+    image: "/images/projects/nova.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    link: "/projects/nova",
+  },
+  {
+    id: "3",
+    title: "Nova",
+    description:
+      "Nova is a proprietary data analytics suite designed to transform raw information into actionable business intelligence. We developed its powerful dashboard, predictive modeling capabilities, and real-time reporting to empower data-driven decision-making for our enterprise clients.",
+    image: "/images/projects/nova.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    link: "/projects/nova",
+  },
+  {
+    id: "4",
+    title: "Luxyury Watch Boutiques",
+    description:
+      "We crafted a bespoke e-commerce platform for a premier luxury watch retailer, integrating immersive 3D product viewers, a personalized clienteling system, and a secure, high-volume transaction engine to elevate the digital shopping experience.",
+    image: "/images/projects/luxyury-watch.png",
+    tags: ["Design", "Website", "UI/UX"],
+    countryFlag: "🇨🇦",
+    link: "/projects/luxyury-watch-boutiques",
+  },
+];
+
 export default function OurProjects({ projects = [] }: { projects?: Project[] }) {
   return (
     <section
@@ -122,7 +165,7 @@ export default function OurProjects({ projects = [] }: { projects?: Project[] })
 
         {/* Projects Grid - Mobile: 1 col, Desktop: 2 cols */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px] w-full">
-          {projects.map((project) => (
+          {(projects.length > 0 ? projects : defaultProjects).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

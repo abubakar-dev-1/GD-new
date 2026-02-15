@@ -139,7 +139,7 @@ export default function WhyChooseUs() {
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
-      <div className="flex flex-col items-center lg:items-start justify-start w-full max-w-[1280px] gap-[32px]">
+      <div className="flex flex-col items-center lg:items-start justify-start w-full max-w-[1440px] gap-[32px]">
         {/* Header */}
         <div className="flex flex-col items-center lg:items-start justify-start gap-4 w-full">
           <h2
