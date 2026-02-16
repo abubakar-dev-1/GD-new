@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ProjectsHeroSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "#000" }}>
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]" style={{ backgroundColor: "#000" }}>
       <div className="w-full max-w-[1440px]">
         <div className="relative w-full flex rounded-[28px] overflow-hidden bg-[#191919]">
           {/* Background Image - Desktop */}
@@ -39,11 +39,11 @@ export default function ProjectsHeroSection() {
 
           {/* Content - Mobile */}
           <div
-            className="relative z-10 flex lg:hidden flex-col items-start gap-[80px] px-[24px] py-[48px] w-full flex-1"
+            className="relative z-10 flex lg:hidden flex-col items-start gap-[60px] min-[375px]:gap-[80px] px-[16px] min-[375px]:px-[24px] py-[32px] min-[375px]:py-[48px] w-full flex-1"
             style={{ fontFamily: "Inter" }}
           >
             <div className="flex flex-col items-start gap-[24px]">
-              <h1 className="text-[#FFF] text-[40px] font-[700] leading-normal">
+              <h1 className="text-[#FFF] text-[32px] min-[375px]:text-[40px] font-[700] leading-normal">
                 Projects
               </h1>
               <p className="text-[#FFF] text-[16px] font-[400] leading-[24px]">
@@ -54,9 +54,9 @@ export default function ProjectsHeroSection() {
             <div className="flex flex-col items-start gap-[8px]">
               <Link
                 href="/contact"
-                className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors whitespace-nowrap"
+                className="flex items-center h-auto min-h-[44px] gap-[8px] min-[375px]:gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
               >
-                <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
+                <span className="w-[8px] h-[8px] rounded-full bg-[#000000] flex-shrink-0" />
                 <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
                   Schedule Your Free Consultation
                 </span>

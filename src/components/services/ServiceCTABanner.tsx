@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function ServiceCTABanner() {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px]">
@@ -33,7 +33,7 @@ export default function ServiceCTABanner() {
 
           {/* Content */}
           <div
-            className="relative z-10 flex flex-col items-start gap-[24px] lg:gap-[32px] p-[24px] lg:p-[48px] max-w-[724px]"
+            className="relative z-10 flex flex-col items-start gap-[24px] lg:gap-[32px] p-[16px] min-[375px]:p-[24px] lg:p-[48px] max-w-[724px]"
             style={{ fontFamily: "Inter" }}
           >
             <h2 className="text-[#FFF] text-[32px] lg:text-[40px] font-[700] leading-[38px] lg:leading-[48px]">
@@ -47,9 +47,9 @@ export default function ServiceCTABanner() {
             <div className="flex flex-col items-start gap-[8px]">
               <Link
                 href="/contact"
-                className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors whitespace-nowrap"
+                className="flex items-center h-auto min-h-[44px] gap-[8px] min-[375px]:gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
               >
-                <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
+                <span className="w-[8px] h-[8px] rounded-full bg-[#000000] flex-shrink-0" />
                 <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
                   Schedule Your Free Consultation
                 </span>

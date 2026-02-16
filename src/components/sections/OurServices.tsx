@@ -239,7 +239,7 @@ export default function OurServices({ services }: { services?: ServiceItem[] }) 
 
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{
         background:
           "linear-gradient(0deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.58) 100%)",
@@ -251,7 +251,7 @@ export default function OurServices({ services }: { services?: ServiceItem[] }) 
         <div className="flex flex-col lg:flex-row items-start lg:justify-between gap-[16px] w-full">
           <div className="flex flex-col gap-[8px]">
             <h2
-              className="text-[#FFFFFF] text-[40px] lg:text-[48px] font-[700] lg:font-normal leading-normal lg:leading-[58px]"
+              className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[48px] font-[700] lg:font-normal leading-normal lg:leading-[58px]"
               style={{ fontFamily: "Microsoft Sans Serif, Inter, sans-serif" }}
             >
               Our Services
@@ -283,7 +283,7 @@ export default function OurServices({ services }: { services?: ServiceItem[] }) 
                 className="h-full"
               >
                 <div
-                  className="flex flex-col items-start p-[20px] gap-[16px] h-full self-stretch justify-end"
+                  className="flex flex-col items-start p-[12px] min-[375px]:p-[20px] gap-[12px] min-[375px]:gap-[16px] h-full self-stretch justify-end"
                   style={{ flex: "1 0 0" }}
                 >
                   <div className="w-[48px] h-[48px] rounded-[8px] bg-[#65783F] flex items-center justify-center">
@@ -291,7 +291,7 @@ export default function OurServices({ services }: { services?: ServiceItem[] }) 
                   </div>
 
                   <div className="flex flex-col items-start gap-[8px] self-stretch">
-                    <h3 className="text-[#FFF] text-[24px] font-medium leading-[28px]">
+                    <h3 className="text-[#FFF] text-[20px] min-[375px]:text-[24px] font-medium leading-[24px] min-[375px]:leading-[28px]">
                       {service.title}
                     </h3>
                     <p className="text-[#ADADAD] text-[16px] font-normal leading-[24px]">

@@ -80,7 +80,7 @@ function StatItem({ stat, animate }: { stat: Stat; animate: boolean }) {
 
   return (
     <div
-      className="flex flex-col items-center lg:items-start justify-center p-[24px] lg:p-[32px] gap-[24px] lg:gap-[32px] lg:border-l lg:border-[#D0FF71] backdrop-blur-[10px] overflow-hidden"
+      className="flex flex-col items-center lg:items-start justify-center p-[16px] min-[375px]:p-[24px] lg:p-[32px] gap-[16px] min-[375px]:gap-[24px] lg:gap-[32px] lg:border-l lg:border-[#D0FF71] backdrop-blur-[10px] overflow-hidden"
     >
       {/* Icon */}
       <div className="w-[24px] h-[24px] flex items-center justify-center">
@@ -95,7 +95,7 @@ function StatItem({ stat, animate }: { stat: Stat; animate: boolean }) {
       {/* Number + Label */}
       <div className="flex flex-col gap-[8px] w-full">
         <h3
-          className="text-[#FFF] text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px] text-center lg:text-left w-full"
+          className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px] text-center lg:text-left w-full"
           style={{ fontFamily: "Inter" }}
         >
           {count}{stat.suffix}
@@ -136,7 +136,7 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
       <div className="flex flex-col items-center lg:items-start justify-start w-full max-w-[1440px] gap-[32px]">

@@ -18,9 +18,9 @@ export default function Button({
 }: ButtonProps) {
   const baseStyles = cn(
     "flex items-center justify-center gap-[12px]",
-    "h-[44px] pl-[24px] pr-[32px] py-[8px]",
+    "h-[44px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px]",
     "rounded-[40px]",
-    "text-[14px] font-[500] leading-[16px] text-center whitespace-nowrap",
+    "text-[14px] font-[500] leading-[16px] text-center",
     "transition-colors duration-200"
   );
 

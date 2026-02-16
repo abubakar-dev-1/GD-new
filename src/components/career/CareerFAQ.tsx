@@ -82,7 +82,7 @@ const DribbbleIcon = () => (
 export default function CareerFAQ({ faqs = defaultFaqs }: { faqs?: FAQItem[] }) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px] flex flex-col lg:flex-row gap-[40px] lg:gap-[80px]">
@@ -91,7 +91,7 @@ export default function CareerFAQ({ faqs = defaultFaqs }: { faqs?: FAQItem[] }) 
           className="flex flex-col items-start gap-[24px] lg:gap-[32px] w-full lg:max-w-[380px] flex-shrink-0"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
-          <h2 className="text-[#FFF] text-[40px] font-[700] leading-[120%]">
+          <h2 className="text-[#FFF] text-[32px] min-[375px]:text-[40px] font-[700] leading-[120%]">
             FAQs
           </h2>
           <p className="text-[#FFF] text-[16px] font-[400] leading-[150%]">
@@ -102,7 +102,7 @@ export default function CareerFAQ({ faqs = defaultFaqs }: { faqs?: FAQItem[] }) 
           {/* Connect with Us Button */}
           <Link
             href="/contact"
-            className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
+            className="flex items-center h-[44px] gap-[8px] min-[375px]:gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
           >
             <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
             <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">

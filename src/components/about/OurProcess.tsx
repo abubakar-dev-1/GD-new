@@ -54,14 +54,14 @@ const LINE_GRADIENT =
 export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] }) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px] flex flex-col items-center gap-[40px] lg:gap-[64px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-[16px] text-center">
           <h2
-            className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
+            className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
             Our Process
@@ -154,7 +154,7 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
           {steps.map((step) => (
             <div
               key={step.number}
-              className="flex flex-col items-start gap-[32px] p-[24px] rounded-[16px] w-full"
+              className="flex flex-col items-start gap-[24px] min-[375px]:gap-[32px] p-[16px] min-[375px]:p-[24px] rounded-[16px] w-full"
               style={{ background: "#191919" }}
             >
               {/* Top row - Icon + Number */}
@@ -163,7 +163,7 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
                   <Image src={step.icon} alt={step.title} width={36} height={36} />
                 </div>
                 <span
-                  className="text-[60px] font-[600] leading-normal select-none"
+                  className="text-[48px] min-[375px]:text-[60px] font-[600] leading-normal select-none"
                   style={{
                     fontFamily: "var(--font-oswald), Oswald, sans-serif",
                     color: "#191919",
@@ -178,7 +178,7 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
 
               {/* Title */}
               <h3
-                className="text-[#FFF] text-[28px] font-[500] leading-[34px]"
+                className="text-[#FFF] text-[22px] min-[375px]:text-[28px] font-[500] leading-[28px] min-[375px]:leading-[34px]"
                 style={{ fontFamily: "Inter" }}
               >
                 {step.title}

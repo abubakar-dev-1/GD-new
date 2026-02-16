@@ -101,13 +101,13 @@ function JobCard({ position }: { position: JobPosition }) {
   return (
     <Link
       href={position.applyLink}
-      className="flex flex-col items-start gap-[24px] lg:gap-[32px] p-[24px] lg:p-[32px] rounded-[20px] bg-[#191919] border border-[#333] self-stretch"
+      className="flex flex-col items-start gap-[16px] min-[375px]:gap-[24px] lg:gap-[32px] p-[16px] min-[375px]:p-[24px] lg:p-[32px] rounded-[20px] bg-[#191919] border border-[#333] self-stretch"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* Top: Title (left) + Badge (right) */}
       <div className="flex items-start justify-between w-full gap-[16px]">
         <h3
-          className="text-[#FFF] text-[24px] font-[700] leading-[140%]"
+          className="text-[#FFF] text-[20px] min-[375px]:text-[24px] font-[700] leading-[140%]"
           style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
         >
           {position.title}
@@ -143,7 +143,7 @@ function JobCard({ position }: { position: JobPosition }) {
 
       {/* Apply Now Button */}
       <span
-        className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
+        className="flex items-center h-[44px] gap-[8px] min-[375px]:gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors"
       >
         <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
         <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
@@ -157,14 +157,14 @@ function JobCard({ position }: { position: JobPosition }) {
 export default function OpenPositions() {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px] flex flex-col items-center gap-[32px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-[12px] text-center">
           <h2
-            className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
+            className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
             Open Positions

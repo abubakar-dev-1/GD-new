@@ -117,12 +117,12 @@ export default function TeamSection() {
   }, [api]);
 
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="w-full max-w-[1440px]">
         {/* Header */}
         <div className="mb-12 text-left">
           <h2
-            className="text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px] text-white mb-3"
+            className="text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px] text-white mb-3"
             style={{ fontFamily: "Inter", maxWidth: "572px" }}
           >
             The Minds Behind

@@ -38,7 +38,7 @@ export default function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-[16px] lg:flex-row lg:gap-[12px] w-full lg:w-auto">
       {/* Email Input */}
-      <div className="flex items-center justify-between w-full lg:w-[280px] h-[48px] pl-[24px] pr-[16px] py-[16px] rounded-[999px] bg-[#333] lg:bg-[#191919]">
+      <div className="flex items-center justify-between w-full lg:w-[280px] h-[48px] pl-[16px] min-[375px]:pl-[24px] pr-[16px] py-[16px] rounded-[999px] bg-[#333] lg:bg-[#191919]">
         <input
           type="email"
           placeholder="Your Email"
@@ -75,7 +75,7 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-fit h-[48px] px-[24px] py-[8px] rounded-[40px] bg-[#FFF] border border-[#191919] text-[#191919] text-[14px] font-[500] leading-[16px] text-center hover:bg-[#D0FF71] transition-colors disabled:opacity-50"
+        className="w-fit h-[48px] px-[16px] min-[375px]:px-[24px] py-[8px] rounded-[40px] bg-[#FFF] border border-[#191919] text-[#191919] text-[14px] font-[500] leading-[16px] text-center hover:bg-[#D0FF71] transition-colors disabled:opacity-50"
         style={{ fontFamily: "Inter" }}
       >
         {isSubmitting ? "Subscribing..." : "Subscribe"}

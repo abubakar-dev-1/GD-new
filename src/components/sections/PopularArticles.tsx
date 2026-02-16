@@ -49,7 +49,7 @@ const defaultArticles: Article[] = [
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
-    <Link href={article.link} className="flex flex-col md:flex-row items-start bg-[#191919] p-[24px] gap-[16px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
+    <Link href={article.link} className="flex flex-col md:flex-row items-start bg-[#191919] p-[12px] min-[375px]:p-[24px] gap-[16px] md:gap-[48px] rounded-[20px] md:rounded-[28px]">
       {/* Image Section - Left Side: width 370.7px, aspect-ratio 133/94, border-radius 20px */}
       <div
         className="relative w-full md:w-[370px] flex-shrink-0 rounded-[20px] overflow-hidden"
@@ -102,7 +102,7 @@ function ArticleCard({ article }: { article: Article }) {
 
         {/* Read More Button */}
         <span
-          className="inline-flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] w-fit rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
+          className="inline-flex items-center h-[44px] gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] w-fit rounded-[40px] bg-[#FFFFFF] hover:bg-gray-100 transition-colors"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
@@ -120,7 +120,7 @@ export default function PopularArticles({ title = "Popular Articles", articles }
 
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
       <div className="w-full max-w-[1440px] flex flex-col items-start">

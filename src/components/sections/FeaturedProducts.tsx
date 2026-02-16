@@ -66,11 +66,11 @@ function MobileProductCard({ product }: { product: ProductItem }) {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-start px-[20px] pt-[24px] pb-[24px] gap-[12px]">
+      <div className="relative z-10 flex flex-col items-start px-[12px] min-[375px]:px-[20px] pt-[20px] min-[375px]:pt-[24px] pb-[20px] min-[375px]:pb-[24px] gap-[12px]">
         {/* Spacer to show image at top */}
         <div className="h-[180px]" />
 
-        <h3 className="text-white text-[32px] font-semibold leading-tight">
+        <h3 className="text-white text-[24px] min-[375px]:text-[32px] font-semibold leading-tight">
           {product.title}
         </h3>
 
@@ -95,7 +95,7 @@ function MobileProductCard({ product }: { product: ProductItem }) {
 
         {/* Learn More Button */}
         <span
-          className="flex items-center h-[44px] gap-[12px] pl-[24px] pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors mt-[8px]"
+          className="flex items-center h-[44px] gap-[12px] pl-[16px] min-[375px]:pl-[24px] pr-[20px] min-[375px]:pr-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] hover:bg-[#c5f55e] transition-colors mt-[8px]"
         >
           <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
           <span className="text-[#000000] text-[14px] font-medium leading-[16px] text-center">
@@ -177,14 +177,14 @@ export default function FeaturedProducts({ products }: { products?: ProductItem[
 
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
       <div className="flex flex-col items-start w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-start w-full gap-[16px] mb-[40px]">
           <h2
-            className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-normal leading-normal lg:leading-[58px]"
+            className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-bold lg:font-normal leading-normal lg:leading-[58px]"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             Featured Products

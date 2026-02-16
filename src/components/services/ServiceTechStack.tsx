@@ -1,15 +1,13 @@
-import Image from "next/image";
+import TechGlobe from "./TechGlobe";
 
 interface ServiceTechStackProps {
   heading?: string;
   description?: string;
-  image?: string;
 }
 
 export default function ServiceTechStack({
   heading = "Our Technology Stack",
   description = "We are a collective of strategists, creatives, and engineers united by a passion for building brands that matter.",
-  image = "/services/tech-stack.png",
 }: ServiceTechStackProps) {
   return (
     <section
@@ -30,14 +28,9 @@ export default function ServiceTechStack({
           </p>
         </div>
 
-        {/* Image */}
-        <div className="relative w-full lg:flex-1" style={{ aspectRatio: "289/303" }}>
-          <Image
-            src={image}
-            alt="Technology Stack"
-            fill
-            className="object-contain"
-          />
+        {/* 3D Rotating Globe */}
+        <div className="w-full lg:flex-1 max-w-[500px]">
+          <TechGlobe />
         </div>
       </div>
     </section>

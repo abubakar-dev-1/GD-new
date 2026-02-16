@@ -21,14 +21,14 @@ const values = [
 export default function OurValues() {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px] flex flex-col items-center gap-[32px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-[12px] text-center">
           <h2
-            className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
+            className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
             Our Values
@@ -43,7 +43,7 @@ export default function OurValues() {
 
         {/* Cards Container - 1280px, padding 32px, rounded 28px, bg #191919 */}
         <div
-          className="w-full rounded-[28px] p-[20px] lg:p-[32px] flex flex-col lg:flex-row items-stretch gap-[20px] lg:gap-[32px]"
+          className="w-full rounded-[28px] p-[10px] min-[375px]:p-[20px] lg:p-[32px] flex flex-col lg:flex-row items-stretch gap-[12px] min-[375px]:gap-[20px] lg:gap-[32px]"
           style={{
             background: "#191919",
             boxShadow:
@@ -53,7 +53,7 @@ export default function OurValues() {
           {values.map((value) => (
             <div
               key={value.title}
-              className="relative flex flex-col justify-center items-start gap-[40px] lg:gap-[80px] p-[24px] lg:p-[48px_24px] flex-1 self-stretch rounded-[28px] overflow-hidden"
+              className="relative flex flex-col justify-center items-start gap-[24px] min-[375px]:gap-[40px] lg:gap-[80px] p-[16px] min-[375px]:p-[24px] lg:p-[48px_24px] flex-1 self-stretch rounded-[28px] overflow-hidden"
               style={{
                 background: "rgba(45, 45, 45, 0.50)",
                 backdropFilter: "blur(10px)",

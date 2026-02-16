@@ -15,7 +15,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={project.link}
-      className="flex flex-col justify-center lg:justify-start px-[16px] py-[20px] lg:p-[24px] gap-[16px] lg:gap-[24px] rounded-[28px] bg-[#191919] overflow-hidden self-stretch"
+      className="flex flex-col justify-center lg:justify-start px-[12px] min-[375px]:px-[16px] py-[16px] min-[375px]:py-[20px] lg:p-[24px] gap-[12px] min-[375px]:gap-[16px] lg:gap-[24px] rounded-[28px] bg-[#191919] overflow-hidden self-stretch"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* Project Image */}
@@ -38,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {/* Project Title - Mobile: 24px/500/28px, Desktop: 32px/500/38px */}
-      <h3 className="text-[#FFFFFF] text-[24px] lg:text-[32px] font-medium leading-[28px] lg:leading-[38px]">
+      <h3 className="text-[#FFFFFF] text-[20px] min-[375px]:text-[24px] lg:text-[32px] font-medium leading-[24px] min-[375px]:leading-[28px] lg:leading-[38px]">
         {project.title}
       </h3>
 
@@ -129,7 +129,7 @@ const defaultProjects: Project[] = [
 export default function OurProjects({ projects = [] }: { projects?: Project[] }) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
       <div
@@ -139,7 +139,7 @@ export default function OurProjects({ projects = [] }: { projects?: Project[] })
         {/* Header - Mobile: stacked, Desktop: row */}
         <div className="flex flex-col items-start gap-[16px] w-full">
           {/* Title - Mobile: 40px/700, Desktop: 64px/600 */}
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[700] lg:font-[600] leading-normal lg:leading-[58px]">
             Our Projects
           </h2>
 

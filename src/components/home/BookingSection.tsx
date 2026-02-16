@@ -5,12 +5,12 @@ import { InlineWidget } from "react-calendly";
 export default function BookingSection() {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "var(--global-bg)" }}
     >
       {/* Background Image Container - matches max-w-[1440px] like other sections */}
       <div
-        className="relative w-full max-w-[1440px] flex flex-col items-center gap-[48px] lg:gap-[64px] py-[40px] lg:py-[80px] px-[20px] lg:px-[48px] rounded-[24px] overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="relative w-full max-w-[1440px] flex flex-col items-center gap-[32px] min-[375px]:gap-[48px] lg:gap-[64px] py-[32px] min-[375px]:py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[48px] rounded-[24px] overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/calendly_image 96.png')",
         }}
@@ -19,7 +19,7 @@ export default function BookingSection() {
         <div className="flex flex-col items-center gap-[16px] text-center">
           {/* Title - Inter, 40px, 700, 48px line-height, max-width 578px */}
           <h2
-            className="text-[#FFF] text-[40px] font-[700] leading-[48px] text-center max-w-[578px]"
+            className="text-[#FFF] text-[28px] min-[375px]:text-[40px] font-[700] leading-[36px] min-[375px]:leading-[48px] text-center max-w-[578px]"
             style={{ fontFamily: "Inter" }}
           >
             Ready to build something exceptional?
@@ -42,7 +42,7 @@ export default function BookingSection() {
             styles={{
               height: "680px",
               width: "100%",
-              minWidth: "320px",
+              minWidth: "280px",
             }}
             pageSettings={{
               backgroundColor: "ffffff",

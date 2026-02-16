@@ -20,11 +20,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]">
       <div className="w-full max-w-[1440px] flex flex-col lg:flex-row lg:items-stretch gap-[24px]">
         {/* Left Side - Map & Contact Info */}
         <div
-          className="flex flex-col p-[20px] lg:p-[24px] gap-[24px] lg:gap-[32px] flex-1 order-2 lg:order-1 rounded-[28px] overflow-hidden"
+          className="flex flex-col p-[12px] min-[375px]:p-[20px] lg:p-[24px] gap-[16px] min-[375px]:gap-[24px] lg:gap-[32px] flex-1 order-2 lg:order-1 rounded-[28px] overflow-hidden"
           style={{
             border: "1px solid #618C6D",
             background: "rgba(0, 0, 0, 0.20)",
@@ -144,7 +144,7 @@ export default function ContactSection() {
 
         {/* Right Side - Contact Form */}
         <div
-          className="flex flex-col p-[24px] gap-[32px] flex-1 rounded-[28px] order-1 lg:order-2"
+          className="flex flex-col p-[12px] min-[375px]:p-[24px] gap-[24px] min-[375px]:gap-[32px] flex-1 rounded-[28px] order-1 lg:order-2"
           style={{
             border: "1px solid #618C6D",
             background: "rgba(0, 0, 0, 0.20)",
@@ -153,7 +153,7 @@ export default function ContactSection() {
         >
           {/* Form Header - Inter, 40px, 700, 48px line-height, NOT italic */}
           <h2
-            className="text-[#FFF] text-[32px] lg:text-[40px] font-[700] leading-[48px]"
+            className="text-[#FFF] text-[24px] min-[375px]:text-[32px] lg:text-[40px] font-[700] leading-[32px] min-[375px]:leading-[48px]"
             style={{ fontFamily: "Inter" }}
           >
             Let&apos;s Build Something Exceptional
@@ -296,8 +296,8 @@ export default function ContactSection() {
             </div>
 
             {/* Privacy Policy & Submit - height: 48px, padding: 8px 32px, border-radius: 40px */}
-            <div className="flex flex-row items-center justify-between gap-[16px]">
-              <label className="flex items-center gap-[12px] cursor-pointer">
+            <div className="flex flex-col min-[375px]:flex-row items-start min-[375px]:items-center justify-between gap-[12px] min-[375px]:gap-[16px]">
+              <label className="flex items-center gap-[8px] min-[375px]:gap-[12px] cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.agreeToPolicy}
@@ -317,7 +317,7 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="h-[48px] px-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] border border-[#191919] text-[#191919] text-[14px] font-[500] leading-normal hover:bg-[#FFF] transition-colors flex items-center gap-[12px]"
+                className="h-[48px] px-[20px] min-[375px]:px-[32px] py-[8px] rounded-[40px] bg-[#D0FF71] border border-[#191919] text-[#191919] text-[14px] font-[500] leading-normal hover:bg-[#FFF] transition-colors flex items-center gap-[12px]"
                 style={{ fontFamily: "Inter" }}
               >
                 Submit

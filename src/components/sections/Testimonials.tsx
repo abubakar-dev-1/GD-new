@@ -138,12 +138,12 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
     : currentIndex * (100 / 3);
 
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
       <div className="flex flex-col items-center justify-center w-full max-w-[1440px] gap-[10px]">
         {/* Header */}
         <div className="flex flex-col items-center gap-4 mb-8 lg:mb-12">
           <h2
-            className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px] text-center w-full lg:w-[648px]"
+            className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px] text-center w-full lg:w-[648px]"
             style={{ fontFamily: "Inter" }}
           >
             Testimonials
@@ -171,10 +171,10 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="w-full lg:w-1/3 flex-shrink-0 px-[16px]"
+                className="w-full lg:w-1/3 flex-shrink-0 px-[6px] min-[375px]:px-[16px]"
               >
                 <div
-                  className="flex flex-col items-start w-full p-[32px] gap-[32px] rounded-[28px] bg-[#191919] border border-[#777] lg:border-0 h-full"
+                  className="flex flex-col items-start w-full p-[16px] min-[375px]:p-[32px] gap-[20px] min-[375px]:gap-[32px] rounded-[28px] bg-[#191919] border border-[#777] lg:border-0 h-full"
                 >
                   {/* Mobile: Logo + Stars in same row, Desktop: separate */}
                   <div className="flex items-center justify-between w-full lg:hidden">
