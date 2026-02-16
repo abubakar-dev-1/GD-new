@@ -1,36 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
 import Button from "@/components/ui/link-button";
 
-// Hamburger menu icon
-const HamburgerIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 12H21" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M3 6H21" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M3 18H21" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+// Animated hamburger / X icon
+function AnimatedHamburger({ isOpen }: { isOpen: boolean }) {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Top line → rotates to form X */}
+      <path
+        d={isOpen ? "M6 6L18 18" : "M3 6H21"}
+        stroke="#FFF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="transition-all duration-300 ease-in-out"
+        style={{ transformOrigin: "center" }}
+      />
+      {/* Middle line → fades out */}
+      <path
+        d="M3 12H21"
+        stroke="#FFF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="transition-all duration-300 ease-in-out"
+        style={{ opacity: isOpen ? 0 : 1 }}
+      />
+      {/* Bottom line → rotates to form X */}
+      <path
+        d={isOpen ? "M18 6L6 18" : "M3 18H21"}
+        stroke="#FFF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="transition-all duration-300 ease-in-out"
+        style={{ transformOrigin: "center" }}
+      />
+    </svg>
+  );
+}
 
-// Close icon
-const CloseIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 6L6 18" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M6 6L18 18" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
+  { href: "/projects", label: "Projects" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blogs" },
+  { href: "/career", label: "Careers" },
+];
 
 export default function Navbar() {
   const [active, setActive] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <div className="w-full flex justify-center bg-transparent">
       {/* Main Navbar */}
-      <div className="flex items-center justify-between w-full max-w-[1440px] px-[20px] py-[10px] lg:px-[10px]">
-        {/* Logo - Mobile: 23.063px, Desktop: 34.595px */}
+      <div className="flex items-center justify-between w-full max-w-[1440px] px-[16px] sm:px-[20px] py-[10px] lg:px-[10px]">
+        {/* Logo */}
         <Link
           href="/"
           className="font-[600] text-[23.063px] lg:text-[34.595px] leading-normal z-50"
@@ -83,79 +126,49 @@ export default function Navbar() {
         </div>
 
         {/* Right side - Button and Mobile Menu */}
-        <div className="flex items-center gap-[16px]">
+        <div className="flex items-center gap-[8px] sm:gap-[16px]">
           {/* CTA Button */}
-          <Button href="/contact" variant="primary" className="bg-[#FFF] text-[#000] hover:bg-[#D0FF71] z-50">
+          <Button href="/contact" variant="primary" className="bg-[#FFF] text-[#000] hover:bg-[#D0FF71] z-50 !px-[16px] !pl-[16px] !pr-[20px] sm:!pl-[24px] sm:!pr-[32px] text-[12px] sm:text-[14px]">
             Let&apos;s Talk
           </Button>
 
           {/* Hamburger Menu - Visible on mobile only */}
           <button
-            className="lg:hidden z-50 p-2"
+            className="lg:hidden z-50 p-1 sm:p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            {mobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+            <AnimatedHamburger isOpen={mobileMenuOpen} />
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[97px] bg-[#000000] z-40">
-          <nav className="flex flex-col items-center py-[40px] gap-[24px]">
+      <div
+        className={`lg:hidden fixed inset-0 top-[60px] sm:top-[97px] bg-[#000000] z-40 transition-all duration-400 ease-in-out ${
+          mobileMenuOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+      >
+        <nav className="flex flex-col items-center py-[32px] sm:py-[40px] gap-[20px] sm:gap-[24px]">
+          {navLinks.map((link, i) => (
             <Link
-              href="/"
-              className="text-[#FFF] text-[24px] font-medium"
+              key={link.href}
+              href={link.href}
+              className="text-[#FFF] text-[20px] sm:text-[24px] font-medium transition-all duration-300 ease-out"
+              style={{
+                opacity: mobileMenuOpen ? 1 : 0,
+                transform: mobileMenuOpen ? "translateY(0)" : "translateY(12px)",
+                transitionDelay: mobileMenuOpen ? `${100 + i * 50}ms` : "0ms",
+              }}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Home
+              {link.label}
             </Link>
-            <Link
-              href="/about"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/projects"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link
-              href="/services"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <Link
-              href="/blog"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blogs
-            </Link>
-            <Link
-              href="/career"
-              className="text-[#FFF] text-[24px] font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Careers
-            </Link>
-          </nav>
-        </div>
-      )}
+          ))}
+        </nav>
+      </div>
     </div>
   );
 }

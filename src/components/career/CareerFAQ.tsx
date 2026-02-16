@@ -8,7 +8,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const defaultFaqs: FAQItem[] = [
   {
     id: "faq-1",
     question: "What is the interview process like?",
@@ -73,7 +79,7 @@ const DribbbleIcon = () => (
   </svg>
 );
 
-export default function CareerFAQ() {
+export default function CareerFAQ({ faqs = defaultFaqs }: { faqs?: FAQItem[] }) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -129,8 +135,9 @@ export default function CareerFAQ() {
         {/* Right Column - Accordion */}
         <div className="flex-1">
           <Accordion
-            type="multiple"
-            defaultValue={["faq-1", "faq-2", "faq-3", "faq-4", "faq-5"]}
+            type="single"
+            defaultValue={faqs[0]?.id}
+            collapsible
           >
             {faqs.map((faq) => (
               <AccordionItem

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 
 export interface TestimonialItem {
@@ -86,18 +86,56 @@ const defaultTestimonials: TestimonialItem[] = [
 
 export default function Testimonials({ testimonials = defaultTestimonials }: { testimonials?: TestimonialItem[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
-  const maxIndex = Math.max(0, testimonials.length - 3);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
-  const nextSlide = () => {
+  // Reset index when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [isMobile]);
+
+  const maxIndex = isMobile
+    ? testimonials.length - 1
+    : Math.max(0, testimonials.length - 3);
+
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
+  }, [maxIndex]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  };
+  }, [maxIndex]);
 
   const totalSlides = maxIndex + 1;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  };
+
+  // Mobile: translate by 100% per card, Desktop: translate by 33.333% per card
+  const translateX = isMobile
+    ? currentIndex * 100
+    : currentIndex * (100 / 3);
 
   return (
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "var(--global-bg)" }}>
@@ -119,11 +157,16 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
           </p>
         </div>
 
-        {/* Testimonial Cards - Mobile: stacked, Desktop: sliding row */}
-        <div className="w-full overflow-hidden mb-8 lg:mb-12">
+        {/* Testimonial Cards Carousel */}
+        <div
+          className="w-full overflow-hidden mb-8 lg:mb-12"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
             className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
+            style={{ transform: `translateX(-${translateX}%)` }}
           >
             {testimonials.map((testimonial) => (
               <div
@@ -243,8 +286,19 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
           </div>
         </div>
 
-        {/* Navigation Controls - Hidden on mobile */}
-        <div className="hidden lg:flex items-center justify-between w-full max-w-[1280px]">
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-between w-full max-w-[1280px]">
+          {/* Arrow Left - Mobile */}
+          <button
+            onClick={prevSlide}
+            className="lg:hidden w-[40px] h-[40px] rounded-full border border-[#FFF] flex items-center justify-center text-[#FFF] active:bg-[#FFF] active:text-[#000] transition-colors"
+            aria-label="Previous testimonial"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
           {/* Dot Indicators */}
           <div className="flex gap-2">
             {[...Array(totalSlides)].map((_, index) => (
@@ -272,27 +326,26 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
             ))}
           </div>
 
-          {/* Arrow Navigation */}
-          <div className="flex gap-4">
+          {/* Arrow Right - Mobile */}
+          <button
+            onClick={nextSlide}
+            className="lg:hidden w-[40px] h-[40px] rounded-full border border-[#FFF] flex items-center justify-center text-[#FFF] active:bg-[#FFF] active:text-[#000] transition-colors"
+            aria-label="Next testimonial"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* Arrow Navigation - Desktop */}
+          <div className="hidden lg:flex gap-4">
             <button
               onClick={prevSlide}
               className="w-[48px] h-[48px] rounded-full border border-[#FFF] flex items-center justify-center text-[#FFF] hover:bg-[#FFF] hover:text-[#000] transition-colors"
               aria-label="Previous testimonials"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 18L9 12L15 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <button
@@ -300,20 +353,8 @@ export default function Testimonials({ testimonials = defaultTestimonials }: { t
               className="w-[48px] h-[48px] rounded-full border border-[#FFF] flex items-center justify-center text-[#FFF] hover:bg-[#FFF] hover:text-[#000] transition-colors"
               aria-label="Next testimonials"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 18L15 12L9 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </div>

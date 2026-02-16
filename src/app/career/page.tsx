@@ -4,7 +4,7 @@ import CareerHeroSection from "@/components/career/CareerHeroSection";
 import OurProcess from "@/components/about/OurProcess";
 import OurValues from "@/components/about/OurValues";
 import OpenPositions from "@/components/career/OpenPositions";
-import CareerFAQ from "@/components/career/CareerFAQ";
+import CareerFAQWrapper from "@/components/career/CareerFAQWrapper";
 
 const careerSteps = [
   {
@@ -46,7 +46,7 @@ export default function CareerPage() {
       <OurProcess steps={careerSteps} />
       <OurValues />
       <OpenPositions />
-      <CareerFAQ />
+      <CareerFAQWrapper />
 
       <Footer />
     </div>

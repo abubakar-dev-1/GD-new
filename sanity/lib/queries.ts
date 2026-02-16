@@ -354,6 +354,18 @@ export const testimonialsQuery = groq`
   }
 `;
 
+// ── FAQ Query ──
+
+// Get all FAQs ordered by display order
+export const faqsQuery = groq`
+  *[_type == "faq"] | order(order asc) {
+    _id,
+    question,
+    answer,
+    order
+  }
+`;
+
 // ── Newsletter Popup Query ──
 
 // Get the newsletter popup settings (singleton)
