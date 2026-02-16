@@ -13,6 +13,39 @@ interface Article {
   link: string;
 }
 
+const defaultArticles: Article[] = [
+  {
+    id: "mock-1",
+    title: "The React Framework for the Web",
+    description:
+      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
+    coverImage: "/images/image 54.png",
+    tags: ["Design", "Website", "UI/UX"],
+    readTime: "5 Min Read",
+    link: "/blog/the-react-framework-for-the-web",
+  },
+  {
+    id: "mock-2",
+    title: "The React Framework for the Web",
+    description:
+      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
+    coverImage: "/images/image 54.png",
+    tags: ["Design", "Website", "UI/UX"],
+    readTime: "5 Min Read",
+    link: "/blog/the-react-framework-for-the-web",
+  },
+  {
+    id: "mock-3",
+    title: "The React Framework for the Web",
+    description:
+      "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components.",
+    coverImage: "/images/image 54.png",
+    tags: ["Design", "Website", "UI/UX"],
+    readTime: "5 Min Read",
+    link: "/blog/the-react-framework-for-the-web",
+  },
+];
+
 {/* Horizontal Article Card - Figma specs */}
 function ArticleCard({ article }: { article: Article }) {
   return (
@@ -31,7 +64,7 @@ function ArticleCard({ article }: { article: Article }) {
       </div>
 
       {/* Content Section - Right Side */}
-      <div className="flex flex-col gap-[16px] md:gap-[24px] leading-normal justify-center flex-1">
+      <div className="flex flex-col gap-[16px] md:gap-[32px] leading-normal justify-center flex-1 md:py-[16px]">
         {/* Tags Row */}
         <div className="flex flex-wrap items-center gap-2">
           {article.tags.map((tag) => (
@@ -82,7 +115,9 @@ function ArticleCard({ article }: { article: Article }) {
   );
 }
 
-export default function PopularArticles({ title = "Popular Articles", articles = [] }: { title?: string; articles?: Article[] }) {
+export default function PopularArticles({ title = "Popular Articles", articles }: { title?: string; articles?: Article[] }) {
+  const displayArticles = articles && articles.length > 0 ? articles : defaultArticles;
+
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -90,19 +125,19 @@ export default function PopularArticles({ title = "Popular Articles", articles =
     >
       <div className="w-full max-w-[1440px] flex flex-col items-start">
         <div
-          className="flex flex-col items-start w-full gap-12"
+          className="flex flex-col items-start w-full gap-[32px]"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-6">
           {/* Left: Title and Description */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-[16px]">
             <h2 className="text-white text-[32px] md:text-[64px] font-[700] md:font-semibold leading-[40px] md:leading-[58px]">
               {title}
             </h2>
             <p
-              className="text-[#D2D2D2] text-base font-normal leading-relaxed max-w-[500px]"
-              style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
+              className="text-[#FFF] text-[16px] font-normal leading-[24px] max-w-[500px]"
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               From global enterprises to emerging startups, our work is defined
               by a commitment to innovation and tangible results.
@@ -112,27 +147,18 @@ export default function PopularArticles({ title = "Popular Articles", articles =
           {/* Right: View All Button */}
           <Link
             href="/blog"
-            className="inline-flex items-center h-[44px] gap-3 px-6 py-2 rounded-full border border-[#444] text-white text-sm font-medium hover:bg-[#222] transition-colors"
+            className="inline-flex items-center h-[44px] gap-3 px-6 py-2 rounded-full border border-[#F3F4F6] text-white text-[14px] font-medium leading-[16px] hover:bg-[#222] transition-colors"
           >
             View All Blogs
           </Link>
         </div>
 
         {/* Articles List */}
-        {articles.length === 0 ? (
-          <p
-            className="text-[#D2D2D2] text-base font-normal"
-            style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
-          >
-            No articles available yet. Check back soon!
-          </p>
-        ) : (
-          <div className="flex flex-col gap-6 w-full">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
-          </div>
-        )}
+        <div className="flex flex-col gap-[32px] w-full">
+          {displayArticles.map((article) => (
+            <ArticleCard key={article.id} article={article} />
+          ))}
+        </div>
         </div>
       </div>
     </section>

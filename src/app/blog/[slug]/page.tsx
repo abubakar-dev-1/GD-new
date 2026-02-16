@@ -22,9 +22,123 @@ import { SkeletonBlogPostBody, SkeletonArticlesSection } from "@/components/ui/S
 
 export const revalidate = 60;
 
+// Mock blog post data for when Sanity has no content
+const mockPosts: Record<
+  string,
+  {
+    header: { tags: string[]; readTime: string; title: string; coverImage: string; date: string };
+    body: object[];
+  }
+> = {
+  "the-react-framework-for-the-web": {
+    header: {
+      tags: ["Design", "Website", "UI/UX"],
+      readTime: "5 Min Read",
+      title: "The React Framework for the Web",
+      coverImage: "/images/image 54.png",
+      date: "January 15, 2025",
+    },
+    body: [
+      {
+        _type: "block",
+        _key: "b1",
+        style: "h2",
+        markDefs: [],
+        children: [{ _type: "span", _key: "s1", text: "Introduction to Next.js", marks: [] }],
+      },
+      {
+        _type: "block",
+        _key: "b2",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            _key: "s2",
+            text: "Next.js is a React framework that enables several extra features, including server-side rendering and generating static websites. It is built on top of React, Node.js, Webpack, and Babel, and it is designed to make the development of React applications easier and more efficient.",
+            marks: [],
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: "b3",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            _key: "s3",
+            text: "Used by some of the world's largest companies, Next.js enables you to create high-quality web applications with the power of React components. Its hybrid approach to rendering — combining static generation with server-side rendering — makes it an ideal choice for modern web development.",
+            marks: [],
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: "b4",
+        style: "h2",
+        markDefs: [],
+        children: [{ _type: "span", _key: "s4", text: "Key Features", marks: [] }],
+      },
+      {
+        _type: "block",
+        _key: "b5",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            _key: "s5",
+            text: "Next.js provides an excellent developer experience with features like Fast Refresh, built-in CSS support, API routes, and automatic code splitting. The framework supports both static site generation (SSG) and server-side rendering (SSR), giving developers the flexibility to choose the best rendering strategy for each page.",
+            marks: [],
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: "b6",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            _key: "s6",
+            text: "With the introduction of the App Router, Next.js has taken a significant step forward in how React applications are structured. Server Components, streaming, and nested layouts are just some of the powerful capabilities that make building complex applications more intuitive and performant.",
+            marks: [],
+          },
+        ],
+      },
+      {
+        _type: "block",
+        _key: "b7",
+        style: "h2",
+        markDefs: [],
+        children: [{ _type: "span", _key: "s7", text: "Why Choose Next.js?", marks: [] }],
+      },
+      {
+        _type: "block",
+        _key: "b8",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _type: "span",
+            _key: "s8",
+            text: "Whether you are building a personal blog, an e-commerce platform, or a complex enterprise application, Next.js provides the tools and patterns you need. Its vibrant ecosystem, comprehensive documentation, and strong community support make it one of the most popular choices for React developers worldwide.",
+            marks: [],
+          },
+        ],
+      },
+    ],
+  },
+};
+
 export async function generateStaticParams() {
   const slugs: string[] = await client.fetch(postSlugsQuery);
-  return slugs.map((slug) => ({ slug }));
+  const sanityParams = slugs.map((slug) => ({ slug }));
+  const mockParams = Object.keys(mockPosts).map((slug) => ({ slug }));
+  return [...sanityParams, ...mockParams];
 }
 
 interface BlogPostPageProps {
@@ -34,22 +148,34 @@ interface BlogPostPageProps {
 async function BlogPostBody({ slug }: { slug: string }) {
   const post: Post | null = await client.fetch(postBySlugQuery, { slug });
 
-  if (!post) {
+  if (post) {
+    const headerProps = {
+      tags: post.categories?.map((cat) => cat.title) || [],
+      readTime: `${post.readTime} Min Read`,
+      title: post.title,
+      coverImage: getImageUrl(post.coverImage, 1440, 810),
+      date: formatDate(post.publishedAt),
+    };
+
+    return (
+      <>
+        <BlogPostHeader {...headerProps} />
+        <BlogPostContent body={post.body} />
+      </>
+    );
+  }
+
+  // Fallback to mock data
+  const mockPost = mockPosts[slug];
+  if (!mockPost) {
     notFound();
   }
 
-  const headerProps = {
-    tags: post.categories?.map((cat) => cat.title) || [],
-    readTime: `${post.readTime} Min Read`,
-    title: post.title,
-    coverImage: getImageUrl(post.coverImage, 1440, 810),
-    date: formatDate(post.publishedAt),
-  };
-
   return (
     <>
-      <BlogPostHeader {...headerProps} />
-      <BlogPostContent body={post.body} />
+      <BlogPostHeader {...mockPost.header} />
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <BlogPostContent body={mockPost.body as any[]} />
     </>
   );
 }
@@ -57,7 +183,10 @@ async function BlogPostBody({ slug }: { slug: string }) {
 async function RelatedArticlesSection({ slug }: { slug: string }) {
   const post: Post | null = await client.fetch(postBySlugQuery, { slug });
 
-  if (!post) return null;
+  if (!post) {
+    // For mock posts, render PopularArticles with default mock data
+    return <PopularArticles title="Related Articles" />;
+  }
 
   // Get raw category reference IDs for the related posts query
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
