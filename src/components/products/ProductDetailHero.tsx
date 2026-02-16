@@ -21,7 +21,7 @@ export default function ProductDetailHero({
 }: ProductDetailHeroProps) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px]">
@@ -79,11 +79,11 @@ export default function ProductDetailHero({
 
           {/* Content - Mobile */}
           <div
-            className="relative z-10 flex lg:hidden flex-col items-start justify-center gap-[24px] p-[48px] h-[500px] w-full"
+            className="relative z-10 flex lg:hidden flex-col items-start justify-center gap-[24px] p-[16px] min-[375px]:p-[48px] h-[500px] w-full"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             <div className="flex flex-col gap-[16px] items-start w-full">
-              <h1 className="text-[#FFF] text-[40px] font-bold leading-[48px]">
+              <h1 className="text-[#FFF] text-[32px] min-[375px]:text-[40px] font-bold leading-[40px] min-[375px]:leading-[48px]">
                 {title}
               </h1>
 

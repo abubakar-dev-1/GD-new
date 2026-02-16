@@ -41,13 +41,13 @@ export default function ProductOverview({
 
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000", fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex flex-col gap-[32px] items-center w-full max-w-[1280px] overflow-hidden">
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px] max-w-[648px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px] max-w-[648px]">
             {heading}
           </h2>
           <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px] max-w-[592px]">

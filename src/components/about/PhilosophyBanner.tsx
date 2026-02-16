@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function PhilosophyBanner() {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px]">
@@ -27,7 +27,7 @@ export default function PhilosophyBanner() {
           />
 
           {/* Content */}
-          <div className="relative z-10 w-full p-[24px] lg:p-[48px]">
+          <div className="relative z-10 w-full p-[16px] min-[375px]:p-[24px] lg:p-[48px]">
             <p
               className="text-[24px] lg:text-[56px] font-[500] lg:font-[700] leading-[28px] lg:leading-[64px]"
               style={{

@@ -58,7 +58,7 @@ export default function BlogPostHeader({
 
   return (
     <section
-      className="w-full flex justify-center py-[40px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div
@@ -92,7 +92,7 @@ export default function BlogPostHeader({
         </div>
 
         {/* Title */}
-        <h1 className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-normal">
+        <h1 className="text-[#FFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-normal">
           {title}
         </h1>
 

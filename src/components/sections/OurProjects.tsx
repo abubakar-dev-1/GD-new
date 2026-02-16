@@ -127,6 +127,13 @@ const defaultProjects: Project[] = [
 ];
 
 export default function OurProjects({ projects = [] }: { projects?: Project[] }) {
+  // Merge defaults with Sanity projects, deduplicating by link (Sanity wins)
+  const sanitySlugs = new Set(projects.map((p) => p.link));
+  const items = [
+    ...defaultProjects.filter((p) => !sanitySlugs.has(p.link)),
+    ...projects,
+  ];
+
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
@@ -165,7 +172,7 @@ export default function OurProjects({ projects = [] }: { projects?: Project[] })
 
         {/* Projects Grid - Mobile: 1 col, Desktop: 2 cols */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px] w-full">
-          {(projects.length > 0 ? projects : defaultProjects).map((project) => (
+          {items.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

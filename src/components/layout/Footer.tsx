@@ -3,7 +3,7 @@ import NewsletterForm from "@/components/ui/NewsletterForm";
 
 export default function Footer() {
   return (
-    <footer className="w-full flex justify-center bg-[#000] py-[40px] lg:py-[48px] px-[20px] lg:px-[10px]">
+    <footer className="w-full flex justify-center bg-[#000] py-[40px] lg:py-[48px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]">
       <div className="flex flex-col items-start lg:items-center w-full max-w-[1440px] gap-[72px] lg:gap-[96px]">
         {/* Top Section - Mobile: stacked, Desktop: 3 Columns */}
         <div className="flex flex-col lg:flex-row items-start lg:items-start justify-between w-full gap-[48px] lg:gap-8">
@@ -128,7 +128,7 @@ export default function Footer() {
           {/* Right Column - Newsletter Subscription */}
           <div className="flex flex-col items-start gap-[16px] w-full lg:w-auto">
             <h3
-              className="text-[#FFF] text-[40px] font-[700] leading-normal w-full lg:w-[480px]"
+              className="text-[#FFF] text-[32px] min-[375px]:text-[40px] font-[700] leading-normal w-full lg:w-[480px]"
               style={{ fontFamily: "Inter" }}
             >
               Subscribe to our newsletter

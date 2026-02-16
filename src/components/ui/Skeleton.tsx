@@ -68,7 +68,7 @@ export function SkeletonSectionHeader({
 export function SkeletonHero({ className = "" }: SkeletonProps) {
   return (
     <section
-      className={`w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] ${className}`}
+      className={`w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] ${className}`}
       style={{ backgroundColor: "#000" }}
     >
       <div className="w-full max-w-[1440px]">
@@ -208,7 +208,7 @@ export function SkeletonOverviewCard({ className = "" }: SkeletonProps) {
 /** Projects grid section skeleton */
 export function SkeletonProjectsSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px]">
@@ -224,7 +224,7 @@ export function SkeletonProjectsSection() {
 /** Services grid section skeleton */
 export function SkeletonServicesSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[16px]">
@@ -240,7 +240,7 @@ export function SkeletonServicesSection() {
 /** Featured products section skeleton */
 export function SkeletonProductsSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="flex flex-col gap-[24px] lg:gap-[32px]">
@@ -256,7 +256,7 @@ export function SkeletonProductsSection() {
 /** Articles section skeleton */
 export function SkeletonArticlesSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="flex flex-col gap-[16px] md:gap-[24px]">
@@ -272,7 +272,7 @@ export function SkeletonArticlesSection() {
 /** Blog discover grid section skeleton */
 export function SkeletonBlogGridSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
@@ -299,7 +299,7 @@ export function SkeletonBlogGridSection() {
 /** Projects listing section skeleton (2-col grid) */
 export function SkeletonProjectsListingSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] lg:gap-[24px]">
@@ -317,7 +317,7 @@ export function SkeletonProductDetailBody() {
   return (
     <>
       <SkeletonHero />
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
           <SkeletonSectionHeader />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px]">
@@ -327,7 +327,7 @@ export function SkeletonProductDetailBody() {
           </div>
         </div>
       </section>
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <Skeleton className="w-full max-w-[1440px] h-[300px] lg:h-[500px] rounded-[28px]" />
       </section>
     </>
@@ -339,7 +339,7 @@ export function SkeletonServiceDetailBody() {
   return (
     <>
       <SkeletonHero />
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col gap-[48px] w-full max-w-[1280px]">
           <SkeletonSectionHeader />
           <div className="flex flex-col gap-[32px]">
@@ -366,7 +366,7 @@ export function SkeletonServiceDetailBody() {
 /** Related projects grid skeleton (3-col) */
 export function SkeletonRelatedProjectsSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <div className="flex flex-col gap-[32px] w-full max-w-[1440px]">
         <SkeletonSectionHeader />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
@@ -383,7 +383,7 @@ export function SkeletonRelatedProjectsSection() {
 export function SkeletonProjectDetailBody() {
   return (
     <>
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col gap-[24px] w-full max-w-[1440px]">
           <div className="flex gap-[8px]">
             <Skeleton className="h-[28px] w-[64px] rounded-[20px]" />
@@ -395,7 +395,7 @@ export function SkeletonProjectDetailBody() {
           <Skeleton className="w-full h-[300px] lg:h-[580px] rounded-[28px] mt-[16px]" />
         </div>
       </section>
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col lg:flex-row gap-[32px] w-full max-w-[1280px]">
           <div className="flex flex-col gap-[16px] flex-1">
             <Skeleton className="h-[40px] w-[200px]" />
@@ -406,7 +406,7 @@ export function SkeletonProjectDetailBody() {
           <Skeleton className="w-full lg:w-[400px] h-[280px] rounded-[28px] shrink-0" />
         </div>
       </section>
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <Skeleton className="w-full max-w-[1280px] h-[250px] lg:h-[450px] rounded-[28px]" />
       </section>
     </>
@@ -417,7 +417,7 @@ export function SkeletonProjectDetailBody() {
 export function SkeletonBlogPostBody() {
   return (
     <>
-      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col gap-[24px] items-center w-full max-w-[880px]">
           <div className="flex gap-[8px]">
             <Skeleton className="h-[28px] w-[72px] rounded-[20px]" />
@@ -435,7 +435,7 @@ export function SkeletonBlogPostBody() {
           </div>
         </div>
       </section>
-      <section className="w-full flex justify-center pb-[40px] lg:pb-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+      <section className="w-full flex justify-center pb-[40px] lg:pb-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
         <div className="flex flex-col gap-[24px] w-full max-w-[720px]">
           <SkeletonText className="w-full" />
           <SkeletonText className="w-full" />
@@ -453,7 +453,7 @@ export function SkeletonBlogPostBody() {
 /** Booking section skeleton */
 export function SkeletonBookingSection() {
   return (
-    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px] bg-[#000]">
+    <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px] bg-[#000]">
       <Skeleton className="w-full max-w-[1440px] h-[300px] lg:h-[400px] rounded-[28px]" />
     </section>
   );

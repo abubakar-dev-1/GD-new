@@ -49,7 +49,7 @@ export default function ServiceProcess({
 }: ServiceProcessProps) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
       <div
@@ -58,7 +58,7 @@ export default function ServiceProcess({
       >
         {/* Header */}
         <div className="flex flex-col items-center gap-[16px] text-center">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px] max-w-[648px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-[600] leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px] max-w-[648px]">
             {heading}
           </h2>
           <p className="text-[#FFFFFF] text-[16px] font-[400] leading-[24px] max-w-[592px]">
@@ -71,7 +71,7 @@ export default function ServiceProcess({
           {steps.map((step, index) => (
             <div
               key={index}
-              className="flex flex-col bg-[#191919] rounded-[20px] p-[24px] lg:h-[366px] lg:justify-between"
+              className="flex flex-col bg-[#191919] rounded-[20px] p-[16px] min-[375px]:p-[24px] lg:h-[366px] lg:justify-between"
             >
               {/* Number circle */}
               <div className="w-[48px] h-[48px] rounded-full bg-[#D0FF71] flex items-center justify-center">

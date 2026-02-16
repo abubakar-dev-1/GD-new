@@ -17,13 +17,13 @@ export default function ProductShowcase({
 }: ProductShowcaseProps) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000", fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex flex-col gap-[48px] lg:gap-[80px] items-start w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col gap-[24px] max-w-[768px]">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-semibold leading-[48px] lg:leading-[58px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-semibold leading-[40px] min-[375px]:leading-[48px] lg:leading-[58px]">
             {heading}
           </h2>
           <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px]">

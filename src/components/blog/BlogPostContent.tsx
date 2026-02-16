@@ -8,7 +8,7 @@ import PortableTextRenderer from "@/components/blog/PortableTextRenderer";
 export default function BlogPostContent({ body }: { body: any[] }) {
   return (
     <section
-      className="w-full flex justify-center px-[20px] lg:px-[10px] pb-[60px] lg:pb-[100px]"
+      className="w-full flex justify-center px-[12px] min-[375px]:px-[20px] lg:px-[10px] pb-[60px] lg:pb-[100px]"
       style={{ backgroundColor: "#000" }}
     >
       <div
@@ -63,7 +63,7 @@ export default function BlogPostContent({ body }: { body: any[] }) {
         {/* Right Column - Booking Widget */}
         <aside className="w-full lg:w-[400px] lg:sticky lg:top-[100px] flex-shrink-0">
           <div
-            className="flex flex-col items-center gap-[24px] p-[24px] rounded-[20px] overflow-hidden bg-cover bg-center bg-no-repeat"
+            className="flex flex-col items-center gap-[24px] p-[16px] min-[375px]:p-[24px] rounded-[20px] overflow-hidden bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: "url('/images/calendly_image 96.png')",
             }}

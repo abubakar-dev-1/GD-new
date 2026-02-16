@@ -116,7 +116,13 @@ function ArticleCard({ article }: { article: Article }) {
 }
 
 export default function PopularArticles({ title = "Popular Articles", articles }: { title?: string; articles?: Article[] }) {
-  const displayArticles = articles && articles.length > 0 ? articles : defaultArticles;
+  // Merge defaults with Sanity articles, deduplicating by id (Sanity wins)
+  const sanityItems = articles ?? [];
+  const sanityIds = new Set(sanityItems.map((a) => a.id));
+  const displayArticles = [
+    ...defaultArticles.filter((a) => !sanityIds.has(a.id)),
+    ...sanityItems,
+  ];
 
   return (
     <section

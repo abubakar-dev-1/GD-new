@@ -100,10 +100,14 @@ export default function Home() {
       <WhyChooseUs />
 
       {/* Our Projects Section */}
-      <OurProjects />
+      <Suspense fallback={<SkeletonProjectsSection />}>
+        <ProjectsSection />
+      </Suspense>
 
-      {/* Our Services Section - using mock data for now */}
-      <OurServices />
+      {/* Our Services Section */}
+      <Suspense fallback={<SkeletonServicesSection />}>
+        <ServicesSection />
+      </Suspense>
 
       {/* Featured Products Section */}
       <Suspense fallback={<SkeletonProductsSection />}>

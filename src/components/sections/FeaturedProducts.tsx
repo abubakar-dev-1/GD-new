@@ -173,7 +173,13 @@ function DesktopProductCard({ product }: { product: ProductItem }) {
 }
 
 export default function FeaturedProducts({ products }: { products?: ProductItem[] }) {
-  const items = products && products.length > 0 ? products : defaultProducts;
+  // Merge defaults with Sanity products, deduplicating by link (Sanity wins)
+  const sanityItems = products ?? [];
+  const sanitySlugs = new Set(sanityItems.map((p) => p.link));
+  const items = [
+    ...defaultProducts.filter((p) => !sanitySlugs.has(p.link)),
+    ...sanityItems,
+  ];
 
   return (
     <section

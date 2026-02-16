@@ -21,13 +21,13 @@ export default function ProductHighlights({
 }: ProductHighlightsProps) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000", fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex flex-col gap-[24px] lg:gap-[80px] items-center w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col gap-[24px] items-center text-center max-w-[768px]">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px]">
             {heading}
           </h2>
           <p
@@ -44,7 +44,7 @@ export default function ProductHighlights({
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col gap-[32px] items-start justify-center bg-[#191919] rounded-[28px] p-[24px] w-full lg:flex-1"
+                className="flex flex-col gap-[24px] min-[375px]:gap-[32px] items-start justify-center bg-[#191919] rounded-[28px] p-[16px] min-[375px]:p-[24px] w-full lg:flex-1"
               >
                 {/* Image */}
                 <div className="relative w-full aspect-[2880/2048] rounded-[16px] overflow-hidden">

@@ -56,7 +56,7 @@ export default function ProjectDetailHero({
   return (
     <div style={{ fontFamily: "Inter, sans-serif" }}>
       {/* Carousel Section */}
-      <section className="w-full flex justify-center py-[40px] px-[20px] lg:px-[10px]">
+      <section className="w-full flex justify-center py-[40px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]">
         <div className="w-full max-w-[1280px] relative">
           <Carousel
             setApi={setApi}

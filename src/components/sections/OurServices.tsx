@@ -234,7 +234,13 @@ function ServiceCard({
 }
 
 export default function OurServices({ services }: { services?: ServiceItem[] }) {
-  const items = services && services.length > 0 ? services : defaultServices;
+  // Merge defaults with Sanity services, deduplicating by slug (Sanity wins)
+  const sanityItems = services ?? [];
+  const sanitySlugs = new Set(sanityItems.map((s) => s.slug));
+  const items = [
+    ...defaultServices.filter((s) => !sanitySlugs.has(s.slug)),
+    ...sanityItems,
+  ];
   const layout = generateGridLayout(items.length);
 
   return (

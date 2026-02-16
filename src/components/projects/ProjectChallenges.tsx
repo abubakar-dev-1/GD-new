@@ -17,7 +17,7 @@ export default function ProjectChallenges({
 }: ProjectChallengesProps) {
   return (
     <section
-      className="w-full flex justify-center py-[48px] lg:py-[80px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[48px] lg:py-[80px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       <div className="w-full max-w-[1280px]">

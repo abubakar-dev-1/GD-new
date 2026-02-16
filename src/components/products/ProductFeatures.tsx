@@ -42,13 +42,13 @@ export default function ProductFeatures({
 }: ProductFeaturesProps) {
   return (
     <section
-      className="w-full flex justify-center py-[40px] lg:py-[40px] px-[20px] lg:px-[10px]"
+      className="w-full flex justify-center py-[40px] lg:py-[40px] px-[12px] min-[375px]:px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000", fontFamily: "Inter, sans-serif" }}
     >
       <div className="flex flex-col gap-[32px] items-start w-full max-w-[1280px]">
         {/* Header */}
         <div className="flex flex-col gap-[16px]">
-          <h2 className="text-[#FFFFFF] text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px]">
+          <h2 className="text-[#FFFFFF] text-[32px] min-[375px]:text-[40px] lg:text-[64px] font-bold lg:font-semibold leading-normal lg:leading-[58px]">
             {heading}
           </h2>
           <p className="text-[#FFFFFF] text-[16px] font-normal leading-[24px] max-w-[500px]">

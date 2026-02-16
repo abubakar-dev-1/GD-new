@@ -84,7 +84,14 @@ const defaultTestimonials: TestimonialItem[] = [
   },
 ];
 
-export default function Testimonials({ testimonials = defaultTestimonials }: { testimonials?: TestimonialItem[] }) {
+export default function Testimonials({ testimonials: sanityTestimonials }: { testimonials?: TestimonialItem[] }) {
+  // Merge defaults with Sanity testimonials, deduplicating by id (Sanity wins)
+  const sanityItems = sanityTestimonials ?? [];
+  const sanityIds = new Set(sanityItems.map((t) => t.id));
+  const testimonials = [
+    ...defaultTestimonials.filter((t) => !sanityIds.has(t.id)),
+    ...sanityItems,
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef(0);
