@@ -14,7 +14,7 @@ export default function AboutHeroSection() {
           {/* Background Image - Desktop */}
           <div className="absolute inset-0 hidden lg:block">
             <Image
-              src="/images/image 59.png"
+              src="/images/career_image 59.png"
               alt="About Us Background"
               fill
               className="object-cover"

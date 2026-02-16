@@ -5,7 +5,7 @@ import ProjectsHeroSection from "@/components/projects/ProjectsHeroSection";
 import ProjectsListing from "@/components/projects/ProjectsListing";
 import OurProcess from "@/components/about/OurProcess";
 import TrustedBy from "@/components/sections/TrustedBy";
-import Testimonials from "@/components/sections/Testimonials";
+import TestimonialsWrapper from "@/components/sections/TestimonialsWrapper";
 import BookingSection from "@/components/home/BookingSection";
 import { client } from "../../../sanity/lib/client";
 import { projectsQuery } from "../../../sanity/lib/queries";
@@ -52,7 +52,7 @@ export default function ProjectsPage() {
       <ProjectsHeroSection />
       <ProjectsListing />
       <TrustedBy />
-      <Testimonials />
+      <TestimonialsWrapper />
       <OurProcess steps={processSteps} />
       <BookingSection />
       <Footer />

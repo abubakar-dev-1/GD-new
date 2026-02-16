@@ -9,7 +9,7 @@ import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import OurProjects from "@/components/sections/OurProjects";
 import TeamSection from "@/components/sections/TeamSection";
 import HiringBanner from "@/components/sections/HiringBanner";
-import Testimonials from "@/components/sections/Testimonials";
+import TestimonialsWrapper from "@/components/sections/TestimonialsWrapper";
 import PopularArticles from "@/components/sections/PopularArticles";
 import BookingSection from "@/components/home/BookingSection";
 import { client } from "../../sanity/lib/client";
@@ -122,7 +122,7 @@ export default function Home() {
       </Suspense>
 
       {/* Testimonials Section */}
-      <Testimonials />
+      <TestimonialsWrapper />
 
       {/* Booking Section */}
       <BookingSection />

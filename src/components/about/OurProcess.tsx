@@ -57,9 +57,9 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
       style={{ backgroundColor: "#000" }}
     >
-      <div className="w-full max-w-[1440px] flex flex-col items-center gap-[10px]">
+      <div className="w-full max-w-[1440px] flex flex-col items-center gap-[40px] lg:gap-[64px]">
         {/* Header */}
-        <div className="flex flex-col items-center gap-[12px] text-center mb-[40px] lg:mb-[60px]">
+        <div className="flex flex-col items-center gap-[16px] text-center">
           <h2
             className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
@@ -67,7 +67,7 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
             Our Process
           </h2>
           <p
-            className="text-[#FFF] text-[16px] font-[400] leading-[24px] max-w-[500px]"
+            className="text-[#888] text-[16px] font-[400] leading-[24px] max-w-[500px]"
             style={{ fontFamily: "Inter" }}
           >
             The Drew! Hall of Fame: Featuring brands from around the world and

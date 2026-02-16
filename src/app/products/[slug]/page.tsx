@@ -8,7 +8,7 @@ import ProductFeatures from "@/components/products/ProductFeatures";
 import ProductShowcase from "@/components/products/ProductShowcase";
 import ProductHighlights from "@/components/products/ProductHighlights";
 import ProductOverview from "@/components/products/ProductOverview";
-import Testimonials from "@/components/sections/Testimonials";
+import TestimonialsWrapper from "@/components/sections/TestimonialsWrapper";
 import PopularArticles from "@/components/sections/PopularArticles";
 import { client } from "../../../../sanity/lib/client";
 import {
@@ -292,7 +292,7 @@ export default async function ProductDetailPage({
         <ProductContent slug={slug} />
       </Suspense>
       <BookingSection />
-      <Testimonials />
+      <TestimonialsWrapper />
       <Suspense fallback={<SkeletonArticlesSection />}>
         <ArticlesSection />
       </Suspense>

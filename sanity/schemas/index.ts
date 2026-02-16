@@ -6,6 +6,7 @@ import project from "./project";
 import service from "./service";
 import privacyPolicy from "./privacyPolicy";
 import termsAndConditions from "./termsAndConditions";
+import testimonial from "./testimonial";
 import newsletterPopup from "./newsletterPopup";
 
-export const schemaTypes = [post, author, category, project, product, service, privacyPolicy, termsAndConditions, newsletterPopup];
+export const schemaTypes = [post, author, category, project, product, service, testimonial, privacyPolicy, termsAndConditions, newsletterPopup];

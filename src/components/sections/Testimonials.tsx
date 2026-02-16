@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-interface Testimonial {
+export interface TestimonialItem {
   id: number;
   company: string;
   companyLogo: string;
@@ -16,7 +16,7 @@ interface Testimonial {
   };
 }
 
-const testimonials: Testimonial[] = [
+const defaultTestimonials: TestimonialItem[] = [
   {
     id: 1,
     company: "Upwork",
@@ -84,7 +84,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials = defaultTestimonials }: { testimonials?: TestimonialItem[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const maxIndex = Math.max(0, testimonials.length - 3);

@@ -337,6 +337,23 @@ export const termsAndConditionsQuery = groq`
   }
 `;
 
+// ── Testimonials Query ──
+
+// Get all testimonials ordered by display order
+export const testimonialsQuery = groq`
+  *[_type == "testimonial"] | order(order asc) {
+    _id,
+    company,
+    companyLogo,
+    rating,
+    quote,
+    authorName,
+    authorTitle,
+    authorImage,
+    order
+  }
+`;
+
 // ── Newsletter Popup Query ──
 
 // Get the newsletter popup settings (singleton)

@@ -3,7 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ServicesHeroSection from "@/components/services/ServicesHeroSection";
 import OurServices from "@/components/sections/OurServices";
-import Testimonials from "@/components/sections/Testimonials";
+import TestimonialsWrapper from "@/components/sections/TestimonialsWrapper";
 import BookingSection from "@/components/home/BookingSection";
 import { client } from "../../../sanity/lib/client";
 import { servicesQuery } from "../../../sanity/lib/queries";
@@ -27,7 +27,7 @@ export default function ServicesPage() {
       <Suspense fallback={<SkeletonServicesSection />}>
         <ServicesSection />
       </Suspense>
-      <Testimonials />
+      <TestimonialsWrapper />
       <BookingSection />
       <Footer />
     </div>
