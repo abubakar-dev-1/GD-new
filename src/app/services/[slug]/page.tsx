@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -16,7 +17,7 @@ import {
 } from "../../../../sanity/lib/queries";
 import { Service } from "@/types/service";
 import { Project } from "@/types/project";
-import { transformServiceToDetail, transformProjectToRelated } from "@/lib/sanity-helpers";
+import { getImageUrl, transformServiceToDetail, transformProjectToRelated } from "@/lib/sanity-helpers";
 import {
   SkeletonServiceDetailBody,
   SkeletonRelatedProjectsSection,
@@ -172,6 +173,47 @@ export async function generateStaticParams() {
   const sanitySlugs: string[] = await client.fetch(serviceSlugsQuery);
   const allSlugs = [...new Set([...sanitySlugs, ...fallbackSlugs])];
   return allSlugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service: Service | null = await client.fetch(serviceBySlugQuery, { slug });
+  const fb = fallbackData[slug];
+
+  const title = service?.heroTitle ?? service?.title ?? fb?.heroTitle;
+  const description =
+    service?.heroDescription ?? service?.description ?? fb?.heroDescription;
+
+  if (!title) return { title: "Service Not Found" };
+
+  const image = service?.heroImage
+    ? getImageUrl(service.heroImage, 1200, 630)
+    : service?.coverImage
+    ? getImageUrl(service.coverImage, 1200, 630)
+    : fb?.heroImage;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/services/${slug}` },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: `/services/${slug}`,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 async function ServiceContent({ slug }: { slug: string }) {

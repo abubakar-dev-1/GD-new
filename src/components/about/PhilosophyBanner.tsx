@@ -2,7 +2,22 @@
 
 import Image from "next/image";
 
-export default function PhilosophyBanner() {
+const defaultImage = "/image 98.png";
+const defaultHighlight = "Transparency, integrity, and professionalism";
+const defaultText =
+  " are the pillars of our business philosophy. We prioritize clear communication and honest advice, ensuring that you're empowered to make informed decisions throughout the buying or selling process";
+
+interface PhilosophyBannerProps {
+  image?: string;
+  highlight?: string;
+  text?: string;
+}
+
+export default function PhilosophyBanner({
+  image = defaultImage,
+  highlight = defaultHighlight,
+  text = defaultText,
+}: PhilosophyBannerProps) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -13,7 +28,7 @@ export default function PhilosophyBanner() {
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="/image 98.png"
+              src={image}
               alt="Our Philosophy"
               fill
               className="object-cover"
@@ -35,13 +50,8 @@ export default function PhilosophyBanner() {
                 color: "rgba(255, 255, 255, 0.60)",
               }}
             >
-              <span className="text-[#D0FF71]">
-                Transparency, integrity, and professionalism
-              </span>{" "}
-              are the pillars of our business philosophy. We prioritize clear
-              communication and honest advice, ensuring that you&apos;re
-              empowered to make informed decisions throughout the buying or
-              selling process
+              <span className="text-[#D0FF71]">{highlight}</span>
+              {text}
             </p>
           </div>
         </div>

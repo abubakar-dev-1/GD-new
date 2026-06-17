@@ -8,7 +8,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const defaultFaqs: FAQItem[] = [
   {
     id: "faq-1",
     question: "What is the interview process like?",
@@ -73,7 +79,21 @@ const DribbbleIcon = () => (
   </svg>
 );
 
-export default function CareerFAQ() {
+const defaultHeading = "FAQs";
+const defaultDescription =
+  "Everything you need to know about joining our team. If you have a question that isn't answered here, feel free to reach out.";
+
+interface CareerFAQProps {
+  heading?: string;
+  description?: string;
+  faqs?: FAQItem[];
+}
+
+export default function CareerFAQ({
+  heading = defaultHeading,
+  description = defaultDescription,
+  faqs = defaultFaqs,
+}: CareerFAQProps) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -86,11 +106,10 @@ export default function CareerFAQ() {
           style={{ fontFamily: "Inter, sans-serif" }}
         >
           <h2 className="text-[#FFF] text-[40px] font-[700] leading-[120%]">
-            FAQs
+            {heading}
           </h2>
           <p className="text-[#FFF] text-[16px] font-[400] leading-[150%]">
-            Everything you need to know about joining our team. If you have a
-            question that isn&apos;t answered here, feel free to reach out.
+            {description}
           </p>
 
           {/* Connect with Us Button */}
@@ -128,10 +147,7 @@ export default function CareerFAQ() {
 
         {/* Right Column - Accordion */}
         <div className="flex-1">
-          <Accordion
-            type="multiple"
-            defaultValue={["faq-1", "faq-2", "faq-3", "faq-4", "faq-5"]}
-          >
+          <Accordion type="multiple" defaultValue={faqs.map((faq) => faq.id)}>
             {faqs.map((faq) => (
               <AccordionItem
                 key={faq.id}

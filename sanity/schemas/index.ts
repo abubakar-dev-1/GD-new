@@ -7,5 +7,29 @@ import service from "./service";
 import privacyPolicy from "./privacyPolicy";
 import termsAndConditions from "./termsAndConditions";
 import newsletterPopup from "./newsletterPopup";
+import teamSection from "./teamSection";
+import testimonialsSection from "./testimonialsSection";
+import trustedBy from "./trustedBy";
+import whyChooseUs from "./whyChooseUs";
+import aboutPage from "./aboutPage";
+import careerPage from "./careerPage";
+import jobPosting from "./jobPosting";
 
-export const schemaTypes = [post, author, category, project, product, service, privacyPolicy, termsAndConditions, newsletterPopup];
+export const schemaTypes = [
+  post,
+  author,
+  category,
+  project,
+  product,
+  service,
+  privacyPolicy,
+  termsAndConditions,
+  newsletterPopup,
+  teamSection,
+  testimonialsSection,
+  trustedBy,
+  whyChooseUs,
+  aboutPage,
+  careerPage,
+  jobPosting,
+];

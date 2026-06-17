@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-const SHEETDB_API_URL = "https://sheetdb.io/api/v1/e2ormwywhf12h";
-
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,11 +13,12 @@ export default function NewsletterForm() {
 
     setIsSubmitting(true);
     try {
-      await fetch(SHEETDB_API_URL, {
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: { User_name: "Newsletter Subscriber", Email: email } }),
+        body: JSON.stringify({ email }),
       });
+      if (!res.ok) throw new Error("Subscription failed");
       setIsSuccess(true);
       setEmail("");
     } catch {

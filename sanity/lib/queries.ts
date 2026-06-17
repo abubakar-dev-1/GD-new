@@ -352,3 +352,156 @@ export const newsletterPopupQuery = groq`
     delaySeconds
   }
 `;
+
+// ── Team Section Query ──
+
+// Get the team section (singleton)
+export const teamSectionQuery = groq`
+  *[_type == "teamSection"][0] {
+    heading,
+    description,
+    members[] {
+      _key,
+      name,
+      title,
+      quote,
+      image,
+      mobileImage,
+      linkedin,
+      upwork,
+      twitter
+    }
+  }
+`;
+
+// ── Testimonials Section Query ──
+
+// Get the testimonials section (singleton)
+export const testimonialsSectionQuery = groq`
+  *[_type == "testimonialsSection"][0] {
+    heading,
+    description,
+    testimonials[] {
+      _key,
+      company,
+      companyLogo,
+      rating,
+      quote,
+      authorName,
+      authorTitle,
+      authorImage
+    }
+  }
+`;
+
+// ── Trusted By Query ──
+
+// Get the trusted by logos (singleton)
+export const trustedByQuery = groq`
+  *[_type == "trustedBy"][0] {
+    heading,
+    logos[] {
+      _key,
+      name,
+      logo,
+      width,
+      height
+    }
+  }
+`;
+
+// ── Why Choose Us Query ──
+
+// Get the why choose us stats (singleton)
+export const whyChooseUsQuery = groq`
+  *[_type == "whyChooseUs"][0] {
+    heading,
+    description,
+    stats[] {
+      _key,
+      value,
+      suffix,
+      label,
+      icon
+    }
+  }
+`;
+
+// ── About Page Query ──
+
+// Get the about page content (singleton)
+export const aboutPageQuery = groq`
+  *[_type == "aboutPage"][0] {
+    heroTitle,
+    heroDescription,
+    heroBackgroundDesktop,
+    heroBackgroundMobile,
+    heroCtaText,
+    heroCtaSubtext,
+    valuesHeading,
+    valuesDescription,
+    values[] {
+      _key,
+      title,
+      description
+    },
+    processHeading,
+    processDescription,
+    processSteps[] {
+      _key,
+      number,
+      title,
+      description,
+      icon
+    },
+    philosophyImage,
+    philosophyHighlight,
+    philosophyText
+  }
+`;
+
+// ── Career Page Queries ──
+
+// Get the career page content (singleton)
+export const careerPageQuery = groq`
+  *[_type == "careerPage"][0] {
+    heroTitle,
+    heroDescription,
+    heroCtaText,
+    heroCtaSubtext,
+    heroBackgroundDesktop,
+    heroBackgroundMobile,
+    processHeading,
+    processDescription,
+    processSteps[] {
+      _key,
+      number,
+      title,
+      description,
+      icon
+    },
+    positionsHeading,
+    positionsDescription,
+    faqHeading,
+    faqDescription,
+    faqs[] {
+      _key,
+      question,
+      answer
+    }
+  }
+`;
+
+// Get all job postings ordered by display order
+export const jobPostingsQuery = groq`
+  *[_type == "jobPosting"] | order(order asc) {
+    _id,
+    title,
+    badge,
+    description,
+    location,
+    type,
+    applyLink,
+    order
+  }
+`;

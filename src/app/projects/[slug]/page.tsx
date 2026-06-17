@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -19,6 +20,7 @@ import {
 import { Post } from "@/types/blog";
 import { Project } from "@/types/project";
 import {
+  getImageUrl,
   transformPostToArticle,
   transformProjectToDetail,
   transformProjectToRelated,
@@ -34,6 +36,40 @@ export const revalidate = 60;
 export async function generateStaticParams() {
   const slugs: string[] = await client.fetch(projectSlugsQuery);
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project: Project | null = await client.fetch(projectBySlugQuery, { slug });
+
+  if (!project) return { title: "Project Not Found" };
+
+  const image = project.coverImage
+    ? getImageUrl(project.coverImage, 1200, 630)
+    : undefined;
+
+  return {
+    title: project.title,
+    description: project.description,
+    alternates: { canonical: `/projects/${slug}` },
+    openGraph: {
+      type: "article",
+      title: project.title,
+      description: project.description,
+      url: `/projects/${slug}`,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.description,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 async function ProjectContent({ slug }: { slug: string }) {

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -29,6 +30,37 @@ export async function generateStaticParams() {
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post: Post | null = await client.fetch(postBySlugQuery, { slug });
+
+  if (!post) return { title: "Post Not Found" };
+
+  const image = post.coverImage ? getImageUrl(post.coverImage, 1200, 630) : undefined;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url: `/blog/${slug}`,
+      publishedTime: post.publishedAt,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 async function BlogPostBody({ slug }: { slug: string }) {

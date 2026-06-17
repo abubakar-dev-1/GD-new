@@ -12,8 +12,16 @@ import { projectsQuery } from "../../../sanity/lib/queries";
 import { Project } from "@/types/project";
 import { transformProjectToCard } from "@/lib/sanity-helpers";
 import { SkeletonProjectsListingSection } from "@/components/ui/Skeleton";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Explore the case studies behind some of our most successful and innovative digital experiences, built for brands around the world.",
+  alternates: { canonical: "/projects" },
+};
 
 const processSteps = [
   {

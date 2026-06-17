@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-const SHEETDB_API_URL = "https://sheetdb.io/api/v1/e2ormwywhf12h";
-
 export interface NewsletterPopupProps {
   enabled?: boolean;
   title?: string;
@@ -58,11 +56,12 @@ export default function NewsletterPopup({
 
     setIsSubmitting(true);
     try {
-      await fetch(SHEETDB_API_URL, {
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: { User_name: "Newsletter Subscriber", Email: email } }),
+        body: JSON.stringify({ email }),
       });
+      if (!res.ok) throw new Error("Subscription failed");
       setIsSuccess(true);
       localStorage.setItem("newsletter_dismissed", "true");
       setTimeout(() => {

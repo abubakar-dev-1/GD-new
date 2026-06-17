@@ -3,7 +3,31 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function AboutHeroSection() {
+const defaultTitle = "About Us";
+const defaultDescription =
+  "You have the vision. We have the expert team to make it a reality. Let's talk about your project, your goals, and how we can partner to create a product that delivers real impact.";
+const defaultCtaText = "Schedule Your Free Consultation";
+const defaultCtaSubtext = "No commitment, just a strategic conversation.";
+const defaultBackgroundDesktop = "/images/image 59.png";
+const defaultBackgroundMobile = "/images/damu un gur.png";
+
+interface AboutHeroSectionProps {
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaSubtext?: string;
+  backgroundDesktop?: string;
+  backgroundMobile?: string;
+}
+
+export default function AboutHeroSection({
+  title = defaultTitle,
+  description = defaultDescription,
+  ctaText = defaultCtaText,
+  ctaSubtext = defaultCtaSubtext,
+  backgroundDesktop = defaultBackgroundDesktop,
+  backgroundMobile = defaultBackgroundMobile,
+}: AboutHeroSectionProps) {
   return (
     <section className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]" style={{ backgroundColor: "#000" }}>
       <div className="w-full max-w-[1440px]">
@@ -14,7 +38,7 @@ export default function AboutHeroSection() {
           {/* Background Image - Desktop */}
           <div className="absolute inset-0 hidden lg:block">
             <Image
-              src="/images/image 59.png"
+              src={backgroundDesktop}
               alt="About Us Background"
               fill
               className="object-cover"
@@ -24,7 +48,7 @@ export default function AboutHeroSection() {
           {/* Background Image - Mobile */}
           <div className="absolute inset-0 lg:hidden">
             <Image
-              src="/images/damu un gur.png"
+              src={backgroundMobile}
               alt="About Us Background"
               fill
               className="object-cover"
@@ -48,12 +72,10 @@ export default function AboutHeroSection() {
             {/* Top group - Title + Description */}
             <div className="flex flex-col items-start gap-[24px]">
               <h1 className="text-[#FFF] text-[40px] font-[700] leading-normal">
-                About Us
+                {title}
               </h1>
               <p className="text-[#FFF] text-[16px] font-[400] leading-[24px]">
-                You have the vision. We have the expert team to make it a reality.
-                Let&apos;s talk about your project, your goals, and how we can partner to
-                create a product that delivers real impact.
+                {description}
               </p>
             </div>
 
@@ -65,11 +87,11 @@ export default function AboutHeroSection() {
               >
                 <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
                 <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
-                  Schedule Your Free Consultation
+                  {ctaText}
                 </span>
               </Link>
               <p className="text-[#D2D2D2] text-[16px] font-[400] leading-[24px]">
-                No commitment, just a strategic conversation.
+                {ctaSubtext}
               </p>
             </div>
           </div>
@@ -80,12 +102,10 @@ export default function AboutHeroSection() {
             style={{ fontFamily: "Inter" }}
           >
             <h1 className="text-[#FFF] text-[64px] font-[600] leading-[58px]">
-              About Us
+              {title}
             </h1>
             <p className="text-[#FFF] text-[16px] font-[400] leading-[24px]">
-              You have the vision. We have the expert team to make it a reality.
-              Let&apos;s talk about your project, your goals, and how we can partner to
-              create a product that delivers real impact.
+              {description}
             </p>
             <Link
               href="/contact"
@@ -93,11 +113,11 @@ export default function AboutHeroSection() {
             >
               <span className="w-[8px] h-[8px] rounded-full bg-[#000000]" />
               <span className="text-[#000000] text-[14px] font-[500] leading-[16px]">
-                Schedule Your Free Consultation
+                {ctaText}
               </span>
             </Link>
             <p className="text-[#D2D2D2] text-[16px] font-[400] leading-[24px]">
-              No commitment, just a strategic conversation.
+              {ctaSubtext}
             </p>
           </div>
         </div>

@@ -67,6 +67,12 @@ export default function Navbar() {
               </MenuItem>
             </Link>
 
+            <Link href="/products">
+              <MenuItem setActive={setActive} active={active} item="Products">
+                {null}
+              </MenuItem>
+            </Link>
+
             <Link href="/contact">
               <MenuItem setActive={setActive} active={active} item="Contact">
                 {null}
@@ -131,6 +137,13 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Services
+            </Link>
+            <Link
+              href="/products"
+              className="text-[#FFF] text-[24px] font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Products
             </Link>
             <Link
               href="/contact"

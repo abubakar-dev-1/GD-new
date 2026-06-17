@@ -1,6 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ContactSection from "@/components/contact/ContactSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Have a project in mind? Get in touch with Gamma Developers to discuss your goals and how we can partner to build a product that delivers real impact.",
+  alternates: { canonical: "/contact" },
+};
 
 export default function ContactPage() {
   return (

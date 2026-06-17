@@ -51,7 +51,21 @@ function StepIcon({ src, alt }: { src: string; alt: string }) {
 const LINE_GRADIENT =
   "linear-gradient(180deg, #191919 43.23%, #D0FF71 100%)";
 
-export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] }) {
+const defaultHeading = "Our Process";
+const defaultDescription =
+  "The Drew! Hall of Fame: Featuring brands from around the world and projects of all shapes and sizes.";
+
+interface OurProcessProps {
+  heading?: string;
+  description?: string;
+  steps?: Step[];
+}
+
+export default function OurProcess({
+  heading = defaultHeading,
+  description = defaultDescription,
+  steps = defaultSteps,
+}: OurProcessProps) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -64,14 +78,13 @@ export default function OurProcess({ steps = defaultSteps }: { steps?: Step[] })
             className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
-            Our Process
+            {heading}
           </h2>
           <p
             className="text-[#FFF] text-[16px] font-[400] leading-[24px] max-w-[500px]"
             style={{ fontFamily: "Inter" }}
           >
-            The Drew! Hall of Fame: Featuring brands from around the world and
-            projects of all shapes and sizes.
+            {description}
           </p>
         </div>
 

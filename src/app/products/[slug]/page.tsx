@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -19,6 +20,7 @@ import {
 import { Product } from "@/types/product";
 import { Post } from "@/types/blog";
 import {
+  getImageUrl,
   transformProductToDetail,
   transformPostToArticle,
 } from "@/lib/sanity-helpers";
@@ -190,6 +192,44 @@ export async function generateStaticParams() {
   const sanitySlugs: string[] = await client.fetch(productSlugsQuery);
   const allSlugs = [...new Set([...sanitySlugs, ...fallbackSlugs])];
   return allSlugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const product: Product | null = await client.fetch(productBySlugQuery, { slug });
+  const fb = fallbackData[slug];
+
+  const title = product?.title ?? fb?.title;
+  const description = product?.description ?? fb?.description;
+
+  if (!title) return { title: "Product Not Found" };
+
+  const image = product?.coverImage
+    ? getImageUrl(product.coverImage, 1200, 630)
+    : fb?.image;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/products/${slug}` },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url: `/products/${slug}`,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 async function ProductContent({ slug }: { slug: string }) {

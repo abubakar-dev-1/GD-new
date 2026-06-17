@@ -1,6 +1,11 @@
 "use client";
 
-const values = [
+interface Value {
+  title: string;
+  description: string;
+}
+
+const defaultValues: Value[] = [
   {
     title: "Radical Transparency",
     description:
@@ -18,7 +23,21 @@ const values = [
   },
 ];
 
-export default function OurValues() {
+const defaultHeading = "Our Values";
+const defaultDescription =
+  "The beliefs that shape our work and our commitment to your success.";
+
+interface OurValuesProps {
+  heading?: string;
+  description?: string;
+  values?: Value[];
+}
+
+export default function OurValues({
+  heading = defaultHeading,
+  description = defaultDescription,
+  values = defaultValues,
+}: OurValuesProps) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -31,13 +50,13 @@ export default function OurValues() {
             className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
-            Our Values
+            {heading}
           </h2>
           <p
             className="text-[#FFF] text-[16px] font-[400] leading-[24px] max-w-[500px]"
             style={{ fontFamily: "Inter" }}
           >
-            The beliefs that shape our work and our commitment to your success.
+            {description}
           </p>
         </div>
 

@@ -10,8 +10,16 @@ import { servicesQuery } from "../../../sanity/lib/queries";
 import { Service } from "@/types/service";
 import { transformServiceToCard } from "@/lib/sanity-helpers";
 import { SkeletonServicesSection } from "@/components/ui/Skeleton";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "From custom software and mobile apps to AI platforms and enterprise systems — explore the services Gamma Developers offers to bring your product to life.",
+  alternates: { canonical: "/services" },
+};
 
 async function ServicesSection() {
   const sanityServices: Service[] = await client.fetch(servicesQuery);

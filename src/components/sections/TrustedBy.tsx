@@ -1,100 +1,42 @@
-"use client";
+import { client } from "../../../sanity/lib/client";
+import { urlFor } from "../../../sanity/lib/image";
+import { trustedByQuery } from "../../../sanity/lib/queries";
+import TrustedByView, { TrustedLogo } from "./TrustedByView";
 
-import Image from "next/image";
-import { Marquee } from "@/components/ui/marquee";
+interface SanityLogo {
+  _key: string;
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  logo?: any;
+  width?: number;
+  height?: number;
+}
 
-const companies = [
-  {
-    name: "Google Cloud",
-    logo: "/trusted_by/Google-Cloud.svg.svg",
-    width: 140,
-    height: 40,
-  },
-  {
-    name: "GSV Ventures",
-    logo: "/trusted_by/GSV-Ventures.svg.svg",
-    width: 120,
-    height: 40,
-  },
-  {
-    name: "Pepsico",
-    logo: "/trusted_by/Pepsico.svg.svg",
-    width: 120,
-    height: 40,
-  },
-  {
-    name: "Staq",
-    logo: "/trusted_by/Staq.svg.svg",
-    width: 100,
-    height: 40,
-  },
-];
+interface SanityTrustedBy {
+  heading?: string;
+  logos?: SanityLogo[];
+}
 
-// Separator component
-const Separator = () => (
-  <div
-    className="w-[1px] h-[10px] bg-[#D2D2D2] flex-shrink-0 mx-6"
-    aria-hidden="true"
-  />
-);
+export default async function TrustedBy() {
+  const data: SanityTrustedBy | null = await client.fetch(trustedByQuery);
 
-// Logo item component
-const LogoItem = ({ company }: { company: typeof companies[0] }) => (
-  <div className="flex items-center">
-    <Image
-      src={company.logo}
-      alt={company.name}
-      width={company.width}
-      height={company.height}
-      className="object-contain"
-    />
-    <Separator />
-  </div>
-);
+  // No Sanity doc yet — render with built-in defaults
+  if (!data || !data.logos?.length) {
+    return <TrustedByView heading={data?.heading} />;
+  }
 
-export default function TrustedBy() {
-  return (
-    <section className="w-full py-4 lg:py-8" style={{ backgroundColor: "var(--global-bg)" }}>
-      {/* Heading - Mobile: 16px/600/24px, Desktop: 14px/600 */}
-      <h2
-        className="text-center text-white text-[16px] lg:text-[14px] font-[600] leading-[24px] tracking-wider mb-4 lg:mb-6 uppercase"
-        style={{ fontFamily: "Inter" }}
-      >
-        TRUSTED BY
-      </h2>
+  const logos: TrustedLogo[] = data.logos.map((l) => {
+    const width = l.width ?? 120;
+    const height = l.height ?? 40;
+    return {
+      name: l.name,
+      logo: l.logo
+        ? urlFor(l.logo).width(width * 2).height(height * 2).url()
+        : "/trusted_by/Staq.svg.svg",
+      width,
+      height,
+    };
+  });
 
-      {/* Logo Container with Marquee - Mobile: h-80px, Desktop: h-100px */}
-      <div className="relative w-full overflow-hidden h-[80px] lg:h-auto flex items-center justify-end lg:justify-center">
-        {/* Left fade image */}
-        <div className="absolute left-0 top-0 bottom-0 w-[60px] lg:w-[150px] z-10 pointer-events-none">
-          <Image
-            src="/trusted_by/Container.svg"
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Right fade image */}
-        <div className="absolute right-0 top-0 bottom-0 w-[60px] lg:w-[150px] z-10 pointer-events-none">
-          <Image
-            src="/trusted_by/Container(1).svg"
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Marquee */}
-        <Marquee
-          pauseOnHover
-          className="[--duration:30s] [--gap:0px] h-[80px] lg:h-[100px] items-center"
-        >
-          {companies.map((company) => (
-            <LogoItem key={company.name} company={company} />
-          ))}
-        </Marquee>
-      </div>
-    </section>
-  );
+  return <TrustedByView heading={data.heading} logos={logos} />;
 }

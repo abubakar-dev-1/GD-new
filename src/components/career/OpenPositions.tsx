@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-interface JobPosition {
+export interface JobPosition {
   id: string;
   title: string;
   badge: string;
@@ -12,7 +12,7 @@ interface JobPosition {
   applyLink: string;
 }
 
-const positions: JobPosition[] = [
+const defaultPositions: JobPosition[] = [
   {
     id: "1",
     title: "Senior Frontend Developer",
@@ -154,7 +154,21 @@ function JobCard({ position }: { position: JobPosition }) {
   );
 }
 
-export default function OpenPositions() {
+const defaultHeading = "Open Positions";
+const defaultDescription =
+  "Join our team of passionate creators, strategists, and engineers. We're looking for talented individuals who want to build exceptional digital products that make a difference.";
+
+interface OpenPositionsProps {
+  heading?: string;
+  description?: string;
+  positions?: JobPosition[];
+}
+
+export default function OpenPositions({
+  heading = defaultHeading,
+  description = defaultDescription,
+  positions = defaultPositions,
+}: OpenPositionsProps) {
   return (
     <section
       className="w-full flex justify-center py-[40px] lg:py-[80px] px-[20px] lg:px-[10px]"
@@ -167,15 +181,13 @@ export default function OpenPositions() {
             className="text-[#FFF] text-[40px] lg:text-[64px] font-[600] leading-[48px] lg:leading-[58px]"
             style={{ fontFamily: "Inter" }}
           >
-            Open Positions
+            {heading}
           </h2>
           <p
             className="text-[#FFF] text-[18px] font-[400] leading-[150%] max-w-[796px] text-center"
             style={{ fontFamily: "var(--font-roboto), Roboto, sans-serif" }}
           >
-            Join our team of passionate creators, strategists, and engineers.
-            We&apos;re looking for talented individuals who want to build exceptional
-            digital products that make a difference.
+            {description}
           </p>
         </div>
 
