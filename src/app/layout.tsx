@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto, Oswald } from "next/font/google";
+import { Inter, Roboto, Oswald, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import NewsletterPopupWrapper from "@/components/ui/NewsletterPopupWrapper";
 import { siteConfig } from "@/lib/site";
@@ -20,6 +20,12 @@ const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
   weight: ["600"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -80,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${roboto.variable} ${oswald.variable} antialiased`}
+        className={`${inter.variable} ${roboto.variable} ${oswald.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
         <NewsletterPopupWrapper />

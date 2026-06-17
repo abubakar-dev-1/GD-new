@@ -82,3 +82,126 @@
   }
 }
 
+/* ===================================================================
+   GAMMA — AI-FIRST BRAND SYSTEM
+   "Engineered at the speed of light." Gamma rays = highest energy,
+   fastest end of the spectrum. Deep dark canvas, one electric emerald,
+   light that glows out of the dark.
+   =================================================================== */
+@theme {
+  /* Brand — electric emerald */
+  --color-brand: #00e599;
+  --color-brand-bright: #6bffc6;
+  --color-brand-deep: #00b37a;
+  --color-brand-ink: #00150e; /* text on brand fills */
+
+  /* Canvas — near black */
+  --color-canvas: #06080a;
+  --color-canvas-soft: #0a0e11;
+  --color-canvas-raised: #0e1316;
+
+  /* Text */
+  --color-ink: #e8efec;
+  --color-ink-soft: #97a39e;
+  --color-ink-faint: #5a6661;
+
+  /* Hairlines */
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-bright: rgba(0, 229, 153, 0.28);
+
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ---- Brand keyframes ---------------------------------------------- */
+@keyframes gd-grid-pan {
+  to { background-position: 64px 64px; }
+}
+@keyframes gd-beam {
+  0%   { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+@keyframes gd-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes gd-pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.08); }
+}
+@keyframes gd-caret {
+  0%, 49%  { opacity: 1; }
+  50%, 100%{ opacity: 0; }
+}
+@keyframes gd-shimmer {
+  to { background-position: 200% center; }
+}
+@keyframes gd-aurora {
+  0%   { transform: translate3d(-6%, -2%, 0) scale(1); }
+  50%  { transform: translate3d(6%, 4%, 0) scale(1.15); }
+  100% { transform: translate3d(-6%, -2%, 0) scale(1); }
+}
+
+/* ---- Brand utilities --------------------------------------------- */
+@layer utilities {
+  /* faint engineering grid */
+  .gd-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .gd-grid-animate { animation: gd-grid-pan 7s linear infinite; }
+
+  /* radial fade mask for grids/fields */
+  .gd-fade-radial {
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 65% at 50% 40%, #000 30%, transparent 78%);
+  }
+
+  /* crystalline glass surface */
+  .gd-glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .gd-glass-brand {
+    border-color: var(--color-line-bright);
+    box-shadow: 0 0 0 1px rgba(0, 229, 153, 0.06), 0 0 40px -12px rgba(0, 229, 153, 0.45);
+  }
+
+  /* emerald glow text + halo */
+  .gd-glow-text { text-shadow: 0 0 28px rgba(0, 229, 153, 0.45); }
+  .gd-glow-sm  { box-shadow: 0 0 24px -6px rgba(0, 229, 153, 0.55); }
+  .gd-glow-lg  { box-shadow: 0 0 80px -10px rgba(0, 229, 153, 0.5); }
+
+  /* shimmering generative gradient text */
+  .gd-shimmer {
+    background: linear-gradient(100deg, var(--color-brand) 20%, var(--color-brand-bright) 40%, #ffffff 50%, var(--color-brand-bright) 60%, var(--color-brand) 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gd-shimmer 6s linear infinite;
+  }
+
+  .gd-caret { animation: gd-caret 1s step-end infinite; }
+  .gd-float { animation: gd-float 6s ease-in-out infinite; }
+
+  .gd-beam {
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 153, 0.55), transparent);
+    animation: gd-beam 5.5s ease-in-out infinite;
+  }
+}
+
+/* Respect reduced motion globally for brand animations */
+@media (prefers-reduced-motion: reduce) {
+  .gd-grid-animate,
+  .gd-shimmer,
+  .gd-caret,
+  .gd-float,
+  .gd-beam { animation: none !important; }
+}
+
