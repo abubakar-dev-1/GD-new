@@ -110,6 +110,7 @@
   --color-line-bright: rgba(0, 229, 153, 0.28);
 
   --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: var(--font-orbitron), var(--font-oswald), system-ui, sans-serif;
 }
 
 /* ---- Brand keyframes ---------------------------------------------- */
@@ -141,6 +142,66 @@
   0%   { transform: translate3d(-6%, -2%, 0) scale(1); }
   50%  { transform: translate3d(6%, 4%, 0) scale(1.15); }
   100% { transform: translate3d(-6%, -2%, 0) scale(1); }
+}
+
+/* ---- Cinematic "dead → gamma rays → alive" hero ------------------- */
+/* sickly flicker of a dying project */
+@keyframes gd-flicker {
+  0%, 100% { opacity: 0.85; }
+  18% { opacity: 0.85; } 20% { opacity: 0.25; } 22% { opacity: 0.85; }
+  55% { opacity: 0.55; } 57% { opacity: 0.9; }
+  70% { opacity: 0.3; } 72% { opacity: 0.8; }
+}
+/* RGB-split glitch jitter */
+@keyframes gd-glitch {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+/* AI scan sweep */
+@keyframes gd-scanline {
+  0%   { transform: translateY(-120%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(2200%); opacity: 0; }
+}
+/* impact flash */
+@keyframes gd-flash {
+  0%   { opacity: 0; }
+  8%   { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+/* gamma-ray text glitch-in for the brand reveal */
+@keyframes gd-reveal-glitch {
+  0%   { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(8px); }
+  30%  { clip-path: inset(0 0 40% 0); opacity: 1; transform: translate(-3px, 0) skewX(-6deg); }
+  45%  { clip-path: inset(50% 0 10% 0); transform: translate(3px, 0) skewX(4deg); }
+  60%  { clip-path: inset(10% 0 35% 0); transform: translate(-2px, 0); }
+  75%  { clip-path: inset(0 0 0 0); transform: translate(1px, 0); }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; transform: translate(0, 0); }
+}
+/* steady alive heartbeat glow */
+@keyframes gd-alive-pulse {
+  0%, 100% { box-shadow: 0 0 60px -20px rgba(0, 229, 153, 0.5); }
+  50%      { box-shadow: 0 0 90px -16px rgba(0, 229, 153, 0.75); }
+}
+
+@layer utilities {
+  .gd-flicker { animation: gd-flicker 2.2s linear infinite; }
+  .gd-glitch  { animation: gd-glitch 0.3s steps(2) infinite; }
+  .gd-scanline { animation: gd-scanline 1.1s ease-in-out 1 forwards; }
+  .gd-flash   { animation: gd-flash 0.7s ease-out 1 forwards; }
+  .gd-reveal-glitch { animation: gd-reveal-glitch 0.85s steps(1, end) 1 both; }
+  .gd-alive-pulse { animation: gd-alive-pulse 2.4s ease-in-out infinite; }
+  .font-display { font-family: var(--font-display); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gd-flicker, .gd-glitch, .gd-scanline, .gd-flash,
+  .gd-reveal-glitch, .gd-alive-pulse { animation: none !important; }
 }
 
 /* ---- Brand utilities --------------------------------------------- */
