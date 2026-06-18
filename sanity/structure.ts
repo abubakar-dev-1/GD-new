@@ -13,7 +13,7 @@ export const singletons = [
   { type: "termsAndConditions", title: "Terms & Conditions" },
 ] as const;
 
-export const singletonTypes = new Set(singletons.map((s) => s.type));
+export const singletonTypes = new Set<string>(singletons.map((s) => s.type));
 
 export const structure: StructureResolver = (S) =>
   S.list()
